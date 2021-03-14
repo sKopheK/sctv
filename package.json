@@ -34,5 +34,8 @@
       "last 1 firefox version",
       "last 1 safari version"
 ***REMOVED***
+***REMOVED***,
+  "devDependencies": ***REMOVED***
+    "node-sass": "^5.0.0"
 ***REMOVED***
 ***REMOVED***
