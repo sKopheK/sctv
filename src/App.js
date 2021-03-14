@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Overlay from './components/Overlay/Overlay';
+import Player from './components/Player/Player';
+import RemoteControl from './components/RemoteControl/RemoteControl';
 
 function App() ***REMOVED***
   return (
     <div className="App">
-      <header className="App-header">
-        <img src=***REMOVED***logo***REMOVED*** className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Player />
+      <Overlay />
+      <RemoteControl />
     </div>
   );
 ***REMOVED***
