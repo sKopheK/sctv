@@ -6,3 +6,27 @@
     bottom: 0;
     left: 0;
 ***REMOVED***
+
+.no-signal
+***REMOVED***
+    background: url('nosignal1.png'); 
+    animation: tvNoise .35s infinite;
+***REMOVED***
+
+@keyframes tvNoise
+***REMOVED***
+    0%
+    ***REMOVED***
+        background-image: url('nosignal1.png');
+  ***REMOVED***
+
+    50%
+    ***REMOVED***
+        background-image: url('nosignal2.png');
+  ***REMOVED***
+
+    100%
+    ***REMOVED***
+        background-image: url('nosignal3.png');
+  ***REMOVED***
+***REMOVED***
