@@ -7,7 +7,7 @@ function App() ***REMOVED***
   return (
     <div className="App">
       <Player />
-      <Overlay />
+      <Overlay extraClass="no-signal" />
       <RemoteControl />
     </div>
   );

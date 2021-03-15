@@ -1,9 +1,9 @@
 import React from 'react';
 import './Overlay.scss';
 
-const Overlay = () => ***REMOVED***
+const Overlay = (props) => ***REMOVED***
     return (
-        <div className="Overlay" />
+        <div className=***REMOVED***`Overlay $***REMOVED***props.extraClass ?? ''***REMOVED***`***REMOVED*** />
     );
 ***REMOVED***
 
