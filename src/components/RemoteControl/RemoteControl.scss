@@ -1,17 +1,44 @@
-@import "colors";
+@use "color";
+@debug color.$bg;
+$radius: 10px;
+
+html
+***REMOVED***
+    background-color: #955;
+***REMOVED***
 
 .RemoteControl
 ***REMOVED***
     position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 5vw;
-    height: 5vh;
+    // right: .5vw;
+    right: 50%;
+    bottom: 0vw;
+    width: 8vw;
+    height: 30vh;
+    transform: scale(.9);
 
-    background-color: $color-bg;
+    background-color: color.$bg;
+    border: 1px solid color.$border;
+    border-radius: $radius;
+    transition: transform .5s, box-shadow .5s, border-width .5s;
 
     &:hover
     ***REMOVED***
+        transform: scale(1);
+        box-shadow: 0 0 20px 15px color.$shadow;
+        border-width: 2px;
+  ***REMOVED***
 
+    &::before
+    ***REMOVED***
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 2px;
+        border-radius: $radius;
+        background-color: color.$bg-main;
   ***REMOVED***
 ***REMOVED***
