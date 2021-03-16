@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, ***REMOVED*** useContext ***REMOVED*** from 'react';
+import AppCtx from '../../AppCtx';
 import Button from '../Button/Button';
 import './MainSwitch.scss';
 
 function MainSwitch(***REMOVED*** className ***REMOVED***) ***REMOVED***
-  const handleClick = () => ***REMOVED***
-    document.querySelector('.Overlay').classList.toggle('no-signal');
-***REMOVED***;
-
+  const ***REMOVED*** toggleScreenOn ***REMOVED*** = useContext(AppCtx);
   return (
-    <Button className=***REMOVED***`MainSwitch btn--round $***REMOVED***className***REMOVED***`***REMOVED*** onClick=***REMOVED***handleClick***REMOVED*** />
+    <Button className=***REMOVED***`MainSwitch btn--round $***REMOVED***className***REMOVED***`***REMOVED*** onClick=***REMOVED***toggleScreenOn***REMOVED*** />
   );
 ***REMOVED***
 
