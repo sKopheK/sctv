@@ -1,0 +1,70 @@
+@use "../../scss/mixins" as *;
+@use "mixins" as btn;
+@use "color";
+@use "config";
+
+.btn
+***REMOVED***
+    @include btn.styles;
+    height: config.$height;
+    color: color.$content;
+    font-size: .65vw;
+    line-height: .35vw;
+    text-transform: uppercase;
+    font-family: Arial, serif;    
+
+    &--round
+    ***REMOVED***
+        @include circle;
+
+        box-sizing: border-box;
+        width: config.$height;
+        height: config.$height;
+
+        &-big
+        ***REMOVED***
+            $size: config.$height * 1.3;
+            width: $size;
+            height: $size;
+      ***REMOVED***
+  ***REMOVED***
+***REMOVED***
+
+.highlighted
+***REMOVED***
+    font-weight: 700;
+    font-size: 1vw;
+***REMOVED***
+
+.btn-arrow
+***REMOVED***
+    &::before
+    ***REMOVED***
+        content: '\25B2';
+        display: inline-block;
+  ***REMOVED***
+    
+    &--lt
+    ***REMOVED***
+        &::before
+        ***REMOVED***
+            transform: rotate(-90deg);
+      ***REMOVED***
+  ***REMOVED***
+
+    &--rt
+    ***REMOVED***
+        &::before
+        ***REMOVED***
+            transform: rotate(90deg);
+      ***REMOVED***
+  ***REMOVED***
+
+    &--dn
+    ***REMOVED***
+        &::before
+        ***REMOVED***
+            transform: rotate(180deg);
+      ***REMOVED***
+  ***REMOVED***
+***REMOVED***
