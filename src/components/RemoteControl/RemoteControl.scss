@@ -1,44 +1,55 @@
 @use "color";
-@debug color.$bg;
-$radius: 10px;
+@use "../../scss/mixins" as *;
 
-html
-***REMOVED***
-    background-color: #955;
-***REMOVED***
+@debug color.$bg;
+$radius: .6vw;
 
 .RemoteControl
 ***REMOVED***
-    position: absolute;
-    // right: .5vw;
-    right: 50%;
-    bottom: 0vw;
-    width: 8vw;
-    height: 30vh;
-    transform: scale(.9);
+    $h: 18vw;
 
-    background-color: color.$bg;
+    width: 8vw;
+    height: $h;
+    
+    position: absolute;
+    right: .7vw;
+    bottom: -$h;
+    
+    padding: 1.1vw .6vw 3.5vw;
+
+    background-color: color.$bg-main;
     border: 1px solid color.$border;
     border-radius: $radius;
-    transition: transform .5s, box-shadow .5s, border-width .5s;
+    transform: scale(.9);
+    
+    transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s;
+
+    &::before
+    ***REMOVED***
+        content: '';
+        @include fill-parent;
+        border-radius: $radius;
+        border: 2px solid color.$bg;
+  ***REMOVED***
 
     &:hover
     ***REMOVED***
         transform: scale(1);
         box-shadow: 0 0 20px 15px color.$shadow;
         border-width: 2px;
-  ***REMOVED***
+        bottom: -.5vw;
 
-    &::before
-    ***REMOVED***
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: 2px;
-        border-radius: $radius;
-        background-color: color.$bg-main;
+        &::before
+        ***REMOVED***
+            border-width: 3px;
+      ***REMOVED***
   ***REMOVED***
+***REMOVED***
+
+.content
+***REMOVED***
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding-bottom: 1vh;
 ***REMOVED***
