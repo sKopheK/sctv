@@ -1,0 +1,22 @@
+@use "config";
+@use "color";
+
+@mixin reset($padding: 0)
+***REMOVED***
+    border: 0;
+    background: none;
+    padding: $padding;
+    cursor: pointer;
+***REMOVED***
+
+@mixin styles($radius: config.$radius, $bg: color.$bg, $border: color.$border, $shadow: color.$shadow)
+***REMOVED***
+    background-color: $bg;
+    border: .15vw solid $border;
+    box-shadow: 0 0 .2vw .1vw $shadow;
+
+    @if $radius
+    ***REMOVED***
+        border-radius: $radius;
+  ***REMOVED***
+***REMOVED***
