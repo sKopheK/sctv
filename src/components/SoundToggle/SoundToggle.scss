@@ -1,0 +1,74 @@
+@use "../Button/color" as btnColor;
+@use "../Button/config" as btnConfig;
+@use "../../scss/mixins" as *;
+
+$btn-height: btnConfig.$height;
+$stroke-width: .1vw;
+
+.ico-sound
+***REMOVED*** 
+    position: relative;
+    
+    &::before
+    ***REMOVED***
+        content: '';
+        border: ***REMOVED***
+            style: solid;
+            width: $stroke-width;
+            color: btnColor.$content;
+      ***REMOVED***
+        
+        $padding-v: $btn-height * .28;
+
+        position: absolute;
+        top: $padding-v;
+        bottom: $padding-v;
+        left: calc(50% - #***REMOVED***$btn-height * .2***REMOVED***);
+        width: $btn-height * .08;
+  ***REMOVED***
+
+    &::after
+    ***REMOVED***
+        content: '';
+        border: ***REMOVED***
+            style: solid;
+            width: $stroke-width $stroke-width $stroke-width 0;
+            color: btnColor.$content;
+      ***REMOVED***
+
+        $padding-v: $btn-height * .25;
+
+        position: absolute;
+        top: $padding-v;
+        bottom: $padding-v;
+        left: calc(50% - #***REMOVED***$btn-height * .15***REMOVED***);
+        width: $btn-height * .3;
+        transform: perspective(#***REMOVED***$btn-height / 3***REMOVED***) rotateY(-42deg);
+  ***REMOVED***
+***REMOVED***
+
+.ico-cross
+***REMOVED***
+    @include fill-parent;
+
+    $position: translate($btn-height * .4, $btn-height *.4);
+
+    &::before,
+    &::after
+    ***REMOVED***
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: $btn-height * .75;
+        height: $stroke-width * .5;
+        background-color: btnColor.$content;
+        transform: $position rotate(45deg);
+  ***REMOVED***
+
+    &::after
+    ***REMOVED***
+        transform: $position rotate(-45deg);
+  ***REMOVED***
+***REMOVED***
