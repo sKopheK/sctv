@@ -1,0 +1,24 @@
+@use "color";
+
+@mixin mouseover
+***REMOVED***
+    &:hover,
+    &:focus
+    ***REMOVED***
+        @content;
+  ***REMOVED***
+***REMOVED***
+
+@mixin circle
+***REMOVED***
+    border-radius: 50%;
+***REMOVED***
+
+@mixin fill-parent($padding: 0)
+***REMOVED***
+    position: absolute;
+    top: $padding;
+    left: $padding;
+    right: $padding;
+    bottom: $padding;
+***REMOVED***
