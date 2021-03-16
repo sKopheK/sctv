@@ -1,7 +1,11 @@
-@import "scss/colors";
+@use "scss/color";
+@use "components/Button/mixins" as btn;
 
 html
 ***REMOVED***
+  --color-page-bg: #***REMOVED***color.$page-bg***REMOVED***;
+  --color-text: #***REMOVED***color.$text***REMOVED***;
+
   background-color: var(--color-page-bg);
   color: var(--color-text);
 ***REMOVED***
@@ -9,4 +13,9 @@ html
 body
 ***REMOVED***
   overflow: hidden;
+***REMOVED***
+
+button
+***REMOVED***
+  @include btn.reset;
 ***REMOVED***
