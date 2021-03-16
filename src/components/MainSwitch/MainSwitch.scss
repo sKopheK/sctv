@@ -1,0 +1,33 @@
+@use '../../scss/mixins' as *;
+@use '../Button/mixins' as btn;
+@use '../Button/color' as btnColor;
+
+$color-bg: lightcoral;
+
+.MainSwitch
+***REMOVED***
+    background-color: $color-bg;
+    border: .15vw solid darken($color-bg, 15%);
+
+    position: relative;
+    
+    &::before
+    ***REMOVED***
+        content: '';
+        @include fill-parent(.25vw);
+        @include circle;
+        border: .15vw solid btnColor.$content;
+  ***REMOVED***
+
+    &::after
+    ***REMOVED***
+        content: '|';
+        @include fill-parent(.4vw);
+        top: 0;
+        bottom: .6vw;
+        overflow: hidden;
+        background-color: $color-bg;
+        color: btnColor.$content;
+        font-size: 1vw;
+  ***REMOVED***
+***REMOVED***
