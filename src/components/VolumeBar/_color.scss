@@ -1,0 +1,6 @@
+$bg: rgba(lightblue, .75); 
+$bar-bg: #678;
+$_bar-fill--base: turquoise;
+$bar-fill: linear-gradient(darken($_bar-fill--base, 20) 0, $_bar-fill--base 20%, $_bar-fill--base 40%, darken($_bar-fill--base, 20) 100%);
+$text: #000;
+$ico: #456;
