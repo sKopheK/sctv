@@ -1,4 +1,5 @@
 @use "scss/color";
+@use "scss/font";
 @use "components/Button/mixins" as btn;
 
 html
@@ -13,9 +14,11 @@ html
 body
 ***REMOVED***
   overflow: hidden;
+  font-family: font.$default;
 ***REMOVED***
 
 button
 ***REMOVED***
-  @include btn.reset;
+  @include btn.reset;  
+  font-family: font.$default;
 ***REMOVED***
