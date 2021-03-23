@@ -1,3 +1,6 @@
 ***REMOVED***
-    "editor.tabSize": 2
+    "editor.tabSize": 2,    
+    "editor.codeActionsOnSave": ***REMOVED***
+        "source.fixAll": true
+  ***REMOVED***
 ***REMOVED***
