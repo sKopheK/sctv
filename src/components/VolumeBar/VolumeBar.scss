@@ -1,0 +1,53 @@
+@use "color";
+@use "../../scss/ico";
+
+$padding: 2vw;
+$padding-left: $padding + 4vw;
+$padding-right: $padding + 5vw;
+
+.VolumeBar
+***REMOVED***
+  --color-volume-bg: #***REMOVED***color.$bg***REMOVED***;
+  --color-volume-text: #***REMOVED***color.$text***REMOVED***;
+  --color-volume-ico: #***REMOVED***color.$ico***REMOVED***;
+  --color-volume-bar-bg: #***REMOVED***color.$bar-bg***REMOVED***;
+
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: $padding $padding $padding $padding-left;
+  width: 40vw;
+  
+  background-color: var(--color-volume-bg);
+  color: var(--color-volume-text);
+  text-align: right;
+  font-size: 2.2vw;
+
+  display: flex;
+  justify-content: space-between;
+
+  @include ico.sound(
+        $size: 11vw,
+        $stroke-width: false,
+        $color-bg: unquote('var(--color-volume-ico)'),
+        $left: $padding * .75,
+        $top: $padding * 1.3,
+    );
+***REMOVED***
+
+.bar ***REMOVED***
+  flex-grow: 1;
+  max-width: calc(100% - #***REMOVED***$padding-right - $padding***REMOVED***);
+  background-color: var(--color-volume-bar-bg);
+***REMOVED***
+
+.value
+***REMOVED***
+  --color-volume-bar-fill: #***REMOVED***color.$bar-fill***REMOVED***;
+  
+  display: block;
+  height: 1em;
+  background: var(--color-volume-bar-fill);
+***REMOVED***
