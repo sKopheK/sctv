@@ -37,13 +37,12 @@ const useVolume = () => ***REMOVED***
     setState((oldState) => ***REMOVED***
       const newVolume = oldState.value + diff;
       if (newVolume >= 0 && newVolume <= 100) ***REMOVED***
-        toggleMute(false);
-        return ***REMOVED*** ...oldState, value: newVolume ***REMOVED***;
+        return ***REMOVED*** ...oldState, value: newVolume, muted: false ***REMOVED***;
     ***REMOVED***
       return oldState;
   ***REMOVED***);
     setHideTimeout();
-***REMOVED***, [setHideTimeout, toggleMute, setState]);
+***REMOVED***, [setHideTimeout, setState]);
   const increase = useCallback(() => change(VOLUME_CHANGE_STEP), [change]);
   const decrease = useCallback(() => change(-VOLUME_CHANGE_STEP), [change]);
 
