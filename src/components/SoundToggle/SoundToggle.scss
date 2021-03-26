@@ -2,8 +2,9 @@
 @use "../Button/config" as btnConfig;
 @use "../../scss/mixins" as *;
 
-$btn-height: btnConfig.$height;
+$base-dimension: btnConfig.$height;
 $stroke-width: .1vw;
+$color: btnColor.$content;
 
 .ico-sound
 ***REMOVED*** 
@@ -15,16 +16,19 @@ $stroke-width: .1vw;
         border: ***REMOVED***
             style: solid;
             width: $stroke-width;
-            color: btnColor.$content;
+            color: $color;
       ***REMOVED***
         
-        $padding-v: $btn-height * .28;
+        $top: $base-dimension * .28;
+        $left: calc(50% - #***REMOVED***$base-dimension * .2***REMOVED***);
+        $width: $base-dimension * .08;
+        $height: $width * 1.35;
 
         position: absolute;
-        top: $padding-v;
-        bottom: $padding-v;
-        left: calc(50% - #***REMOVED***$btn-height * .2***REMOVED***);
-        width: $btn-height * .08;
+        top: $top;
+        left: $left;
+        width: $width;
+        height: $height;
   ***REMOVED***
 
     &::after
@@ -33,17 +37,20 @@ $stroke-width: .1vw;
         border: ***REMOVED***
             style: solid;
             width: $stroke-width $stroke-width $stroke-width 0;
-            color: btnColor.$content;
+            color: $color;
       ***REMOVED***
 
-        $padding-v: $btn-height * .25;
+        $top: $base-dimension * .25;
+        $left: calc(50% - #***REMOVED***$base-dimension * .15***REMOVED***);
+        $width: $base-dimension * .3;
+        $height: $width * .56;
 
         position: absolute;
-        top: $padding-v;
-        bottom: $padding-v;
-        left: calc(50% - #***REMOVED***$btn-height * .15***REMOVED***);
-        width: $btn-height * .3;
-        transform: perspective(#***REMOVED***$btn-height / 3***REMOVED***) rotateY(-42deg);
+        top: $top;
+        left: $left;
+        width: $width;
+        height: $height;
+        transform: perspective(#***REMOVED***$base-dimension / 3***REMOVED***) rotateY(-42deg);
   ***REMOVED***
 ***REMOVED***
 
@@ -51,7 +58,7 @@ $stroke-width: .1vw;
 ***REMOVED***
     @include fill-parent;
 
-    $position: translate($btn-height * .4, $btn-height *.4);
+    $position: translate($base-dimension * .4, $base-dimension *.4);
 
     &::before,
     &::after
@@ -61,9 +68,9 @@ $stroke-width: .1vw;
         top: 0;
         left: 0;
         display: block;
-        width: $btn-height * .75;
+        width: $base-dimension * .75;
         height: $stroke-width * .5;
-        background-color: btnColor.$content;
+        background-color: $color;
         transform: $position rotate(45deg);
   ***REMOVED***
 

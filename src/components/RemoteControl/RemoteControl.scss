@@ -1,26 +1,31 @@
 @use "color";
 @use "../../scss/mixins" as *;
 
-@debug color.$bg;
 $radius: .6vw;
 
 .RemoteControl
 ***REMOVED***
+    $w: 8vw;
     $h: 18vw;
-
-    width: 8vw;
+    width: $w;
     height: $h;
+
+    // $min-width: 120px;
+    // $min-height: 2.43 * $min-width;
+    // min-width: $min-width;
+    // min-height: $min-height;
     
     position: absolute;
     right: .7vw;
-    bottom: -$h;
+    //bottom: -$h;
+    bottom: -.5vw;
     
     padding: 1.1vw .6vw 3.5vw;
 
     background-color: color.$bg-main;
     border: 1px solid color.$border;
     border-radius: $radius;
-    transform: scale(.9);
+    //transform: scale(.9);
     
     transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s;
 

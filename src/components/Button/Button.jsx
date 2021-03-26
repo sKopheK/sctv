@@ -1,28 +1,40 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED*** useEffect, useState ***REMOVED*** from 'react';
+import React, ***REMOVED*** useCallback, useEffect, useState ***REMOVED*** from 'react';
 import './Button.scss';
 
 function Button(***REMOVED***
   className, children, onMouseDown, ...other
 ***REMOVED***) ***REMOVED***
   const [pressed, setPressed] = useState(false);
-  let onMouseDownHandler = null;
-  let onMouseUpHandler = null;
-  if (onMouseDown) ***REMOVED***
-    onMouseDownHandler = () => ***REMOVED***
-      setPressed(() => true);
-  ***REMOVED***;
-    onMouseUpHandler = () => ***REMOVED***
-      setPressed(() => false);
-  ***REMOVED***;
-***REMOVED***
+  const onMouseDownHandler = useCallback(
+    () => ***REMOVED***
+      if (onMouseDown) ***REMOVED***
+        setPressed(true);
+    ***REMOVED***
+  ***REMOVED***,
+    [onMouseDown],
+  );
+  const onMouseUpHandler = useCallback(
+    () => ***REMOVED***
+      if (onMouseDown) ***REMOVED***
+        setPressed(false);
+    ***REMOVED***
+  ***REMOVED***,
+    [onMouseDown],
+  );
+
   useEffect(() => ***REMOVED***
     let intervalId = null;
     if (pressed) ***REMOVED***
       intervalId = setInterval(onMouseDown, 100);
   ***REMOVED***
-    return () => clearInterval(intervalId);
+    return () => ***REMOVED***
+      if (intervalId) ***REMOVED***
+        clearInterval(intervalId);
+    ***REMOVED***
+  ***REMOVED***;
 ***REMOVED***, [onMouseDown, pressed]);
+
   return (
     <button
       type="button"

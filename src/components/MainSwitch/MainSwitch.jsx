@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, ***REMOVED*** useContext ***REMOVED*** from 'react';
-import AppCtx from '../../AppCtx';
+import AppCtx from '../../state/AppCtx';
 import Button from '../Button/Button';
 import './MainSwitch.scss';
 

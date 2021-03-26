@@ -1,4 +1,8 @@
-import React from 'react';
+import React, ***REMOVED***
+  useCallback, useContext, useMemo,
+***REMOVED*** from 'react';
+import AppCtx from '../../state/AppCtx';
+import VolumeCtx from '../../state/VolumeCtx';
 import Button from '../Button/Button';
 import MainSwitch from '../MainSwitch/MainSwitch';
 import SoundToggle from '../SoundToggle/SoundToggle';
@@ -6,7 +10,43 @@ import './grid.scss';
 import './RemoteControl.scss';
 
 function RemoteControl() ***REMOVED***
-  return (
+  const ***REMOVED***
+    visible: volumeBarVisible,
+    decrease: decreaseVol,
+    increase: increaseVol,
+    toggleBar: toggleVolumeBar,
+***REMOVED*** = useContext(VolumeCtx);
+
+  const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
+
+  const upClick = useCallback(() => ***REMOVED***
+***REMOVED***, []);
+  const downClick = useCallback(() => ***REMOVED***
+***REMOVED***, []);
+  const leftClick = useCallback(() => ***REMOVED***
+    if (!screenOn) return;
+    if (!volumeBarVisible) ***REMOVED***
+      toggleVolumeBar();
+  ***REMOVED*** else ***REMOVED***
+      decreaseVol();
+  ***REMOVED***
+***REMOVED***, [screenOn, volumeBarVisible, decreaseVol, toggleVolumeBar]);
+  const rightClick = useCallback(() => ***REMOVED***
+    if (!screenOn) return;
+    if (!volumeBarVisible) ***REMOVED***
+      toggleVolumeBar();
+  ***REMOVED*** else ***REMOVED***
+      increaseVol();
+  ***REMOVED***
+***REMOVED***, [screenOn, volumeBarVisible, increaseVol, toggleVolumeBar]);
+  const okClick = useCallback(() => ***REMOVED***
+    if (!screenOn) return;
+    if (volumeBarVisible) ***REMOVED***
+      toggleVolumeBar();
+  ***REMOVED***
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar]);
+
+  return useMemo(() => (
     <div className="RemoteControl">
       <div className="content logo grid">
         <MainSwitch className="grid-to" />
@@ -23,14 +63,14 @@ function RemoteControl() ***REMOVED***
         <Button className="grid-n0 highlighted">0</Button>
         <Button className="grid-m">Menu</Button>
         <Button className="grid-ex">Exit</Button>
-        <Button className="grid-up btn-arrow btn-arrow--up" />
-        <Button className="grid-lt btn-arrow btn-arrow--lt" />
-        <Button className="grid-rt btn-arrow btn-arrow--rt" />
-        <Button className="grid-dn btn-arrow btn-arrow--dn" />
-        <Button className="grid-ok grid--h-center btn--round btn--round-big">OK</Button>
+        <Button className="grid-up btn-arrow btn-arrow--up" onClick=***REMOVED***upClick***REMOVED*** onMouseDown=***REMOVED***upClick***REMOVED*** />
+        <Button className="grid-lt btn-arrow btn-arrow--lt" onClick=***REMOVED***leftClick***REMOVED*** onMouseDown=***REMOVED***leftClick***REMOVED*** />
+        <Button className="grid-rt btn-arrow btn-arrow--rt" onClick=***REMOVED***rightClick***REMOVED*** onMouseDown=***REMOVED***rightClick***REMOVED*** />
+        <Button className="grid-dn btn-arrow btn-arrow--dn" onClick=***REMOVED***downClick***REMOVED*** onMouseDown=***REMOVED***downClick***REMOVED*** />
+        <Button className="grid-ok grid--h-center btn--round btn--round-big" onClick=***REMOVED***okClick***REMOVED***>OK</Button>
       </div>
     </div>
-  );
+  ), [upClick, leftClick, rightClick, downClick, okClick]);
 ***REMOVED***
 
 export default RemoteControl;
