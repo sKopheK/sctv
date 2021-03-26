@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED*** useCallback, useEffect, useState ***REMOVED*** from 'react';
+import React, ***REMOVED***
+  useCallback, useEffect, useState,
+***REMOVED*** from 'react';
 import './Button.scss';
+
+const PRESS_INTERVAL_SLOW = 100;
+const PRESS_INTERVAL_FAST = 30;
+const PRESS_INTERVAL_CHANGE_MS = 800;
 
 function Button(***REMOVED***
   className, children, onMouseDown, ...other
 ***REMOVED***) ***REMOVED***
+  const [intervalDelay, setIntervalDelay] = useState(PRESS_INTERVAL_SLOW);
   const [pressed, setPressed] = useState(false);
   const onMouseDownHandler = useCallback(
     () => ***REMOVED***
@@ -18,22 +25,37 @@ function Button(***REMOVED***
     () => ***REMOVED***
       if (onMouseDown) ***REMOVED***
         setPressed(false);
+        setIntervalDelay(PRESS_INTERVAL_SLOW);
     ***REMOVED***
   ***REMOVED***,
     [onMouseDown],
   );
 
   useEffect(() => ***REMOVED***
+    let timeoutId = null;
+    if (pressed && intervalDelay !== PRESS_INTERVAL_FAST) ***REMOVED***
+      timeoutId = setTimeout(() => ***REMOVED***
+        setIntervalDelay(PRESS_INTERVAL_FAST);
+    ***REMOVED***, PRESS_INTERVAL_CHANGE_MS);
+  ***REMOVED***
+    return () => ***REMOVED***
+      if (timeoutId) ***REMOVED***
+        clearTimeout(timeoutId);
+    ***REMOVED***
+  ***REMOVED***;
+***REMOVED***, [pressed, intervalDelay]);
+
+  useEffect(() => ***REMOVED***
     let intervalId = null;
     if (pressed) ***REMOVED***
-      intervalId = setInterval(onMouseDown, 100);
+      intervalId = setInterval(onMouseDown, intervalDelay);
   ***REMOVED***
     return () => ***REMOVED***
       if (intervalId) ***REMOVED***
         clearInterval(intervalId);
     ***REMOVED***
   ***REMOVED***;
-***REMOVED***, [onMouseDown, pressed]);
+***REMOVED***, [onMouseDown, pressed, intervalDelay]);
 
   return (
     <button
