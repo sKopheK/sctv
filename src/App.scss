@@ -1,5 +1,5 @@
-@use "scss/color";
-@use "scss/font";
+@use "scss/config/colors/base" as color;
+@use "scss/config/font";
 @use "components/Button/mixins" as btn;
 
 html

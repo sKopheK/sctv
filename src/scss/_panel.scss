@@ -1,0 +1,14 @@
+@use "config/colors/panel" as color;
+@use "config/panel" as dim;
+
+@mixin styles
+***REMOVED***
+  --color-panel-bg: #***REMOVED***color.$bg***REMOVED***;
+  --color-panel-text: #***REMOVED***color.$text***REMOVED***;
+  --color-panel-ico: #***REMOVED***color.$ico***REMOVED***;
+
+  padding: dim.$padding;  
+  background-color: var(--color-panel-bg);
+  color: var(--color-panel-text);
+  font-size: 2.2vw;
+***REMOVED***
