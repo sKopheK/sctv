@@ -1,5 +1,6 @@
 import React, ***REMOVED*** useState ***REMOVED*** from 'react';
 import './App.scss';
+import MutedStatus from './components/MutedStatus/MutedStatus';
 import Overlay from './components/Overlay/Overlay';
 // import Player from './components/Player/Player';
 import RemoteControl from './components/RemoteControl/RemoteControl';
@@ -30,6 +31,7 @@ function App() ***REMOVED***
         ***REMOVED***volume.visible ? 1 : 0***REMOVED***
         <Overlay />
         ***REMOVED***volume.visible && <VolumeBar value=***REMOVED***volume.value***REMOVED*** />***REMOVED***
+        ***REMOVED***state.screenOn && volume.muted && <MutedStatus />***REMOVED***
         <RemoteControl />
       </VolumeCtx.Provider>
     </AppCtx.Provider>
