@@ -1,0 +1,64 @@
+@mixin sound(
+  $size,
+  $stroke-width,
+  $color-border: false,
+  $color-bg: false,
+  $base-top: 0,
+  $top: 0,
+  $left: 0,
+) ***REMOVED***
+  &::before
+  ***REMOVED***
+      content: '';
+      @if $stroke-width
+      ***REMOVED***
+        border: ***REMOVED***
+            style: solid;
+            width: $stroke-width;
+            color: $color-border;
+      ***REMOVED***
+    ***REMOVED***
+
+      @if $color-bg
+      ***REMOVED***
+        background-color: $color-bg;
+    ***REMOVED***
+      
+      $width: $size * .08;
+      $height: $width * 1.35;
+
+      position: absolute;
+      top: $top;
+      left: $left;
+      width: $width;
+      height: $height;
+***REMOVED***
+  
+  &::after
+  ***REMOVED***
+      content: '';
+      @if $stroke-width
+      ***REMOVED***
+        border: ***REMOVED***
+            style: solid;
+            width: $stroke-width $stroke-width $stroke-width 0;
+            color: $color-border;
+      ***REMOVED***
+    ***REMOVED***
+
+      @if $color-bg
+      ***REMOVED***
+        background-color: $color-bg;
+    ***REMOVED***
+
+      $width: $size * .3;
+      $height: $width * .56;
+
+      position: absolute;
+      top: $top - $size * .03;
+      left: $left;
+      width: $width;
+      height: $height;
+      transform: perspective(#***REMOVED***$size / 3***REMOVED***) rotateY(-60deg);
+***REMOVED***
+***REMOVED***
