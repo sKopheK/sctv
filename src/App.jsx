@@ -24,12 +24,12 @@ function App() ***REMOVED***
 
   return (
     <AppCtx.Provider value=***REMOVED***state***REMOVED*** className="App">
+      <Overlay />
       <VolumeCtx.Provider value=***REMOVED***volume***REMOVED***>
         ***REMOVED***/* <Player /> */***REMOVED***
         ***REMOVED***volume.muted ? 1 : 0***REMOVED***
         ***REMOVED***volume.value***REMOVED***
         ***REMOVED***volume.visible ? 1 : 0***REMOVED***
-        <Overlay />
         ***REMOVED***volume.visible && <VolumeBar value=***REMOVED***volume.value***REMOVED*** />***REMOVED***
         ***REMOVED***state.screenOn && volume.muted && <MutedStatus />***REMOVED***
         <RemoteControl />
