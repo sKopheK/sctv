@@ -1,6 +1,7 @@
 import React, ***REMOVED***
   useContext, useEffect, useMemo, useRef,
 ***REMOVED*** from 'react';
+import useSchedule from '../../hooks/useSchedule';
 import AppCtx from '../../state/AppCtx';
 import VolumeCtx from '../../state/VolumeCtx';
 import Youtube from '../Youtube/Youtube';
@@ -15,6 +16,7 @@ function Player() ***REMOVED***
 ***REMOVED*** = useContext(VolumeCtx);
 
   const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** getCurrentVideoWithOffset ***REMOVED*** = useSchedule();
 
   useRef(new Youtube());
   const player = useRef(null);
@@ -34,10 +36,23 @@ function Player() ***REMOVED***
     ***REMOVED***
   ***REMOVED***
 ***REMOVED***;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updatePlayerVolume = () => setPlayerVolume(volume);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updatePlayerMute = () => setPlayerMute(muted);
+  const startBroadcast = async () => ***REMOVED***
+    if (!isPlayerReady.current) ***REMOVED***
+      return;
+  ***REMOVED***
+    const videoData = await getCurrentVideoWithOffset();
+    if (videoData) ***REMOVED***
+      const [videoId, offset] = videoData;
+      player.current.loadVideoById(***REMOVED***
+        videoId,
+        startSeconds: offset / 1000,
+    ***REMOVED***);
+  ***REMOVED*** else ***REMOVED***
+      setSignal(false);
+  ***REMOVED***
+***REMOVED***;
 
   useEffect(() => ***REMOVED***
     if (isYtApiLoaded) ***REMOVED***
@@ -50,10 +65,11 @@ function Player() ***REMOVED***
           controls: 0,
       ***REMOVED***,
         events: ***REMOVED***
-          onReady: () => ***REMOVED***
+          onReady: async () => ***REMOVED***
             isPlayerReady.current = true;
             updatePlayerVolume();
             updatePlayerMute();
+            startBroadcast();
         ***REMOVED***,
           onStateChange: (event) => ***REMOVED***
             if (event.data === YT.PlayerState.PLAYING) ***REMOVED***
