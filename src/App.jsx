@@ -25,6 +25,10 @@ function App() ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
   ***REMOVED***,
     isYtApiLoaded: false,
+    currentShow: null,
+    setCurrentShow: (value) => ***REMOVED***
+      setState((oldState) => (***REMOVED*** ...oldState, currentShow: value ***REMOVED***));
+  ***REMOVED***,
 ***REMOVED***);
 
   useEffect(() => ***REMOVED***

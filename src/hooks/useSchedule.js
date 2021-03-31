@@ -15,7 +15,7 @@ const useSchedule = () => ***REMOVED***
 
   const schedule = useMemo(async () => fetch(), []);
 
-  const getCurrentVideoWithOffset = async () => ***REMOVED***
+  const getCurrentVideo = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await schedule;
     if (data?.length) ***REMOVED***
       const now = (new Date()).getTime();
@@ -26,18 +26,18 @@ const useSchedule = () => ***REMOVED***
           .toMillis();
         return start <= now && now <= end ? ***REMOVED***
           id: programme.id,
+          title: programme.title,
           start,
           end,
       ***REMOVED*** : carry;
     ***REMOVED***, null);
-      const offset = now - currentVideo.start;
-      return [currentVideo.id, offset];
+      return currentVideo;
   ***REMOVED***
     return null;
 ***REMOVED***;
 
   return ***REMOVED***
-    getCurrentVideoWithOffset,
+    getCurrentVideo,
 ***REMOVED***;
 ***REMOVED***;
 

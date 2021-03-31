@@ -15,8 +15,8 @@ function Player() ***REMOVED***
     value: volume,
 ***REMOVED*** = useContext(VolumeCtx);
 
-  const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
-  const ***REMOVED*** getCurrentVideoWithOffset ***REMOVED*** = useSchedule();
+  const ***REMOVED*** setSignal, isYtApiLoaded, setCurrentShow ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** getCurrentVideo ***REMOVED*** = useSchedule();
 
   useRef(new Youtube());
   const player = useRef(null);
@@ -42,13 +42,14 @@ function Player() ***REMOVED***
     if (!isPlayerReady.current) ***REMOVED***
       return;
   ***REMOVED***
-    const videoData = await getCurrentVideoWithOffset();
-    if (videoData) ***REMOVED***
-      const [videoId, offset] = videoData;
+    const video = await getCurrentVideo();
+    if (video) ***REMOVED***
+      const offset = (new Date()).getTime() - video.start;
       player.current.loadVideoById(***REMOVED***
-        videoId,
+        videoId: video.id,
         startSeconds: offset / 1000,
     ***REMOVED***);
+      setCurrentShow(video);
   ***REMOVED*** else ***REMOVED***
       setSignal(false);
   ***REMOVED***
@@ -59,7 +60,6 @@ function Player() ***REMOVED***
       player.current = new YT.Player('ytplayer', ***REMOVED***
         width: '100%',
         height: '100%',
-        videoId: 'WlYSqcKdkHI',
         playerVars: ***REMOVED***
           autoplay: 1,
           controls: 0,
@@ -72,7 +72,7 @@ function Player() ***REMOVED***
             startBroadcast();
         ***REMOVED***,
           onStateChange: (event) => ***REMOVED***
-            if (event.data === YT.PlayerState.PLAYING) ***REMOVED***
+            if (event.data === YT.PlayerState.PLAYING && isPlayerReady.current) ***REMOVED***
               setSignal(true);
           ***REMOVED***
         ***REMOVED***,
