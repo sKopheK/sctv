@@ -12,7 +12,7 @@ const storedMute = getStoredData(DATA_MUTED);
 
 const VOLUME_DEFAULT = ***REMOVED***
   value: storedVolume !== null ? Number(storedVolume) : 70,
-  muted: storedMute !== null ? !!storedMute : false,
+  muted: storedMute !== null ? storedMute === 'true' : false,
   visible: false,
 ***REMOVED***;
 
