@@ -69,8 +69,10 @@ $result = [];
 if ($response && $response->items)
 ***REMOVED***
   $scheduleStart = new DateTime(date('Y-m-d'));
+
   $result = array_map(function($item) ***REMOVED***
     return [
+      'id' => $item->id,
       'title' => $item->snippet->title,
       'duration' => $item->contentDetails->duration,
 ***REMOVED***;
@@ -100,6 +102,7 @@ if ($response && $response->items)
 
 $output = json_encode(array_map(function($item) ***REMOVED***
   return [
+    'id' => $item['id'],
     'title' => $item['title'],
     'start' => $item['start']->format('c'),
     'duration' => $item['duration'],
