@@ -1,4 +1,4 @@
-import React, ***REMOVED*** useState ***REMOVED*** from 'react';
+import React, ***REMOVED*** useEffect, useState ***REMOVED*** from 'react';
 import './App.scss';
 import MutedStatus from './components/MutedStatus/MutedStatus';
 import Overlay from './components/Overlay/Overlay';
@@ -24,11 +24,14 @@ function App() ***REMOVED***
     setSignal: (value) => ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
   ***REMOVED***,
-    ytApi: null,
-    setYtApi: (value) => ***REMOVED***
-      setState((oldState) => (***REMOVED*** ...oldState, ytApi: value ***REMOVED***));
-  ***REMOVED***,
+    isYtApiLoaded: false,
 ***REMOVED***);
+
+  useEffect(() => ***REMOVED***
+    window.onYouTubePlayerAPIReady = () => ***REMOVED***
+      setState((oldState) => (***REMOVED*** ...oldState, isYtApiLoaded: true ***REMOVED***));
+  ***REMOVED***;
+***REMOVED***, []);
 
   return (
     <AppCtx.Provider value=***REMOVED***state***REMOVED*** className="App">

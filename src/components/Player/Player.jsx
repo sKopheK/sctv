@@ -14,7 +14,7 @@ function Player() ***REMOVED***
     value: volume,
 ***REMOVED*** = useContext(VolumeCtx);
 
-  const ***REMOVED*** setSignal, ytApi, setYtApi ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
 
   useRef(new Youtube());
   const player = useRef(null);
@@ -40,13 +40,7 @@ function Player() ***REMOVED***
   const updatePlayerMute = () => setPlayerMute(muted);
 
   useEffect(() => ***REMOVED***
-    window.onYouTubePlayerAPIReady = () => ***REMOVED***
-      setYtApi(true);
-  ***REMOVED***;
-***REMOVED***, [setYtApi]);
-
-  useEffect(() => ***REMOVED***
-    if (ytApi) ***REMOVED***
+    if (isYtApiLoaded) ***REMOVED***
       player.current = new YT.Player('ytplayer', ***REMOVED***
         width: '100%',
         height: '100%',
@@ -82,7 +76,7 @@ function Player() ***REMOVED***
   ***REMOVED***;
 ***REMOVED***,
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [ytApi]);
+  [isYtApiLoaded]);
 
   useEffect(() => setPlayerVolume(volume), [volume]);
   useEffect(() => setPlayerMute(muted), [muted]);
