@@ -4,10 +4,10 @@ import AppCtx from '../../state/AppCtx';
 import './Overlay.scss';
 
 const Overlay = (***REMOVED*** className ***REMOVED***) => ***REMOVED***
-  const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** screenOn, hasSignal ***REMOVED*** = useContext(AppCtx);
   return useMemo(() => (
-    <div className=***REMOVED***`Overlay $***REMOVED***screenOn ? 'no-signalx' : ''***REMOVED*** $***REMOVED***className ?? ''***REMOVED***`***REMOVED*** />
-  ), [screenOn, className]);
+    <div className=***REMOVED***`Overlay $***REMOVED***screenOn && !hasSignal ? 'no-signal' : ''***REMOVED*** $***REMOVED***className ?? ''***REMOVED***`***REMOVED*** />
+  ), [screenOn, hasSignal, className]);
 ***REMOVED***;
 
 Overlay.propTypes = ***REMOVED***
