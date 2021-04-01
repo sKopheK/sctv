@@ -1,7 +1,7 @@
 import ***REMOVED***
   useCallback, useEffect, useRef, useState,
 ***REMOVED*** from 'react';
-import ***REMOVED*** DIALOG_TIMEOUT, VOLUME_CHANGE_STEP ***REMOVED*** from '../settings';
+import ***REMOVED*** VOLUME_DIALOG_TIMEOUT, VOLUME_CHANGE_STEP ***REMOVED*** from '../settings';
 import ***REMOVED*** getStoredData, storeData ***REMOVED*** from '../storage';
 
 const DATA_VOLUME = 'volume';
@@ -36,7 +36,7 @@ const useVolume = () => ***REMOVED***
   const clearHideTimeout = useCallback(() => clearTimeout(timeoutId.current), [timeoutId]);
   const setHideTimeout = useCallback(() => ***REMOVED***
     clearHideTimeout();
-    timeoutId.current = window.setTimeout(() => toggleBar(false), DIALOG_TIMEOUT);
+    timeoutId.current = window.setTimeout(() => toggleBar(false), VOLUME_DIALOG_TIMEOUT);
 ***REMOVED***, [clearHideTimeout, toggleBar]);
 
   const toggleMute = useCallback((enable) => ***REMOVED***

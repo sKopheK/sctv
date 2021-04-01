@@ -1,14 +1,13 @@
 @use "color";
+@use "dim";
 @use "../../scss/mixins" as *;
 
 $radius: .6vw;
 
 .RemoteControl
 ***REMOVED***
-    $w: 8vw;
-    $h: 18vw;
-    width: $w;
-    height: $h;
+    width: dim.$width;
+    height: dim.$height;
 
     // $min-width: 120px;
     // $min-height: 2.43 * $min-width;
@@ -16,9 +15,10 @@ $radius: .6vw;
     // min-height: $min-height;
     
     position: absolute;
-    right: .7vw;
-    //bottom: -$h;
+    right: dim.$right;
+    //bottom: -dim.$height;
     bottom: -.5vw;
+    box-sizing: border-box;
     
     padding: 1.1vw .6vw 3.5vw;
 

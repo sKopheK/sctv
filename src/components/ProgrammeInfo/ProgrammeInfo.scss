@@ -1,0 +1,35 @@
+@use "../../scss/config/panel" as dim;
+@use "../../scss/panel";
+
+.ProgrammeInfo
+***REMOVED***
+  @include panel.styles;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 65vh;
+
+  display: grid;
+  grid-template: ***REMOVED***
+    columns: 10% auto;
+    rows: auto 12% 10%;
+***REMOVED***;
+  gap: 1vw;
+
+  .title
+  ***REMOVED***
+    font-weight: bold;
+***REMOVED***
+
+  .smaller
+  ***REMOVED***
+    font-size: 70%;
+***REMOVED***
+***REMOVED***
+
+.hidden
+***REMOVED***
+  display: none;  //todo
+***REMOVED***
