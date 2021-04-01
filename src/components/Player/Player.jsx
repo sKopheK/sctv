@@ -4,7 +4,6 @@ import React, ***REMOVED***
 import useSchedule from '../../hooks/useSchedule';
 import AppCtx from '../../state/AppCtx';
 import VolumeCtx from '../../state/VolumeCtx';
-import Youtube from '../Youtube/Youtube';
 import './Player.scss';
 
 /* global YT */
@@ -18,7 +17,6 @@ function Player() ***REMOVED***
   const ***REMOVED*** setSignal, isYtApiLoaded, setCurrentShow ***REMOVED*** = useContext(AppCtx);
   const ***REMOVED*** getCurrentVideo ***REMOVED*** = useSchedule();
 
-  useRef(new Youtube());
   const player = useRef(null);
   const isPlayerReady = useRef(false);
 

@@ -2,6 +2,7 @@ import React, ***REMOVED***
   useCallback, useContext, useMemo,
 ***REMOVED*** from 'react';
 import AppCtx from '../../state/AppCtx';
+import ChannelCtx from '../../state/ChannelCtx';
 import VolumeCtx from '../../state/VolumeCtx';
 import Button from '../Button/Button';
 import MainSwitch from '../MainSwitch/MainSwitch';
@@ -17,6 +18,7 @@ function RemoteControl() ***REMOVED***
     toggleBar: toggleVolumeBar,
 ***REMOVED*** = useContext(VolumeCtx);
 
+  const programmeInfo = useContext(ChannelCtx);
   const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
 
   const upClick = useCallback(() => ***REMOVED***
@@ -27,24 +29,28 @@ function RemoteControl() ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
+      programmeInfo.toggleBar(false);
   ***REMOVED*** else ***REMOVED***
       decreaseVol();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, decreaseVol, toggleVolumeBar]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo, decreaseVol]);
   const rightClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
+      programmeInfo.toggleBar(false);
   ***REMOVED*** else ***REMOVED***
       increaseVol();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, increaseVol, toggleVolumeBar]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo, increaseVol]);
   const okClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
+  ***REMOVED*** else ***REMOVED***
+      programmeInfo.toggleBar();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo]);
 
   return useMemo(() => (
     <div className="RemoteControl">
