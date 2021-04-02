@@ -1,7 +1,7 @@
 import ***REMOVED***
-  useCallback, useEffect, useRef, useState,
+  useCallback, useEffect, useState,
 ***REMOVED*** from 'react';
-import ***REMOVED*** VOLUME_DIALOG_TIMEOUT, VOLUME_CHANGE_STEP ***REMOVED*** from '../settings';
+import ***REMOVED*** VOLUME_CHANGE_STEP ***REMOVED*** from '../settings';
 import ***REMOVED*** getStoredData, storeData ***REMOVED*** from '../storage';
 
 const DATA_VOLUME = 'volume';
@@ -17,7 +17,6 @@ const VOLUME_DEFAULT = ***REMOVED***
 ***REMOVED***;
 
 const useVolume = () => ***REMOVED***
-  const timeoutId = useRef(null);
   const [***REMOVED*** value, visible, muted ***REMOVED***, setState] = useState(VOLUME_DEFAULT);
   // const [***REMOVED*** value, visible, muted ***REMOVED***, setState] = useContext(VolumeCtx);
 
@@ -33,11 +32,6 @@ const useVolume = () => ***REMOVED***
       return newState;
   ***REMOVED***);
 ***REMOVED***, [setState]);
-  const clearHideTimeout = useCallback(() => clearTimeout(timeoutId.current), [timeoutId]);
-  const setHideTimeout = useCallback(() => ***REMOVED***
-    clearHideTimeout();
-    timeoutId.current = window.setTimeout(() => toggleBar(false), VOLUME_DIALOG_TIMEOUT);
-***REMOVED***, [clearHideTimeout, toggleBar]);
 
   const toggleMute = useCallback((enable) => ***REMOVED***
     setState((oldState) => ***REMOVED***
@@ -60,18 +54,9 @@ const useVolume = () => ***REMOVED***
     ***REMOVED***
       return oldState;
   ***REMOVED***);
-    setHideTimeout();
-***REMOVED***, [setHideTimeout, setState]);
+***REMOVED***, [setState]);
   const increase = useCallback(() => change(VOLUME_CHANGE_STEP), [change]);
   const decrease = useCallback(() => change(-VOLUME_CHANGE_STEP), [change]);
-
-  useEffect(() => ***REMOVED***
-    if (visible) ***REMOVED***
-      setHideTimeout();
-  ***REMOVED***
-
-    return clearHideTimeout;
-***REMOVED***, [visible, setHideTimeout, clearHideTimeout]);
 
   useEffect(() => ***REMOVED***
     storeData(DATA_VOLUME, value);

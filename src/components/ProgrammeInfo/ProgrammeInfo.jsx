@@ -1,12 +1,23 @@
 import ***REMOVED*** DateTime ***REMOVED*** from 'luxon';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, ***REMOVED*** useCallback, useContext, useMemo ***REMOVED*** from 'react';
+import useTimeout from '../../hooks/useTimeout';
+import ***REMOVED*** INFO_DIALOG_TIMEOUT ***REMOVED*** from '../../settings';
+import ChannelCtx from '../../state/ChannelCtx';
 import './ProgrammeInfo.scss';
 
 function ProgrammeInfo(***REMOVED***
   channelId, programmeTitle, starts, ends,
 ***REMOVED***) ***REMOVED***
-  return (
+  const ***REMOVED*** toggleBar ***REMOVED*** = useContext(ChannelCtx);
+
+  const hideProgrammeInfo = useCallback(
+    () => toggleBar(false),
+    [toggleBar],
+  );
+  useTimeout(hideProgrammeInfo, INFO_DIALOG_TIMEOUT);
+
+  return useMemo(() => (
     <dl className="ProgrammeInfo">
       <dt className="hidden">Channel</dt>
       <dd className="channelId">***REMOVED***channelId***REMOVED***</dd>
@@ -17,7 +28,7 @@ function ProgrammeInfo(***REMOVED***
       <dt className="ends-label smaller">Ends</dt>
       <dd className="ends smaller">***REMOVED***ends && DateTime.fromMillis(ends).toFormat('HH:mm')***REMOVED***</dd>
     </dl>
-  );
+  ), [channelId, programmeTitle, starts, ends]);
 ***REMOVED***
 
 ProgrammeInfo.propTypes = ***REMOVED***
