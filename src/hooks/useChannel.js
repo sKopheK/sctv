@@ -8,13 +8,16 @@ const DATA_CHANNEL_ID = 'channel';
 const storedChannelId = getStoredData(DATA_CHANNEL_ID);
 
 const CHANNEL_DEFAULT = ***REMOVED***
-  channelId: storedChannelId !== null ? Number(storedChannelId) : 67,
+  id: storedChannelId !== null ? Number(storedChannelId) : 67,
+  title: null,
   currentShow: null,
   visible: false,
 ***REMOVED***;
 
 const useChannel = () => ***REMOVED***
-  const [***REMOVED*** channelId, currentShow, visible ***REMOVED***, setState] = useState(CHANNEL_DEFAULT);
+  const [***REMOVED***
+    id, title, currentShow, visible,
+***REMOVED***, setState] = useState(CHANNEL_DEFAULT);
 
   const toggleBar = useCallback((enable) => ***REMOVED***
     setState((oldState) => ***REMOVED***
@@ -39,19 +42,24 @@ const useChannel = () => ***REMOVED***
   const setCurrentShow = useCallback((value) => ***REMOVED***
     setItem('currentShow', value);
 ***REMOVED***, [setItem]);
-  const setChannelId = useCallback((value) => ***REMOVED***
+  const setId = useCallback((value) => ***REMOVED***
     setItem('channelId', value);
+***REMOVED***, [setItem]);
+  const setTitle = useCallback((value) => ***REMOVED***
+    setItem('channelTitle', value);
 ***REMOVED***, [setItem]);
 
   useEffect(() => ***REMOVED***
-    storeData(DATA_CHANNEL_ID, channelId);
-***REMOVED***, [channelId]);
+    storeData(DATA_CHANNEL_ID, id);
+***REMOVED***, [id]);
 
   return ***REMOVED***
     visible,
-    channelId,
+    id,
+    title,
     currentShow,
-    setChannelId,
+    setId,
+    setTitle,
     setCurrentShow,
     toggleBar,
 ***REMOVED***;

@@ -3,6 +3,7 @@ import React, ***REMOVED***
 ***REMOVED*** from 'react';
 import useSchedule from '../../hooks/useSchedule';
 import AppCtx from '../../state/AppCtx';
+import ChannelCtx from '../../state/ChannelCtx';
 import VolumeCtx from '../../state/VolumeCtx';
 import './Player.scss';
 
@@ -14,7 +15,8 @@ function Player() ***REMOVED***
     value: volume,
 ***REMOVED*** = useContext(VolumeCtx);
 
-  const ***REMOVED*** setSignal, isYtApiLoaded, setCurrentShow ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** setCurrentShow ***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** getCurrentVideo ***REMOVED*** = useSchedule();
 
   const player = useRef(null);

@@ -7,7 +7,7 @@ import ChannelCtx from '../../state/ChannelCtx';
 import './ProgrammeInfo.scss';
 
 function ProgrammeInfo(***REMOVED***
-  channelId, programmeTitle, starts, ends,
+  channelId, channelTitle, programmeTitle, starts, ends,
 ***REMOVED***) ***REMOVED***
   const ***REMOVED*** toggleBar ***REMOVED*** = useContext(ChannelCtx);
 
@@ -19,29 +19,33 @@ function ProgrammeInfo(***REMOVED***
 
   return useMemo(() => (
     <dl className="ProgrammeInfo">
-      <dt className="hidden">Channel</dt>
-      <dd className="channelId">***REMOVED***channelId***REMOVED***</dd>
+      <dt className="hidden">Channel id</dt>
+      <dd className="channel-id small">***REMOVED***channelId***REMOVED***</dd>
+      <dt className="hidden">Channel title</dt>
+      <dd className="channel-title small">***REMOVED***channelTitle***REMOVED***</dd>
       <dt className="hidden">Programme title</dt>
-      <dd className="title">***REMOVED***programmeTitle***REMOVED***</dd>
-      <dt className="starts-label smaller">Starts</dt>
+      <dd className="programme-title">***REMOVED***programmeTitle***REMOVED***</dd>
+      <dt className="starts-label smaller">***REMOVED***starts && 'Starts'***REMOVED***</dt>
       <dd className="starts smaller">***REMOVED***starts && DateTime.fromMillis(starts).toFormat('HH:mm')***REMOVED***</dd>
-      <dt className="ends-label smaller">Ends</dt>
+      <dt className="ends-label smaller">***REMOVED***ends && 'Ends'***REMOVED***</dt>
       <dd className="ends smaller">***REMOVED***ends && DateTime.fromMillis(ends).toFormat('HH:mm')***REMOVED***</dd>
     </dl>
-  ), [channelId, programmeTitle, starts, ends]);
+  ), [channelId, channelTitle, programmeTitle, starts, ends]);
 ***REMOVED***
 
 ProgrammeInfo.propTypes = ***REMOVED***
   channelId: PropTypes.number.isRequired,
+  channelTitle: PropTypes.string,
   programmeTitle: PropTypes.string,
-  starts: PropTypes.oneOfType([PropTypes.number, undefined]),
-  ends: PropTypes.oneOfType([PropTypes.number, undefined]),
+  starts: PropTypes.number,
+  ends: PropTypes.number,
 ***REMOVED***;
 
 ProgrammeInfo.defaultProps = ***REMOVED***
+  channelTitle: '',
   programmeTitle: '',
-  starts: '',
-  ends: '',
+  starts: 0,
+  ends: 0,
 ***REMOVED***;
 
 export default ProgrammeInfo;
