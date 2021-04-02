@@ -1,6 +1,6 @@
 import axios from 'axios';
 import ***REMOVED*** DateTime, Duration ***REMOVED*** from 'luxon';
-import ***REMOVED*** useMemo ***REMOVED*** from 'react';
+import ***REMOVED*** useCallback, useMemo ***REMOVED*** from 'react';
 
 const useSchedule = () => ***REMOVED***
   const fetch = async () => ***REMOVED***
@@ -13,13 +13,18 @@ const useSchedule = () => ***REMOVED***
     return null;
 ***REMOVED***;
 
-  const schedule = useMemo(async () => fetch(), []);
+  const payload = useMemo(async () => fetch(), []);
+
+  const getChannelTitle = useCallback(async () => ***REMOVED***
+    const ***REMOVED*** data ***REMOVED*** = await payload;
+    return data?.title;
+***REMOVED***, [payload]);
 
   const getCurrentVideo = async () => ***REMOVED***
-    const ***REMOVED*** data ***REMOVED*** = await schedule;
-    if (data?.length) ***REMOVED***
+    const ***REMOVED*** data ***REMOVED*** = await payload;
+    if (data?.items?.length) ***REMOVED***
       const now = (new Date()).getTime();
-      const currentVideo = data.reduce((carry, programme) => ***REMOVED***
+      const currentVideo = data.items.reduce((carry, programme) => ***REMOVED***
         const start = (new Date(programme.start)).getTime();
         const end = DateTime.fromMillis(start)
           .plus(Duration.fromISO(programme.duration))
@@ -37,6 +42,7 @@ const useSchedule = () => ***REMOVED***
 ***REMOVED***;
 
   return ***REMOVED***
+    getChannelTitle,
     getCurrentVideo,
 ***REMOVED***;
 ***REMOVED***;

@@ -31,9 +31,6 @@ function App() ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
   ***REMOVED***,
     isYtApiLoaded: false,
-    setCurrentShow: (value) => ***REMOVED***
-      channel.setCurrentShow(value);
-  ***REMOVED***,
 ***REMOVED***);
 
   useEffect(() => new Youtube(), []);
@@ -54,8 +51,9 @@ function App() ***REMOVED***
           ***REMOVED***state.screenOn && channel.visible
           && (
           <ProgrammeInfo
+            channelId=***REMOVED***channel?.id***REMOVED***
+            channelTitle=***REMOVED***channel?.title***REMOVED***
             programmeTitle=***REMOVED***channel?.currentShow?.title***REMOVED***
-            channelId=***REMOVED***channel?.channelId***REMOVED***
             starts=***REMOVED***channel?.currentShow?.start***REMOVED***
             ends=***REMOVED***channel?.currentShow?.end***REMOVED***
           />

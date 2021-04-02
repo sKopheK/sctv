@@ -13,14 +13,55 @@
 
   display: grid;
   grid-template: ***REMOVED***
-    columns: 10% auto;
-    rows: auto 12% 10%;
+    columns: 5% 7% auto;
+    rows: 15% auto 12% 10%;
+    areas: "a b b"
+           ". c c"
+           ". d e"
+           ". f g";
 ***REMOVED***;
-  gap: 1vw;
+  gap: 1vw 3vw;
 
-  .title
+  .channel-id
+  ***REMOVED***
+    text-align: right;
+    grid-area: a;
+***REMOVED***
+
+  .channel-title
+  ***REMOVED***
+    grid-area: b;
+***REMOVED***
+
+  .programme-title
   ***REMOVED***
     font-weight: bold;
+    grid-area: c;
+***REMOVED***
+
+  .starts-label
+  ***REMOVED***
+    grid-area: d;
+***REMOVED***
+
+  .starts
+  ***REMOVED***
+    grid-area: e;
+***REMOVED***
+
+  .ends-label
+  ***REMOVED***
+    grid-area: f;
+***REMOVED***
+
+  .ends
+  ***REMOVED***
+    grid-area: g;
+***REMOVED***
+
+  .small
+  ***REMOVED***
+    font-size: 85%;
 ***REMOVED***
 
   .smaller

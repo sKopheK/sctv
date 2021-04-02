@@ -47,8 +47,10 @@ function getYoutubeService()
     return $youtube_service;
 ***REMOVED***
 
-$service = getYoutubeService();
+$channel_id = 67;
+$channel_title = 'AfreecaTV StarLeague Finals';
 
+$service = getYoutubeService();
 $queryParams = [
     'id' => join(',', [
       '5CeSxPAJgFY',
@@ -100,14 +102,18 @@ if ($response && $response->items)
   // ***REMOVED***, new DateTime(date('Y-m-d'))))->format('d/n H:i:s');
 ***REMOVED***
 
-$output = json_encode(array_map(function($item) ***REMOVED***
-  return [
-    'id' => $item['id'],
-    'title' => $item['title'],
-    'start' => $item['start']->format('c'),
-    'duration' => $item['duration'],
-  ];
-***REMOVED***, $result));
+$output = json_encode([
+  'id' => $channel_id,
+  'title' => $channel_title,
+  'items' => array_map(function($item) ***REMOVED***
+    return [
+      'id' => $item['id'],
+      'title' => $item['title'],
+      'start' => $item['start']->format('c'),
+      'duration' => $item['duration'],
+***REMOVED***;
+***REMOVED***, $result),
+]);
 
 header('Content-type: application/json');
 echo $output;
