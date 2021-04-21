@@ -47,6 +47,14 @@ function getYoutubeService()
     return $youtube_service;
 ***REMOVED***
 
+// @author https://stackoverflow.com/a/61088115
+function date_interval_iso(DateInterval $interval, string $default = 'PT0F') ***REMOVED***
+  static $f = ['S0F', 'M0S', 'H0M', 'DT0H', 'M0D', 'P0Y', 'Y0M', 'P0M'];
+  static $r = ['S', 'M', 'H', 'DT', 'M', 'P', 'Y', 'P'];
+
+  return rtrim(str_replace($f, $r, $interval->format('P%yY%mM%dDT%hH%iM%sS%fF')), 'PT') ?: $default;
+***REMOVED***
+
 $channel_id = 67;
 $channel_title = 'AfreecaTV StarLeague Finals';
 
@@ -68,9 +76,10 @@ $queryParams = [
 $response = $service->videos->listVideos('snippet,contentDetails', $queryParams);
 
 $result = [];
+$total_duration = 0;
 if ($response && $response->items)
 ***REMOVED***
-  $scheduleStart = new DateTime(date('Y-m-d'));
+  $schedule_start = new DateTime(date('Y-m-d'));
 
   $result = array_map(function($item) ***REMOVED***
     return [
@@ -84,7 +93,7 @@ if ($response && $response->items)
   ***REMOVED***
     if ($i === 0)
     ***REMOVED***
-      $start = $scheduleStart;
+      $start = $schedule_start;
   ***REMOVED***
     else
     ***REMOVED***
@@ -97,14 +106,15 @@ if ($response && $response->items)
     $result[$i]['nice'] = $start->format('d/n H:i:s');
 ***REMOVED***
 
-  // echo 'total: ' . (array_reduce($result, function($sum, $video) ***REMOVED***
-  //   return $sum->add($video[1]);
-  // ***REMOVED***, new DateTime(date('Y-m-d'))))->format('d/n H:i:s');
+  $total_duration = array_reduce($result, function($sum, $video) ***REMOVED***
+    return $sum->add(new DateInterval($video['duration']));
+***REMOVED***, clone $schedule_start)->diff($schedule_start);
 ***REMOVED***
 
 $output = json_encode([
   'id' => $channel_id,
   'title' => $channel_title,
+  'duration' => date_interval_iso($total_duration),
   'items' => array_map(function($item) ***REMOVED***
     return [
       'id' => $item['id'],
