@@ -22,8 +22,11 @@ const useSchedule = () => ***REMOVED***
 
   const getCurrentVideo = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;
-    if (data?.items?.length) ***REMOVED***
-      const now = (new Date()).getTime();
+    if (data.duration && data?.items?.length) ***REMOVED***
+      const scheduleStart = new Date(data.items[0].start).getTime();
+      const currentTimeOffset = ((new Date()).getTime() - scheduleStart)
+                                  % Duration.fromISO(data.duration).toMillis();
+      const now = scheduleStart + currentTimeOffset;
       const currentVideo = data.items.reduce((carry, programme) => ***REMOVED***
         const start = (new Date(programme.start)).getTime();
         const end = DateTime.fromMillis(start)
@@ -34,6 +37,7 @@ const useSchedule = () => ***REMOVED***
           title: programme.title,
           start,
           end,
+          offset: now - start,
       ***REMOVED*** : carry;
     ***REMOVED***, null);
       return currentVideo;
