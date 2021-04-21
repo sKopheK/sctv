@@ -44,10 +44,9 @@ function Player() ***REMOVED***
   ***REMOVED***
     const video = await getCurrentVideo();
     if (video) ***REMOVED***
-      const offset = (new Date()).getTime() - video.start;
       player.current.loadVideoById(***REMOVED***
         videoId: video.id,
-        startSeconds: offset / 1000,
+        startSeconds: video.offset / 1000,
     ***REMOVED***);
       setCurrentShow(video);
   ***REMOVED*** else ***REMOVED***
