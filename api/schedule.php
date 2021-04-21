@@ -1,7 +1,12 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
-
+define('ROOT_DIR', __DIR__ . '/../');
+define('CACHE_DIR', ROOT_DIR . 'cache/');
+define('SCHEDULE_FILE', 'channel_%d.json');
 define('GOOGLE_API_DEVELOPER_KEY', 'AIzaSyCejxOr9AhjVezb1E7tqoese3plIEszcOc');
+
+require_once ROOT_DIR . 'vendor/autoload.php';
+
+header('Content-type: application/json');
 
 function getCurrentUrl()
 ***REMOVED***
@@ -55,7 +60,17 @@ function date_interval_iso(DateInterval $interval, string $default = 'PT0F') ***
   return rtrim(str_replace($f, $r, $interval->format('P%yY%mM%dDT%hH%iM%sS%fF')), 'PT') ?: $default;
 ***REMOVED***
 
-$channel_id = 67;
+$channel_id = 67; // TODO - parametrized
+
+$schedule_file = sprintf(SCHEDULE_FILE, $channel_id);
+$schedule_file_path = CACHE_DIR . $schedule_file;
+
+if (file_exists($schedule_file_path))
+***REMOVED***
+  echo file_get_contents($schedule_file_path);
+  exit();
+***REMOVED***
+
 $channel_title = 'AfreecaTV StarLeague Finals';
 
 $service = getYoutubeService();
@@ -125,5 +140,11 @@ $output = json_encode([
 ***REMOVED***, $result),
 ]);
 
-header('Content-type: application/json');
+$fp = fopen($schedule_file_path, 'w');
+if ($fp)
+***REMOVED***
+  fwrite($fp, $output);
+  fclose($fp);
+***REMOVED***
+
 echo $output;
