@@ -5,12 +5,12 @@ import ***REMOVED*** useCallback, useMemo ***REMOVED*** from 'react';
 const useSchedule = () => ***REMOVED***
   const fetch = async () => ***REMOVED***
     try ***REMOVED***
-      const response = await axios.get('/schedule.json');
+      const response = await axios.get('/api/schedule');
       return response;
   ***REMOVED*** catch (error) ***REMOVED***
       console.error(error);
   ***REMOVED***
-    return null;
+    return ***REMOVED******REMOVED***;
 ***REMOVED***;
 
   const payload = useMemo(async () => fetch(), []);
@@ -22,7 +22,7 @@ const useSchedule = () => ***REMOVED***
 
   const getCurrentVideo = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;
-    if (data.duration && data?.items?.length) ***REMOVED***
+    if (data?.duration && data?.items?.length) ***REMOVED***
       const scheduleStart = new Date(data.items[0].start).getTime();
       const currentTimeOffset = ((new Date()).getTime() - scheduleStart)
                                   % Duration.fromISO(data.duration).toMillis();
