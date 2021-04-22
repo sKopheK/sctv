@@ -23,7 +23,8 @@ function App() ***REMOVED***
     screenOn: false,
     toggleScreenOn: () => ***REMOVED***
       volume.toggleBar(false);
-      channel.toggleBar(false);
+      channel.reset();
+      channel.toggleBar(true);
       setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
   ***REMOVED***,
     hasSignal: false,

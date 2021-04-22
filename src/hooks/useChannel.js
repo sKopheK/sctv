@@ -43,11 +43,14 @@ const useChannel = () => ***REMOVED***
     setItem('currentShow', value);
 ***REMOVED***, [setItem]);
   const setId = useCallback((value) => ***REMOVED***
-    setItem('channelId', value);
+    setItem('id', value);
 ***REMOVED***, [setItem]);
   const setTitle = useCallback((value) => ***REMOVED***
-    setItem('channelTitle', value);
+    setItem('title', value);
 ***REMOVED***, [setItem]);
+  const reset = useCallback(() => ***REMOVED***
+    setState(() => CHANNEL_DEFAULT);
+***REMOVED***, []);
 
   useEffect(() => ***REMOVED***
     storeData(DATA_CHANNEL_ID, id);
@@ -62,6 +65,7 @@ const useChannel = () => ***REMOVED***
     setTitle,
     setCurrentShow,
     toggleBar,
+    reset,
 ***REMOVED***;
 ***REMOVED***;
 

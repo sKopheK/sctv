@@ -22,13 +22,13 @@ function ProgrammeInfo(***REMOVED***
       <dt className="hidden">Channel id</dt>
       <dd className="channel-id small">***REMOVED***channelId***REMOVED***</dd>
       <dt className="hidden">Channel title</dt>
-      <dd className="channel-title small">***REMOVED***channelTitle***REMOVED***</dd>
+      <dd className="channel-title small">***REMOVED***channelTitle || 'No signal'***REMOVED***</dd>
       <dt className="hidden">Programme title</dt>
       <dd className="programme-title">***REMOVED***programmeTitle***REMOVED***</dd>
-      <dt className="starts-label smaller">***REMOVED***starts && 'Starts'***REMOVED***</dt>
-      <dd className="starts smaller">***REMOVED***starts && DateTime.fromMillis(starts).toFormat('HH:mm')***REMOVED***</dd>
-      <dt className="ends-label smaller">***REMOVED***ends && 'Ends'***REMOVED***</dt>
-      <dd className="ends smaller">***REMOVED***ends && DateTime.fromMillis(ends).toFormat('HH:mm')***REMOVED***</dd>
+      <dt className="starts-label smaller">***REMOVED***starts ? 'Starts' : ''***REMOVED***</dt>
+      <dd className="starts smaller">***REMOVED***starts ? DateTime.fromMillis(starts).toFormat('HH:mm') : ''***REMOVED***</dd>
+      <dt className="ends-label smaller">***REMOVED***ends ? 'Ends' : ''***REMOVED***</dt>
+      <dd className="ends smaller">***REMOVED***ends ? DateTime.fromMillis(ends).toFormat('HH:mm') : ''***REMOVED***</dd>
     </dl>
   ), [channelId, channelTitle, programmeTitle, starts, ends]);
 ***REMOVED***
