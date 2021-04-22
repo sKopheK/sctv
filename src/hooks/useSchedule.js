@@ -1,6 +1,6 @@
 import axios from 'axios';
 import ***REMOVED*** DateTime, Duration ***REMOVED*** from 'luxon';
-import ***REMOVED*** useCallback, useMemo ***REMOVED*** from 'react';
+import ***REMOVED*** useMemo ***REMOVED*** from 'react';
 
 const useSchedule = () => ***REMOVED***
   const fetch = async () => ***REMOVED***
@@ -15,10 +15,10 @@ const useSchedule = () => ***REMOVED***
 
   const payload = useMemo(async () => fetch(), []);
 
-  const getChannelTitle = useCallback(async () => ***REMOVED***
+  const getChannelTitle = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;
     return data?.title;
-***REMOVED***, [payload]);
+***REMOVED***;
 
   const getCurrentVideo = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;

@@ -16,8 +16,8 @@ function Player() ***REMOVED***
 ***REMOVED*** = useContext(VolumeCtx);
 
   const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
-  const ***REMOVED*** setCurrentShow ***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED*** getCurrentVideo ***REMOVED*** = useSchedule();
+  const ***REMOVED*** setCurrentShow, setTitle: setChannelTitle ***REMOVED*** = useContext(ChannelCtx);
+  const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule();
 
   const player = useRef(null);
   const isPlayerReady = useRef(false);
@@ -52,6 +52,9 @@ function Player() ***REMOVED***
   ***REMOVED*** else ***REMOVED***
       setSignal(false);
   ***REMOVED***
+
+    const channelTitle = await getChannelTitle();
+    setChannelTitle(channelTitle);
 ***REMOVED***;
 
   useEffect(() => ***REMOVED***
