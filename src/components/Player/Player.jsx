@@ -108,7 +108,9 @@ function Player() ***REMOVED***
 
     return () => ***REMOVED***
       if (isPlayerReady.current) ***REMOVED***
-        player.current.stopVideo();
+        if (player.current) ***REMOVED***
+          player.current.stopVideo();
+      ***REMOVED***
         setSignal(false);
     ***REMOVED***
   ***REMOVED***;
