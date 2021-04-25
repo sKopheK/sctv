@@ -50,10 +50,10 @@ function getYoutubeService()
     return $youtube_service;
 ***REMOVED***
 
-function outputError()
+function outputError($code = 500, $msg = '500 Internal Server Error')
 ***REMOVED***
   $protocol = $_SERVER['SERVER_PROTOCOL'];
-  header($protocol . ' 500 Internal Server Error', TRUE, 500);
+  header($protocol . ' ' . $msg, TRUE, $code);
   exit();
 ***REMOVED***
 
@@ -114,7 +114,7 @@ switch ($channel_id)
     break;
 
   default:
-    outputError();
+    outputError(404, '404 Not Found');
     break;
 ***REMOVED***
 
