@@ -34,11 +34,13 @@ function RemoteControl() ***REMOVED***
 ***REMOVED***, [setChannelId, channelId, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo]);
 
   const upClick = useCallback(() => ***REMOVED***
+    if (!screenOn) return;
     changeChannel(1);
-***REMOVED***, [changeChannel]);
+***REMOVED***, [changeChannel, screenOn]);
   const downClick = useCallback(() => ***REMOVED***
+    if (!screenOn) return;
     changeChannel(-1);
-***REMOVED***, [changeChannel]);
+***REMOVED***, [changeChannel, screenOn]);
   const leftClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***
