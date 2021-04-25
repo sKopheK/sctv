@@ -1,11 +1,17 @@
 import axios from 'axios';
 import ***REMOVED*** DateTime, Duration ***REMOVED*** from 'luxon';
-import ***REMOVED*** useMemo ***REMOVED*** from 'react';
+import ***REMOVED*** useMemo, useRef ***REMOVED*** from 'react';
 
 const useSchedule = (channelId) => ***REMOVED***
+  const request = useRef(null);
   const fetch = async (id) => ***REMOVED***
+    if (request.current) ***REMOVED***
+      request.current.cancel();
+  ***REMOVED***
+    request.current = axios.CancelToken.source();
     try ***REMOVED***
       const response = await axios.get('/api/schedule', ***REMOVED***
+        cancelToken: request.current.token,
         params: ***REMOVED***
           id,
       ***REMOVED***,
@@ -17,7 +23,11 @@ const useSchedule = (channelId) => ***REMOVED***
     return ***REMOVED******REMOVED***;
 ***REMOVED***;
 
-  const payload = useMemo(async () => fetch(channelId), [channelId]);
+  const payload = useMemo(
+    async () => fetch(channelId),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [channelId],
+  );
 
   const getChannelTitle = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;

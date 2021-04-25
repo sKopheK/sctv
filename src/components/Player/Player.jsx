@@ -53,11 +53,8 @@ function Player() ***REMOVED***
         videoId: video.id,
         startSeconds: video.offset / 1000,
     ***REMOVED***);
-      setCurrentShow(video);
-  ***REMOVED*** else ***REMOVED***
-      setSignal(false);
   ***REMOVED***
-
+    setCurrentShow(video);
     const channelTitle = await getChannelTitle();
     setChannelTitle(channelTitle);
 ***REMOVED***;
@@ -106,9 +103,15 @@ function Player() ***REMOVED***
   useEffect(() => setPlayerMute(muted), [muted]);
   useEffect(() => ***REMOVED***
     if (isPlayerReady.current) ***REMOVED***
-      setSignal(false);
       startBroadcast();
   ***REMOVED***
+
+    return () => ***REMOVED***
+      if (isPlayerReady.current) ***REMOVED***
+        player.current.stopVideo();
+        setSignal(false);
+    ***REMOVED***
+  ***REMOVED***;
 ***REMOVED***,
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [isPlayerReady.current, channelId]);
