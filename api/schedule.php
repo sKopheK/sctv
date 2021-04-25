@@ -6,8 +6,6 @@ define('GOOGLE_API_DEVELOPER_KEY', '***REMOVED***');
 
 require_once ROOT_DIR . 'vendor/autoload.php';
 
-header('Content-type: application/json');
-
 function getCurrentUrl()
 ***REMOVED***
   return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -52,6 +50,13 @@ function getYoutubeService()
     return $youtube_service;
 ***REMOVED***
 
+function outputError()
+***REMOVED***
+  $protocol = $_SERVER['SERVER_PROTOCOL'];
+  header($protocol . ' 500 Internal Server Error', TRUE, 500);
+  exit();
+***REMOVED***
+
 // @author https://stackoverflow.com/a/61088115
 function date_interval_iso(DateInterval $interval, string $default = 'PT0F') ***REMOVED***
   static $f = ['S0F', 'M0S', 'H0M', 'DT0H', 'M0D', 'P0Y', 'Y0M', 'P0M'];
@@ -60,7 +65,12 @@ function date_interval_iso(DateInterval $interval, string $default = 'PT0F') ***
   return rtrim(str_replace($f, $r, $interval->format('P%yY%mM%dDT%hH%iM%sS%fF')), 'PT') ?: $default;
 ***REMOVED***
 
-$channel_id = 67; // TODO - parametrized
+if (!isset($_GET['id']) || !is_numeric($_GET['id']))
+***REMOVED***
+  outputError(); 
+***REMOVED***
+
+$channel_id = (int)$_GET['id'];
 
 $schedule_file = sprintf(SCHEDULE_FILE, $channel_id);
 $schedule_file_path = CACHE_DIR . $schedule_file;
@@ -71,23 +81,45 @@ if (file_exists($schedule_file_path))
   exit();
 ***REMOVED***
 
-$channel_title = 'AfreecaTV StarLeague Finals';
+switch ($channel_id)
+***REMOVED***
+  case 67:
+    $channel_title = 'AfreecaTV StarLeague Finals';
+    $queryParams = [
+        'id' => join(',', [
+          '5CeSxPAJgFY',
+          'MuhjA_Fv0VI',
+          'TBzuhofHH10',
+          '8UOqk79UHPE',
+          'rvqr_aYs-ns',
+          '3sb47YGI7l8',
+          'wEhkSaa4wUU',
+          '0uDAPoICEBg',
+          'EnoV2c_LYnU',
+          '9qENyb8fkOY',
+    ***REMOVED***),
+***REMOVED***;
+    break;
+    
+  case 68:
+    $channel_title = 'Artosis\' Rage';
+    $queryParams = [
+      'id' => join(',', [
+        'bBevrkgI5uc',
+        'RKrmDJqDadg',
+        'MlymxQg_wzI',
+        '7gBcG7ttSuA',        
+  ***REMOVED***),
+***REMOVED***;
+    break;
+
+  default:
+    outputError();
+    break;
+***REMOVED***
+
 
 $service = getYoutubeService();
-$queryParams = [
-    'id' => join(',', [
-      '5CeSxPAJgFY',
-      'MuhjA_Fv0VI',
-      'TBzuhofHH10',
-      '8UOqk79UHPE',
-      'rvqr_aYs-ns',
-      '3sb47YGI7l8',
-      'wEhkSaa4wUU',
-      '0uDAPoICEBg',
-      'EnoV2c_LYnU',
-      '9qENyb8fkOY',
-***REMOVED***),
-];
 $response = $service->videos->listVideos('snippet,contentDetails', $queryParams);
 
 $result = [];
@@ -147,4 +179,5 @@ if ($fp)
   fclose($fp);
 ***REMOVED***
 
+header('Content-type: application/json');
 echo $output;
