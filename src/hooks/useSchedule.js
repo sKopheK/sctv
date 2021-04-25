@@ -24,20 +24,23 @@ const useSchedule = () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;
     if (data?.duration && data?.items?.length) ***REMOVED***
       const scheduleStart = new Date(data.items[0].start).getTime();
-      const currentTimeOffset = ((new Date()).getTime() - scheduleStart)
-                                  % Duration.fromISO(data.duration).toMillis();
-      const now = scheduleStart + currentTimeOffset;
+      const scheduleDuration = Duration.fromISO(data.duration).toMillis();
+      const now = (new Date()).getTime();
+      const currentTimeOffset = (now - scheduleStart) % scheduleDuration;
+      const nowInSchedule = scheduleStart + currentTimeOffset;
       const currentVideo = data.items.reduce((carry, programme) => ***REMOVED***
         const start = (new Date(programme.start)).getTime();
+        const programmeDuration = Duration.fromISO(programme.duration);
         const end = DateTime.fromMillis(start)
-          .plus(Duration.fromISO(programme.duration))
+          .plus(programmeDuration)
           .toMillis();
-        return start <= now && now <= end ? ***REMOVED***
+        const offset = nowInSchedule - start;
+        return start <= nowInSchedule && nowInSchedule <= end ? ***REMOVED***
           id: programme.id,
           title: programme.title,
-          start,
-          end,
-          offset: now - start,
+          start: now - offset,
+          end: DateTime.fromMillis(now - offset).plus(programmeDuration).toMillis(),
+          offset,
       ***REMOVED*** : carry;
     ***REMOVED***, null);
       return currentVideo;
