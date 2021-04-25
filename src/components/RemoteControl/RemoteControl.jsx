@@ -18,13 +18,27 @@ function RemoteControl() ***REMOVED***
     toggleBar: toggleVolumeBar,
 ***REMOVED*** = useContext(VolumeCtx);
 
-  const ***REMOVED*** toggleBar: toggleProgrammeInfo ***REMOVED*** = useContext(ChannelCtx);
+  const ***REMOVED***
+    toggleBar: toggleProgrammeInfo,
+    setId: setChannelId,
+    id: channelId,
+***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
 
+  const changeChannel = useCallback((diff) => ***REMOVED***
+    setChannelId(channelId + diff);
+    if (volumeBarVisible) ***REMOVED***
+      toggleVolumeBar();
+  ***REMOVED***
+    toggleProgrammeInfo(true);
+***REMOVED***, [setChannelId, channelId, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo]);
+
   const upClick = useCallback(() => ***REMOVED***
-***REMOVED***, []);
+    changeChannel(1);
+***REMOVED***, [changeChannel]);
   const downClick = useCallback(() => ***REMOVED***
-***REMOVED***, []);
+    changeChannel(-1);
+***REMOVED***, [changeChannel]);
   const leftClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***

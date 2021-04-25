@@ -13,7 +13,8 @@ function ProgrammeInfo(***REMOVED***
 
   const hideProgrammeInfo = useCallback(
     () => toggleBar(false),
-    [toggleBar],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [toggleBar, channelId],
   );
   useTimeout(hideProgrammeInfo, INFO_DIALOG_TIMEOUT);
 
