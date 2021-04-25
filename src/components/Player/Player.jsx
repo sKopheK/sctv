@@ -76,6 +76,8 @@ function Player() ***REMOVED***
           onStateChange: (event) => ***REMOVED***
             if (event.data === YT.PlayerState.PLAYING && isPlayerReady.current) ***REMOVED***
               setSignal(true);
+          ***REMOVED*** else if (event.data === YT.PlayerState.ENDED && isPlayerReady.current) ***REMOVED***
+              startBroadcast();
           ***REMOVED***
         ***REMOVED***,
           onError: () => ***REMOVED***
