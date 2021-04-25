@@ -18,7 +18,7 @@ function RemoteControl() ***REMOVED***
     toggleBar: toggleVolumeBar,
 ***REMOVED*** = useContext(VolumeCtx);
 
-  const programmeInfo = useContext(ChannelCtx);
+  const ***REMOVED*** toggleBar: toggleProgrammeInfo ***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
 
   const upClick = useCallback(() => ***REMOVED***
@@ -29,28 +29,28 @@ function RemoteControl() ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
-      programmeInfo.toggleBar(false);
+      toggleProgrammeInfo(false);
   ***REMOVED*** else ***REMOVED***
       decreaseVol();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo, decreaseVol]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo, decreaseVol]);
   const rightClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (!volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
-      programmeInfo.toggleBar(false);
+      toggleProgrammeInfo(false);
   ***REMOVED*** else ***REMOVED***
       increaseVol();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo, increaseVol]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo, increaseVol]);
   const okClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
     if (volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
   ***REMOVED*** else ***REMOVED***
-      programmeInfo.toggleBar();
+      toggleProgrammeInfo();
   ***REMOVED***
-***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, programmeInfo]);
+***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo]);
 
   return useMemo(() => (
     <div className="RemoteControl">
