@@ -16,7 +16,11 @@ function Player() ***REMOVED***
 ***REMOVED*** = useContext(VolumeCtx);
 
   const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
-  const ***REMOVED*** setCurrentShow, setTitle: setChannelTitle, id: channelId ***REMOVED*** = useContext(ChannelCtx);
+  const ***REMOVED***
+    setCurrentShow,
+    setTitle: setChannelTitle,
+    id: channelId,
+***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule(channelId);
 
   const player = useRef(null);
@@ -38,6 +42,7 @@ function Player() ***REMOVED***
 ***REMOVED***;
   const updatePlayerVolume = () => setPlayerVolume(volume);
   const updatePlayerMute = () => setPlayerMute(muted);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const startBroadcast = async () => ***REMOVED***
     if (!isPlayerReady.current) ***REMOVED***
       return;
@@ -71,7 +76,6 @@ function Player() ***REMOVED***
             isPlayerReady.current = true;
             updatePlayerVolume();
             updatePlayerMute();
-            startBroadcast();
         ***REMOVED***,
           onStateChange: (event) => ***REMOVED***
             if (event.data === YT.PlayerState.PLAYING && isPlayerReady.current) ***REMOVED***
@@ -100,6 +104,14 @@ function Player() ***REMOVED***
 
   useEffect(() => setPlayerVolume(volume), [volume]);
   useEffect(() => setPlayerMute(muted), [muted]);
+  useEffect(() => ***REMOVED***
+    if (isPlayerReady.current) ***REMOVED***
+      setSignal(false);
+      startBroadcast();
+  ***REMOVED***
+***REMOVED***,
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [isPlayerReady.current, channelId]);
 
   return useMemo(() => (
     <div className="Player">

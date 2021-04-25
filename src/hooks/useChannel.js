@@ -54,7 +54,9 @@ const useChannel = () => ***REMOVED***
 
   useEffect(() => ***REMOVED***
     storeData(DATA_CHANNEL_ID, id);
-***REMOVED***, [id]);
+    setTitle(CHANNEL_DEFAULT.title);
+    setCurrentShow(CHANNEL_DEFAULT.currentShow);
+***REMOVED***, [id, setCurrentShow, setTitle]);
 
   return ***REMOVED***
     visible,
