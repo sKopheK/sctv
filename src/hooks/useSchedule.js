@@ -2,10 +2,14 @@ import axios from 'axios';
 import ***REMOVED*** DateTime, Duration ***REMOVED*** from 'luxon';
 import ***REMOVED*** useMemo ***REMOVED*** from 'react';
 
-const useSchedule = () => ***REMOVED***
-  const fetch = async () => ***REMOVED***
+const useSchedule = (channelId) => ***REMOVED***
+  const fetch = async (id) => ***REMOVED***
     try ***REMOVED***
-      const response = await axios.get('/api/schedule');
+      const response = await axios.get('/api/schedule', ***REMOVED***
+        params: ***REMOVED***
+          id,
+      ***REMOVED***,
+    ***REMOVED***);
       return response;
   ***REMOVED*** catch (error) ***REMOVED***
       console.error(error);
@@ -13,7 +17,7 @@ const useSchedule = () => ***REMOVED***
     return ***REMOVED******REMOVED***;
 ***REMOVED***;
 
-  const payload = useMemo(async () => fetch(), []);
+  const payload = useMemo(async () => fetch(channelId), [channelId]);
 
   const getChannelTitle = async () => ***REMOVED***
     const ***REMOVED*** data ***REMOVED*** = await payload;

@@ -16,8 +16,8 @@ function Player() ***REMOVED***
 ***REMOVED*** = useContext(VolumeCtx);
 
   const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
-  const ***REMOVED*** setCurrentShow, setTitle: setChannelTitle ***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule();
+  const ***REMOVED*** setCurrentShow, setTitle: setChannelTitle, id: channelId ***REMOVED*** = useContext(ChannelCtx);
+  const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule(channelId);
 
   const player = useRef(null);
   const isPlayerReady = useRef(false);
