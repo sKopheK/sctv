@@ -16,8 +16,7 @@ $radius: .6vw;
     
     position: absolute;
     right: dim.$right;
-    //bottom: -dim.$height;
-    bottom: -.5vw;
+    bottom: dim.$height * -.8;
     box-sizing: border-box;
     
     padding: 1.1vw .6vw 3.5vw;
@@ -25,7 +24,7 @@ $radius: .6vw;
     background-color: color.$bg-main;
     border: 1px solid color.$border;
     border-radius: $radius;
-    //transform: scale(.9);
+    transform: scale(.9);
     
     transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s;
 
