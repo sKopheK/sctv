@@ -10,7 +10,7 @@ const useSchedule = (channelId) => ***REMOVED***
   ***REMOVED***
     request.current = axios.CancelToken.source();
     try ***REMOVED***
-      const response = await axios.get('/api/schedule', ***REMOVED***
+      const response = await axios.get('api/schedule', ***REMOVED***
         cancelToken: request.current.token,
         params: ***REMOVED***
           id,
