@@ -1,8 +1,12 @@
 <?php
+header('Content-type: application/json');
+
 define('ROOT_DIR', __DIR__ . '/../');
 define('CACHE_DIR', ROOT_DIR . 'cache/');
+define('CHANNEL_FILE', __DIR__ . '/channel/%d');
 define('SCHEDULE_FILE', 'channel_%d.json');
 define('GOOGLE_API_DEVELOPER_KEY', '***REMOVED***');
+define('GOOGLE_API_ID_MAX_COUNT', 50);
 
 require_once ROOT_DIR . 'vendor/autoload.php';
 
@@ -81,82 +85,69 @@ if (file_exists($schedule_file_path))
   exit();
 ***REMOVED***
 
-switch ($channel_id)
-***REMOVED***
-  case 67:
-    $channel_title = 'AfreecaTV StarLeague Finals';
-    $queryParams = [
-        'id' => join(',', [
-          '5CeSxPAJgFY',
-          'MuhjA_Fv0VI',
-          'TBzuhofHH10',
-          '8UOqk79UHPE',
-          'rvqr_aYs-ns',
-          '3sb47YGI7l8',
-          'wEhkSaa4wUU',
-          '0uDAPoICEBg',
-          'EnoV2c_LYnU',
-          '9qENyb8fkOY',
-    ***REMOVED***),
-***REMOVED***;
-    break;
-    
-  case 68:
-    $channel_title = 'Artosis\' Rage';
-    $queryParams = [
-      'id' => join(',', [
-        'bBevrkgI5uc',
-        'RKrmDJqDadg',
-        'MlymxQg_wzI',
-        '7gBcG7ttSuA',        
-  ***REMOVED***),
-***REMOVED***;
-    break;
+$channel_data_file = sprintf(CHANNEL_FILE, $channel_id);
 
-  default:
-    outputError(404, '404 Not Found');
-    break;
+if (!file_exists($channel_data_file))
+***REMOVED***
+  outputError(404, '404 Not Found');
 ***REMOVED***
 
-
-$service = getYoutubeService();
-$response = $service->videos->listVideos('snippet,contentDetails', $queryParams);
+$channel_data = file($channel_data_file);
+$channel_title = trim(array_shift($channel_data));
 
 $result = [];
-$total_duration = 0;
-if ($response && $response->items)
+
+$service = getYoutubeService();
+
+$channel_video_ids = array_map(function($id) ***REMOVED***
+  return trim($id);
+***REMOVED***, array_filter($channel_data, function($id) ***REMOVED***
+  return $id && !preg_match('#//#', $id);
+***REMOVED***));
+
+$channel_video_count = count($channel_video_ids);
+$steps = ceil($channel_video_count / GOOGLE_API_ID_MAX_COUNT);
+for ($i = 0; $i < $steps; $i++)
 ***REMOVED***
-  $schedule_start = new DateTime(date('Y-m-d'));
+  $queryParams = [
+    'id' => join(',', array_slice($channel_video_ids, $i * GOOGLE_API_ID_MAX_COUNT, GOOGLE_API_ID_MAX_COUNT)),
+  ];
+  $response = $service->videos->listVideos('snippet,contentDetails', $queryParams);
 
-  $result = array_map(function($item) ***REMOVED***
-    return [
-      'id' => $item->id,
-      'title' => $item->snippet->title,
-      'duration' => $item->contentDetails->duration,
-***REMOVED***;
-***REMOVED***, $response->items);
-
-  foreach($result as $i => $item)
+  if ($response && $response->items)
   ***REMOVED***
-    if ($i === 0)
-    ***REMOVED***
-      $start = $schedule_start;
-  ***REMOVED***
-    else
-    ***REMOVED***
-      $previous = $result[$i - 1];
-      $start = clone $previous['start'];
-      $start->add(new DateInterval($previous['duration']));
-  ***REMOVED***
-
-    $result[$i]['start'] = $start;
-    $result[$i]['nice'] = $start->format('d/n H:i:s');
+    $result = array_merge($result, array_map(function($item) ***REMOVED***
+      return [
+        'id' => $item->id,
+        'title' => $item->snippet->title,
+        'duration' => $item->contentDetails->duration,
+  ***REMOVED***;
+  ***REMOVED***, $response->items));
+***REMOVED***
 ***REMOVED***
 
-  $total_duration = array_reduce($result, function($sum, $video) ***REMOVED***
-    return $sum->add(new DateInterval($video['duration']));
+$schedule_start = new DateTime(date('Y-m-d'));
+
+foreach($result as $i => $item)
+***REMOVED***
+  if ($i === 0)
+  ***REMOVED***
+    $start = $schedule_start;
+***REMOVED***
+  else
+  ***REMOVED***
+    $previous = $result[$i - 1];
+    $start = clone $previous['start'];
+    $start->add(new DateInterval($previous['duration']));
+***REMOVED***
+
+  $result[$i]['start'] = $start;
+  $result[$i]['nice'] = $start->format('d/n H:i:s');
+***REMOVED***
+
+$total_duration = array_reduce($result, function($sum, $video) ***REMOVED***
+  return $sum->add(new DateInterval($video['duration']));
 ***REMOVED***, clone $schedule_start)->diff($schedule_start);
-***REMOVED***
 
 $output = json_encode([
   'id' => $channel_id,
@@ -179,5 +170,4 @@ if ($fp)
   fclose($fp);
 ***REMOVED***
 
-header('Content-type: application/json');
 echo $output;
