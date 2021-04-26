@@ -1,2 +1,4 @@
+Options -Indexes
+
 RewriteEngine On
 RewriteRule ^api/(\w+)$ $1.php [L]
