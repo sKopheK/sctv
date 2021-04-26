@@ -8,7 +8,7 @@ const DATA_CHANNEL_ID = 'channel';
 const storedChannelId = getStoredData(DATA_CHANNEL_ID);
 
 const CHANNEL_DEFAULT = ***REMOVED***
-  id: storedChannelId !== null ? Number(storedChannelId) : 67,
+  id: storedChannelId !== null ? Number(storedChannelId) : 5,
   title: null,
   currentShow: null,
   visible: false,
