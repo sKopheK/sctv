@@ -1,6 +1,6 @@
 ***REMOVED***
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SC TV",
+  "name": "StarCraft TV",
   "icons": [
     ***REMOVED***
       "src": "favicon.ico",
@@ -13,13 +13,13 @@
       "sizes": "192x192"
   ***REMOVED***,
     ***REMOVED***
-      "src": "logo512.png",
+      "src": "logo256.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "256x256"
   ***REMOVED***
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000"
 ***REMOVED***
