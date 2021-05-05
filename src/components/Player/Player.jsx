@@ -18,9 +18,10 @@ function Player() ***REMOVED***
 
   const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
   const ***REMOVED***
+    id: channelId,
     setCurrentShow,
     setTitle: setChannelTitle,
-    id: channelId,
+    setLoading,
 ***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule(channelId);
 
@@ -46,6 +47,7 @@ function Player() ***REMOVED***
     if (!isPlayerReady) ***REMOVED***
       return;
   ***REMOVED***
+    setLoading(true);
     const video = await getCurrentVideo();
     if (video) ***REMOVED***
       player.current.loadVideoById(***REMOVED***
@@ -56,6 +58,7 @@ function Player() ***REMOVED***
     setCurrentShow(video);
     const channelTitle = await getChannelTitle();
     setChannelTitle(channelTitle);
+    setLoading(false);
 ***REMOVED***;
 
   useEffect(() => ***REMOVED***
@@ -103,6 +106,8 @@ function Player() ***REMOVED***
   useEffect(() => ***REMOVED***
     if (isPlayerReady) ***REMOVED***
       startBroadcast();
+  ***REMOVED*** else ***REMOVED***
+      setLoading(true);
   ***REMOVED***
 
     return () => ***REMOVED***

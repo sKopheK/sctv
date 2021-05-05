@@ -7,7 +7,7 @@ import ChannelCtx from '../../state/ChannelCtx';
 import './ProgrammeInfo.scss';
 
 function ProgrammeInfo(***REMOVED***
-  channelId, channelTitle, programmeTitle, starts, ends,
+  channelId, channelTitle, programmeTitle, starts, ends, isLoading,
 ***REMOVED***) ***REMOVED***
   const ***REMOVED*** toggleBar ***REMOVED*** = useContext(ChannelCtx);
 
@@ -23,7 +23,7 @@ function ProgrammeInfo(***REMOVED***
       <dt className="hidden">Channel id</dt>
       <dd className="channel-id small">***REMOVED***channelId***REMOVED***</dd>
       <dt className="hidden">Channel title</dt>
-      <dd className="channel-title small">***REMOVED***channelTitle || 'No signal'***REMOVED***</dd>
+      <dd className="channel-title small">***REMOVED***isLoading ? 'Loading...' : (channelTitle || 'No signal')***REMOVED***</dd>
       <dt className="hidden">Programme title</dt>
       <dd className="programme-title">***REMOVED***programmeTitle***REMOVED***</dd>
       <dt className="starts-label smaller">***REMOVED***starts ? 'Starts' : ''***REMOVED***</dt>
@@ -31,7 +31,7 @@ function ProgrammeInfo(***REMOVED***
       <dt className="ends-label smaller">***REMOVED***ends ? 'Ends' : ''***REMOVED***</dt>
       <dd className="ends smaller">***REMOVED***ends ? DateTime.fromMillis(ends).toFormat('HH:mm') : ''***REMOVED***</dd>
     </dl>
-  ), [channelId, channelTitle, programmeTitle, starts, ends]);
+  ), [channelId, channelTitle, programmeTitle, starts, ends, isLoading]);
 ***REMOVED***
 
 ProgrammeInfo.propTypes = ***REMOVED***

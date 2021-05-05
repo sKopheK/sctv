@@ -12,11 +12,12 @@ const CHANNEL_DEFAULT = ***REMOVED***
   title: null,
   currentShow: null,
   visible: false,
+  isLoading: false,
 ***REMOVED***;
 
 const useChannel = () => ***REMOVED***
   const [***REMOVED***
-    id, title, currentShow, visible,
+    id, title, currentShow, visible, isLoading,
 ***REMOVED***, setState] = useState(CHANNEL_DEFAULT);
 
   const toggleBar = useCallback((enable) => ***REMOVED***
@@ -48,6 +49,9 @@ const useChannel = () => ***REMOVED***
   const setTitle = useCallback((value) => ***REMOVED***
     setItem('title', value);
 ***REMOVED***, [setItem]);
+  const setLoading = useCallback((value) => ***REMOVED***
+    setItem('isLoading', value);
+***REMOVED***, [setItem]);
   const reset = useCallback(() => ***REMOVED***
     setState(() => CHANNEL_DEFAULT);
 ***REMOVED***, []);
@@ -63,9 +67,11 @@ const useChannel = () => ***REMOVED***
     id,
     title,
     currentShow,
+    isLoading,
     setId,
     setTitle,
     setCurrentShow,
+    setLoading,
     toggleBar,
     reset,
 ***REMOVED***;

@@ -57,6 +57,7 @@ function App() ***REMOVED***
             programmeTitle=***REMOVED***channel?.currentShow?.title***REMOVED***
             starts=***REMOVED***channel?.currentShow?.start***REMOVED***
             ends=***REMOVED***channel?.currentShow?.end***REMOVED***
+            isLoading=***REMOVED***channel?.isLoading***REMOVED***
           />
           )***REMOVED***
           <RemoteControl />
