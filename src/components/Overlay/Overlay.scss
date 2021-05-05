@@ -47,10 +47,14 @@
         size: contain;
         position: 100% 100%;
   ***REMOVED***
-    animation: zoomInOut 1.5s .5s;
-    animation-fill-mode: backwards;
-    position: relative;
-    z-index: 1;
+
+    &.first-run
+    ***REMOVED***
+        animation: zoomInOut 1.5s .5s;
+        animation-fill-mode: backwards;
+        position: relative;
+        z-index: 1;    
+  ***REMOVED***
 ***REMOVED***
 
 .tv-ico
@@ -62,9 +66,13 @@
         image: url('tv.png');
         size: contain;
   ***REMOVED***
-    animation: zoomInOut 1.5s 1.2s;
-    animation-fill-mode: backwards;
-    transform-origin: 0 100%;
+
+    &.first-run
+    ***REMOVED***
+        animation: zoomInOut 1.5s 1.2s;
+        animation-fill-mode: backwards;
+        transform-origin: 0 100%;
+  ***REMOVED***
 ***REMOVED***
 
 @keyframes zoomInOut
