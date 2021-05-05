@@ -1,15 +1,14 @@
+@use "../../scss/mixins" as *;
+
 .Overlay
-***REMOVED***
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+***REMOVED***    
+    @include fill-parent;
+    display: flex;
 ***REMOVED***
 
 .no-signal
 ***REMOVED***
-    background: url('nosignal1.png'); 
+    background: url('nosignal1.png');
     animation: tvNoise .35s infinite;
 ***REMOVED***
 
@@ -28,5 +27,60 @@
     100%
     ***REMOVED***
         background-image: url('nosignal3.png');
+  ***REMOVED***
+***REMOVED***
+
+.app-logo
+***REMOVED***
+    display: flex;    
+    width: 50vw;
+    height: 8vw;
+    margin: auto;
+***REMOVED***
+
+.sc-logo
+***REMOVED***
+    flex-grow: 3;
+    background: ***REMOVED***
+        repeat: no-repeat;
+        image: url('sc-logo.png');
+        size: contain;
+        position: 100% 100%;
+  ***REMOVED***
+    animation: zoomInOut 1.5s .5s;
+    animation-fill-mode: backwards;
+    position: relative;
+    z-index: 1;
+***REMOVED***
+
+.tv-ico
+***REMOVED***
+    flex-grow: 1;
+    margin-left: 2vw;
+    background: ***REMOVED***
+        repeat: no-repeat;
+        image: url('tv.png');
+        size: contain;
+  ***REMOVED***
+    animation: zoomInOut 1.5s 1.2s;
+    animation-fill-mode: backwards;
+    transform-origin: 0 100%;
+***REMOVED***
+
+@keyframes zoomInOut
+***REMOVED***
+    0%
+    ***REMOVED***
+        transform: scale(.9);
+  ***REMOVED***
+
+    50%
+    ***REMOVED***
+        transform: scale(1.2);
+  ***REMOVED***
+
+    100%
+    ***REMOVED***
+        transform: scale(1);
   ***REMOVED***
 ***REMOVED***
