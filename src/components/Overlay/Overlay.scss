@@ -1,4 +1,11 @@
+@use "sass:meta";
 @use "../../scss/mixins" as *;
+@use "color";
+
+@include meta.load-css("animations");
+
+$app-logo--w: 50vw;
+$app-logo--h: 8vw;
 
 .Overlay
 ***REMOVED***    
@@ -12,30 +19,13 @@
     animation: tvNoise .35s infinite;
 ***REMOVED***
 
-@keyframes tvNoise
-***REMOVED***
-    0%
-    ***REMOVED***
-        background-image: url('nosignal1.png');
-  ***REMOVED***
-
-    50%
-    ***REMOVED***
-        background-image: url('nosignal2.png');
-  ***REMOVED***
-
-    100%
-    ***REMOVED***
-        background-image: url('nosignal3.png');
-  ***REMOVED***
-***REMOVED***
-
 .app-logo
 ***REMOVED***
     display: flex;    
-    width: 50vw;
-    height: 8vw;
+    width: $app-logo--w;
+    height: $app-logo--h;
     margin: auto;
+    transform: translateY(-4vw);
 ***REMOVED***
 
 .sc-logo
@@ -75,20 +65,44 @@
   ***REMOVED***
 ***REMOVED***
 
-@keyframes zoomInOut
+.welcome
 ***REMOVED***
-    0%
+    position: absolute;
+    top: calc(50% + #***REMOVED***$app-logo--h * .5***REMOVED***);
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: color.$text;
+    line-height: 1.5;
+
+    animation: fadeIn 1.5s 1.5s;
+    animation-fill-mode: backwards;
+
+    &__heading
     ***REMOVED***
-        transform: scale(.9);
+        font-size: 1.3vw;
+        font-weight: bold;
   ***REMOVED***
 
-    50%
+    &__text
     ***REMOVED***
-        transform: scale(1.2);
+        font-size: 1.2vw;
   ***REMOVED***
 
-    100%
+    &__arrow
     ***REMOVED***
-        transform: scale(1);
+        $w: 25vw;
+
+        stroke: color.$arrow;
+        stroke-linecap: round;
+        stroke-width: .2vw;
+        width: $w;
+        margin-top: 1vw;
+        margin-left: $w*.75;
+
+        animation: zoomIn 1.5s 2s, fadeIn 1.5s 2s;
+        animation-fill-mode: backwards;
+
+        transform-origin: 0 0;
   ***REMOVED***
 ***REMOVED***
