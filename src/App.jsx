@@ -12,6 +12,10 @@ import useVolume from './hooks/useVolume';
 import AppCtx from './state/AppCtx';
 import ChannelCtx from './state/ChannelCtx';
 import VolumeCtx from './state/VolumeCtx';
+import ***REMOVED*** getStoredData, storeData ***REMOVED*** from './storage';
+
+const SCREEN_ON = 'screenOn';
+const getScreenOnValue = () => getStoredData(SCREEN_ON) === 'true';
 
 function App() ***REMOVED***
   // cannot manage state here and get context inside useVolume
@@ -20,12 +24,13 @@ function App() ***REMOVED***
   const channel = useChannel();
 
   const [state, setState] = useState(***REMOVED***
-    screenOn: false,
+    screenOn: getScreenOnValue(),
     toggleScreenOn: () => ***REMOVED***
       volume.toggleBar(false);
       channel.reset();
       channel.toggleBar(true);
       setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
+      storeData(SCREEN_ON, !getScreenOnValue());
   ***REMOVED***,
     hasSignal: false,
     setSignal: (value) => ***REMOVED***
