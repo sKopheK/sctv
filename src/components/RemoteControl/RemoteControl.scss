@@ -41,7 +41,7 @@ $radius: .6vw;
         transform: scale(1);
         box-shadow: 0 0 20px 15px color.$shadow;
         border-width: 2px;
-        bottom: -.5vw;
+        bottom: dim.$bottom--on;
 
         &::before
         ***REMOVED***
