@@ -1,6 +1,7 @@
 @use "../../scss/config/panel" as dim;
 @use "../../scss/panel";
 @use "../../scss/ico";
+@use "../RemoteControl/media" as remoteMedia;
 
 $ico-left: dim.$padding * .75;
 $ico-top: dim.$padding * 1.3;
@@ -8,16 +9,25 @@ $ico-top: dim.$padding * 1.3;
 .MutedStatus
 ***REMOVED***
   @include panel.styles;
-
+  
   position: absolute;
   bottom: dim.$bottom;
   left: dim.$bottom;
 
-  padding-left: dim.$padding + 4vw;
+  @include remoteMedia.positionCenter
+  ***REMOVED***
+    bottom: auto;
+    top: dim.$bottom;
+    left: auto;
+    right: 50%;
+    transform: translateX(50%);
+***REMOVED***
+
+  padding-left: dim.$padding + 1.8em;
   z-index: dim.$zIndex-top;
   
   @include ico.sound(
-        $size: 11vw,
+        $size: 5em,
         $stroke-width: false,
         $color-bg: unquote('var(--color-panel-ico)'),
         $left: $ico-left,
@@ -25,10 +35,10 @@ $ico-top: dim.$padding * 1.3;
     );
 ***REMOVED***
 
-$stroke-width: .3vw;
-$base-dimension: 4vw;
+$stroke-width: .15em;
+$base-dimension: 1.9em;
 
-.xico-cross
+.ico-cross--muted
 ***REMOVED***
     $position: translateY(-50%);
 
@@ -39,7 +49,7 @@ $base-dimension: 4vw;
         position: absolute;
         z-index: 1;
         top: 50%;
-        left: 1.5vw;
+        left: .6em;
         display: block;
         width: $base-dimension;
         height: $stroke-width;

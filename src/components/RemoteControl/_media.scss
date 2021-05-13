@@ -1,0 +1,19 @@
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/media" as *;
+@use "dim";
+
+@mixin positionRight
+***REMOVED***
+  @media (orientation: landscape), (min-width: bp.$tablet)
+  ***REMOVED***
+    @content;
+***REMOVED***  
+***REMOVED***
+
+@mixin positionCenter
+***REMOVED***
+  @media (orientation: portrait) and (max-width: bp.$tablet - .1)
+  ***REMOVED***
+    @content;
+***REMOVED***  
+***REMOVED***

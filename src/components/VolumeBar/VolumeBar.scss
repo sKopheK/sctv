@@ -2,9 +2,10 @@
 @use "../../scss/config/panel" as dim;
 @use "../../scss/panel";
 @use "../../scss/ico";
+@use "../RemoteControl/media" as remoteMedia;
 
-$padding-left: dim.$padding + 4vw;
-$padding-right: dim.$padding + 5vw;
+$padding-left: dim.$padding + 2em;
+$padding-right: dim.$padding + 2.5em;
 
 .VolumeBar
 ***REMOVED***
@@ -13,9 +14,18 @@ $padding-right: dim.$padding + 5vw;
   --color-volume-bar-bg: #***REMOVED***color.$bg***REMOVED***;
 
   position: absolute;
-  bottom: dim.$bottom;
   left: 50%;
   transform: translateX(-50%);
+
+  @include remoteMedia.positionRight
+  ***REMOVED***
+    bottom: dim.$bottom;
+***REMOVED***
+
+  @include remoteMedia.positionCenter
+  ***REMOVED***
+    top: dim.$bottom;
+***REMOVED***
 
   padding-left: $padding-left;
   width: 40vw;
@@ -26,7 +36,7 @@ $padding-right: dim.$padding + 5vw;
   justify-content: space-between;
 
   @include ico.sound(
-        $size: 11vw,
+        $size: 5em,
         $stroke-width: false,
         $color-bg: unquote('var(--color-panel-ico)'),
         $left: dim.$padding * .75,

@@ -1,11 +1,10 @@
 @use "sass:meta";
+@use "../../scss/config/breakpoints" as bp;
 @use "../../scss/mixins" as *;
-@use "color";
+@use "../../scss/media" as *;
+@use "app-logo" as appLogo;
 
 @include meta.load-css("animations");
-
-$app-logo--w: 50vw;
-$app-logo--h: 8vw;
 
 .Overlay
 ***REMOVED***    
@@ -22,15 +21,22 @@ $app-logo--h: 8vw;
 .app-logo
 ***REMOVED***
     display: flex;    
-    width: $app-logo--w;
-    height: $app-logo--h;
+    width: appLogo.$w;
+    height: appLogo.$h;
     margin: auto;
-    transform: translateY(-4vw);
+    transform: translateY(appLogo.$h * -.5);
+
+    @include mediaDesktop
+    ***REMOVED***
+        width: appLogo.$w--desktop;
+        height: appLogo.$h--desktop;
+        transform: translateY(appLogo.$h--desktop * -.5);
+  ***REMOVED***
 ***REMOVED***
 
 .sc-logo
 ***REMOVED***
-    flex-grow: 3;
+    flex-grow: 5;
     background: ***REMOVED***
         repeat: no-repeat;
         image: url('sc-logo.png');
@@ -62,47 +68,5 @@ $app-logo--h: 8vw;
         animation: zoomInOut 1.5s 1.2s;
         animation-fill-mode: backwards;
         transform-origin: 0 100%;
-  ***REMOVED***
-***REMOVED***
-
-.welcome
-***REMOVED***
-    position: absolute;
-    top: calc(50% + #***REMOVED***$app-logo--h * .5***REMOVED***);
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: color.$text;
-    line-height: 1.5;
-
-    animation: fadeIn 1.5s 1.5s;
-    animation-fill-mode: backwards;
-
-    &__heading
-    ***REMOVED***
-        font-size: 1.3vw;
-        font-weight: bold;
-  ***REMOVED***
-
-    &__text
-    ***REMOVED***
-        font-size: 1.2vw;
-  ***REMOVED***
-
-    &__arrow
-    ***REMOVED***
-        $w: 25vw;
-
-        stroke: color.$arrow;
-        stroke-linecap: round;
-        stroke-width: .2vw;
-        width: $w;
-        margin-top: 1vw;
-        margin-left: $w*.75;
-
-        animation: zoomIn 1.5s 2s, fadeIn 1.5s 2s;
-        animation-fill-mode: backwards;
-
-        transform-origin: 0 0;
   ***REMOVED***
 ***REMOVED***

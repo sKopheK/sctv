@@ -1,5 +1,7 @@
 @use "config/colors/panel" as color;
 @use "config/panel" as dim;
+@use "config/breakpoints" as bp;
+@use "media" as *;
 
 @mixin styles
 ***REMOVED***
@@ -10,5 +12,16 @@
   padding: dim.$padding;  
   background-color: var(--color-panel-bg);
   color: var(--color-panel-text);
-  font-size: 2.2vw;
+
+  font-size: 1.6rem;
+  
+  @include mediaTablet
+  ***REMOVED***
+    font-size: 2.2rem;  
+***REMOVED***
+
+  @include mediaWidth(bp.$base)
+  ***REMOVED***
+    font-size: 2.2vw;
+***REMOVED***
 ***REMOVED***

@@ -1,0 +1,94 @@
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/media" as *;
+@use "../Overlay/app-logo" as appLogo;
+@use "../RemoteControl/media" as remoteMedia;
+@use "color";
+
+.welcome
+***REMOVED***
+  position: absolute;
+  top: calc(50% + #***REMOVED***appLogo.$h--desktop * .5***REMOVED***);
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: color.$text;
+  line-height: 1.5;
+
+  animation: fadeIn 1.5s 1.5s;
+  animation-fill-mode: backwards;
+
+  $font-size: 1em;
+  $font-size--mobile: .8em;
+  $font-size--desktop: 1vw;
+
+  &__heading
+  ***REMOVED***
+    $font-size-coef: 1.3;
+    
+    font-weight: bold;
+    font-size: $font-size * $font-size-coef;
+
+    @include mediaDesktop
+    ***REMOVED***
+        font-size: $font-size--desktop * $font-size-coef;
+  ***REMOVED***
+
+    @include mediaWidth(null bp.$mobile-big)
+    ***REMOVED***
+        font-size: $font-size--mobile * $font-size-coef;
+  ***REMOVED***
+***REMOVED***
+
+  &__text
+  ***REMOVED***
+    $font-size-coef: 1.2;
+
+    font-size: $font-size * $font-size-coef;
+
+    @include mediaDesktop
+    ***REMOVED***
+      font-size: $font-size--desktop * $font-size-coef;
+  ***REMOVED***
+
+    @include mediaWidth(null bp.$mobile-big)
+    ***REMOVED***
+      font-size: $font-size--mobile * $font-size-coef;
+  ***REMOVED***
+***REMOVED***
+
+  &__arrow
+  ***REMOVED***
+    stroke: color.$arrow;
+    stroke-linecap: round;
+    stroke-width: .2em;
+    margin-top: 1vw;
+
+    animation: zoomIn 1.5s 2s, fadeIn 1.5s 2s;
+    animation-fill-mode: backwards;
+
+    &--right
+    ***REMOVED***
+      @include remoteMedia.positionCenter
+      ***REMOVED***
+        display: none;
+    ***REMOVED***
+
+      $w: 25vw;
+
+      width: $w;
+      margin-left: $w*.75;
+      transform-origin: 0 0;
+  ***REMOVED***
+
+    &--down
+    ***REMOVED***
+      @include remoteMedia.positionRight
+      ***REMOVED***
+        display: none;
+    ***REMOVED***
+
+      height: 22.5vh;
+      transform-origin: 50% 0;
+  ***REMOVED***
+***REMOVED***
+***REMOVED***

@@ -1,51 +1,70 @@
 @use "color";
 @use "dim";
+@use "media";
 @use "../../scss/mixins" as *;
-
-$radius: .6vw;
+@use "../../scss/media" as *;
+@use "../../scss/config/breakpoints" as bp;
 
 .RemoteControl
 ***REMOVED***
+    $scale-default: .9;
+    $scale-active: 1;
+
+    font-size: 1rem;
+    
+    @include mediaWidth(bp.$base)
+    ***REMOVED***
+        font-size: 1vw;
+  ***REMOVED***
+
     width: dim.$width;
     height: dim.$height;
-
-    // $min-width: 120px;
-    // $min-height: 2.43 * $min-width;
-    // min-width: $min-width;
-    // min-height: $min-height;
+    min-width: dim.$width--min;
+    min-height: dim.$height--min;
     
     position: absolute;
-    right: dim.$right;
-    bottom: dim.$height * -.8;
+    right: 50%;
+    bottom: dim.$height * -.82;
     box-sizing: border-box;
     
-    padding: 1.1vw .6vw 3.5vw;
+    padding: 1.1em .6em 3.5em;
 
     background-color: color.$bg-main;
     border: 1px solid color.$border;
-    border-radius: $radius;
-    transform: scale(.9);
+    border-radius: dim.$radius;
+    transform: translateX(50%) scale($scale-default);
     
     transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s;
+
+    @include media.positionRight
+    ***REMOVED***
+        right: dim.$right;
+        transform: scale($scale-default);
+  ***REMOVED***
 
     &::before
     ***REMOVED***
         content: '';
         @include fill-parent;
-        border-radius: $radius;
-        border: 2px solid color.$bg;
+        border-radius: dim.$radius;
+        border: .125em solid color.$bg;
   ***REMOVED***
 
     &:hover
     ***REMOVED***
-        transform: scale(1);
-        box-shadow: 0 0 20px 15px color.$shadow;
-        border-width: 2px;
+        transform: translateX(50%) scale($scale-active);
+        box-shadow: 0 0 1.25em .926em color.$shadow;
+        border-width: .125em;
         bottom: dim.$bottom--on;
+
+        @include media.positionRight
+        ***REMOVED***
+            transform: scale($scale-active);
+      ***REMOVED***
 
         &::before
         ***REMOVED***
-            border-width: 3px;
+            border-width: .185em;
       ***REMOVED***
   ***REMOVED***
 ***REMOVED***
@@ -55,5 +74,4 @@ $radius: .6vw;
     position: relative;
     z-index: 1;
     height: 100%;
-    padding-bottom: 1vh;
 ***REMOVED***

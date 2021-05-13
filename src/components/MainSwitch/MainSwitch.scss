@@ -7,27 +7,29 @@ $color-bg: lightcoral;
 .MainSwitch
 ***REMOVED***
     background-color: $color-bg;
-    border: .15vw solid darken($color-bg, 15%);
+    border: .15em solid darken($color-bg, 15%);
 
     position: relative;
     
     &::before
     ***REMOVED***
         content: '';
-        @include fill-parent(.25vw);
+        @include fill-parent(.4em);        
         @include circle;
-        border: .15vw solid btnColor.$content;
+        border: .21em solid btnColor.$content;
   ***REMOVED***
 
     &::after
     ***REMOVED***
         content: '|';
-        @include fill-parent(.4vw);
+        position: absolute;
         top: 0;
-        bottom: .6vw;
+        left: .35em;
+        right: .35em;
+        bottom: .6em;
         overflow: hidden;
         background-color: $color-bg;
         color: btnColor.$content;
-        font-size: 1vw;
+        font-size: 1.7em;
   ***REMOVED***
 ***REMOVED***
