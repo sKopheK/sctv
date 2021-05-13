@@ -1,4 +1,11 @@
-$width: 9.25vw;
-$height: 22.75vw;
-$right: .7vw;
-$bottom--on: -.5vw;
+@use "../../scss/config/breakpoints" as bp;
+
+$width: 9.25em;
+$width--min: 150px;
+$height: 22.75em;
+$height--min: $height / $width * $width--min;
+$right: .7em;
+$bottom--on: -.5em;
+$radius: .6em;
+
+$bp-right-position: bp.$tablet;

@@ -5,11 +5,13 @@
 ***REMOVED***
   @include panel.styles;
 
+  box-sizing: border-box;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  top: 65vh;
+  height: 8.8em;
+  max-height: 90vh;
 
   display: grid;
   grid-template: ***REMOVED***

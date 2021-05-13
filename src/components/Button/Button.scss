@@ -8,8 +8,7 @@
     @include btn.styles;
     height: config.$height;
     color: color.$content;
-    font-size: .65vw;
-    line-height: .35vw;
+    font-size: .65em;
     text-transform: uppercase;
 
     &--round
@@ -32,7 +31,8 @@
 .highlighted
 ***REMOVED***
     font-weight: 700;
-    font-size: 1vw;
+    font-size: 1em;
+    height: 1.5em;
 ***REMOVED***
 
 .btn-arrow

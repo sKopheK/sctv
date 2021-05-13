@@ -4,7 +4,7 @@ import './MutedStatus.scss';
 function MutedStatus() ***REMOVED***
   return (
     <div className="MutedStatus">
-      <span className="xico-cross" />
+      <span className="ico-cross--muted" />
       Muted
     </div>
   );

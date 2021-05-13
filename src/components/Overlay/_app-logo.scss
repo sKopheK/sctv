@@ -1,0 +1,5 @@
+$w--desktop: 50vw;
+$h--desktop: 8vw;
+$w: 80vw;
+$h: $w / $w--desktop * $h--desktop;
+
