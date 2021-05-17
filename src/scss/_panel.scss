@@ -13,7 +13,12 @@
   background-color: var(--color-panel-bg);
   color: var(--color-panel-text);
 
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+
+  @include mediaWidth(400px)
+  ***REMOVED***
+    font-size: 1.6rem;
+***REMOVED***
   
   @include mediaTablet
   ***REMOVED***

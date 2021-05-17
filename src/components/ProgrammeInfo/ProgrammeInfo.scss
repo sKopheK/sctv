@@ -24,6 +24,13 @@
 ***REMOVED***;
   gap: 1vw 3vw;
 
+  @media (orientation: portrait)
+  ***REMOVED***
+    grid-template: ***REMOVED***
+      columns: 5% 15% auto;
+  ***REMOVED***
+***REMOVED***
+
   .channel-id
   ***REMOVED***
     text-align: right;
