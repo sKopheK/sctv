@@ -1,6 +1,8 @@
 import React, ***REMOVED***
   useCallback, useContext, useMemo,
 ***REMOVED*** from 'react';
+import useTimeout from '../../hooks/useTimeout';
+import ***REMOVED*** REMOTE_HIDE_TIMEOUT ***REMOVED*** from '../../settings';
 import AppCtx from '../../state/AppCtx';
 import ChannelCtx from '../../state/ChannelCtx';
 import VolumeCtx from '../../state/VolumeCtx';
@@ -23,7 +25,7 @@ function RemoteControl() ***REMOVED***
     setId: setChannelId,
     id: channelId,
 ***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED*** screenOn ***REMOVED*** = useContext(AppCtx);
+  const ***REMOVED*** screenOn, isRemoteVisible, setRemoteVisible ***REMOVED*** = useContext(AppCtx);
 
   const changeChannel = useCallback((diff) => ***REMOVED***
     setChannelId(channelId + diff);
@@ -68,8 +70,15 @@ function RemoteControl() ***REMOVED***
   ***REMOVED***
 ***REMOVED***, [screenOn, volumeBarVisible, toggleVolumeBar, toggleProgrammeInfo]);
 
+  const hideRemote = useCallback(
+    () => setRemoteVisible(false),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [setRemoteVisible, isRemoteVisible],
+  );
+  useTimeout(hideRemote, screenOn ? REMOTE_HIDE_TIMEOUT : 2 ** 31 - 1);
+
   return useMemo(() => (
-    <div className="RemoteControl">
+    <div className=***REMOVED***`RemoteControl$***REMOVED***isRemoteVisible ? '' : ' is-hidden'***REMOVED***`***REMOVED***>
       <div className="content logo grid">
         <MainSwitch className="grid-to" />
         <SoundToggle className="grid-so" />
@@ -92,7 +101,7 @@ function RemoteControl() ***REMOVED***
         <Button className="grid-ok grid--h-center btn--round btn--round-big" onClick=***REMOVED***okClick***REMOVED***>OK</Button>
       </div>
     </div>
-  ), [upClick, leftClick, rightClick, downClick, okClick]);
+  ), [isRemoteVisible, upClick, leftClick, rightClick, downClick, okClick]);
 ***REMOVED***
 
 export default RemoteControl;
