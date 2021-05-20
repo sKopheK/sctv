@@ -37,6 +37,10 @@ function App() ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
   ***REMOVED***,
     isYtApiLoaded: false,
+    isRemoteVisible: true,
+    setRemoteVisible: (value) => ***REMOVED***
+      setState((oldState) => (***REMOVED*** ...oldState, isRemoteVisible: value ***REMOVED***));
+  ***REMOVED***,
 ***REMOVED***);
 
   useEffect(() => new Youtube(), []);
@@ -47,7 +51,7 @@ function App() ***REMOVED***
 ***REMOVED***, []);
 
   return (
-    <AppCtx.Provider value=***REMOVED***state***REMOVED*** className="App">
+    <AppCtx.Provider value=***REMOVED***state***REMOVED***>
       <Overlay />
       <VolumeCtx.Provider value=***REMOVED***volume***REMOVED***>
         ***REMOVED***volume.visible && <VolumeBar value=***REMOVED***volume.value***REMOVED*** />***REMOVED***

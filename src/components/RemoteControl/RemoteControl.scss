@@ -34,7 +34,8 @@
     border-radius: dim.$radius;
     transform: translateX(50%) scale($scale-default);
     
-    transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s;
+    transition: transform .5s, box-shadow .5s, border-width .5s, bottom .5s, opacity 1s;
+    opacity: 1;
 
     @include media.positionRight
     ***REMOVED***
@@ -66,6 +67,11 @@
         ***REMOVED***
             border-width: .185em;
       ***REMOVED***
+
+        &.is-hidden
+        ***REMOVED***
+            opacity: 1;
+      ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
@@ -74,4 +80,9 @@
     position: relative;
     z-index: 1;
     height: 100%;
+***REMOVED***
+
+.is-hidden
+***REMOVED***
+    opacity: 0;
 ***REMOVED***
