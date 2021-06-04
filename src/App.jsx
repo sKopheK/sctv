@@ -1,5 +1,6 @@
 import React, ***REMOVED*** useEffect, useState ***REMOVED*** from 'react';
 import './App.scss';
+import ChannelList from './components/ChannelList/ChannelList';
 import MutedStatus from './components/MutedStatus/MutedStatus';
 import Overlay from './components/Overlay/Overlay';
 import Player from './components/Player/Player';
@@ -8,9 +9,11 @@ import RemoteControl from './components/RemoteControl/RemoteControl';
 import VolumeBar from './components/VolumeBar/VolumeBar';
 import Youtube from './components/Youtube/Youtube';
 import useChannel from './hooks/useChannel';
+import useChannelList from './hooks/useChannelList';
 import useVolume from './hooks/useVolume';
 import AppCtx from './state/AppCtx';
 import ChannelCtx from './state/ChannelCtx';
+import ChannelListCtx from './state/ChannelListCtx';
 import VolumeCtx from './state/VolumeCtx';
 import ***REMOVED*** getStoredData, storeData ***REMOVED*** from './storage';
 
@@ -22,6 +25,7 @@ function App() ***REMOVED***
   // const [volume, setVolumeState] = useState(VOLUME_DEFAULT);
   const volume = useVolume();
   const channel = useChannel();
+  const channelList = useChannelList();
 
   const [state, setState] = useState(***REMOVED***
     screenOn: getScreenOnValue(),
@@ -69,7 +73,13 @@ function App() ***REMOVED***
             isLoading=***REMOVED***channel?.isLoading***REMOVED***
           />
           )***REMOVED***
-          <RemoteControl />
+          <ChannelListCtx.Provider value=***REMOVED***channelList***REMOVED***>
+            ***REMOVED***state.screenOn && channelList.visible && Array.isArray(channelList.list)
+            && (
+              <ChannelList list=***REMOVED***channelList.list***REMOVED*** />
+            )***REMOVED***
+            <RemoteControl />
+          </ChannelListCtx.Provider>
         </ChannelCtx.Provider>
       </VolumeCtx.Provider>
     </AppCtx.Provider>

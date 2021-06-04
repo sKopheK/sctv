@@ -10,13 +10,13 @@
             "n4 n4 n5 n5 n6 n6"
             "n7 n7 n8 n8 n9 n9"
             "m  m  n0 n0 ex ex"
-            ".  .  up up .  . "
+            "ch ch up up .  . "
             "lt lt ok ok rt rt"
             ".  .  dn dn .  .";
   ***REMOVED***;
     align-items: center;
 
-    $names: to, so, n1, n2, n3, n4, n5, n6, n7, n8, n9, n0, m, ex, up, lt, rt, dn, ok, l;
+    $names: to, so, n1, n2, n3, n4, n5, n6, n7, n8, n9, n0, ch, m, ex, up, lt, rt, dn, ok, l;
 
     @each $area in $names
     ***REMOVED***

@@ -1,0 +1,19 @@
+@use "../../scss/panel";
+
+.ChannelList
+***REMOVED***
+  @include panel.styles;
+  position: absolute;
+  top: 1em;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+
+  list-style: none;
+  line-height: 1.5;
+
+  .is-active
+  ***REMOVED***
+    font-weight: bold;
+***REMOVED***
+***REMOVED***
