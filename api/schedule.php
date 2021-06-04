@@ -1,14 +1,9 @@
 <?php
-header('Content-type: application/json');
-
-define('ROOT_DIR', __DIR__ . '/../');
-define('CACHE_DIR', ROOT_DIR . 'cache/');
-define('CHANNEL_FILE', __DIR__ . '/channel/%d');
-define('SCHEDULE_FILE', 'channel_%d.json');
-define('GOOGLE_API_DEVELOPER_KEY', 'AIzaSyCejxOr9AhjVezb1E7tqoese3plIEszcOc');
-define('GOOGLE_API_ID_MAX_COUNT', 50);
-
+require_once 'src/def.php';
+require_once SRC_DIR . 'fn.php';
 require_once ROOT_DIR . 'vendor/autoload.php';
+
+header('Content-type: application/json');
 
 function getCurrentUrl()
 ***REMOVED***
@@ -52,13 +47,6 @@ function getYoutubeService()
     // ***REMOVED***
 
     return $youtube_service;
-***REMOVED***
-
-function outputError($code = 500, $msg = '500 Internal Server Error')
-***REMOVED***
-  $protocol = $_SERVER['SERVER_PROTOCOL'];
-  header($protocol . ' ' . $msg, TRUE, $code);
-  exit();
 ***REMOVED***
 
 // @author https://stackoverflow.com/a/61088115
