@@ -1,3 +1,5 @@
+@use "../../scss/config/colors/base";
+
 $bg: #678;
-$_fill--base: turquoise;
+$_fill--base: base.$highlight;
 $fill: linear-gradient(darken($_fill--base, 20) 0, $_fill--base 20%, $_fill--base 40%, darken($_fill--base, 20) 100%);
