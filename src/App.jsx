@@ -76,7 +76,7 @@ function App() ***REMOVED***
           <ChannelListCtx.Provider value=***REMOVED***channelList***REMOVED***>
             ***REMOVED***state.screenOn && channelList.visible && Array.isArray(channelList.list)
             && (
-              <ChannelList list=***REMOVED***channelList.list***REMOVED*** />
+              <ChannelList list=***REMOVED***channelList.list***REMOVED*** activeChannel=***REMOVED***channel.id***REMOVED*** />
             )***REMOVED***
             <RemoteControl />
           </ChannelListCtx.Provider>
