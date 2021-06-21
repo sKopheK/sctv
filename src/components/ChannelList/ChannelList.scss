@@ -12,8 +12,26 @@
   list-style: none;
   line-height: 1.5;
 
+  li
+  ***REMOVED***
+    margin-bottom: .3em;
+    padding: .1em .3em;
+***REMOVED***
+
   .is-active
   ***REMOVED***
+    --color-channel-list-active: var(--color-panel-bg);
+
     font-weight: bold;
+    background-color: var(--color-channel-list-active);
+***REMOVED***
+
+  .channel-id
+  ***REMOVED***
+    display: inline-block;
+    min-width: 1.5em;
+    margin-right: .5em;
+    text-align: right;
+    font-size: 80%;
 ***REMOVED***
 ***REMOVED***
