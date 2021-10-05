@@ -31,14 +31,13 @@ function RemoteControl() ***REMOVED***
 
   const changeChannel = useCallback((diff) => ***REMOVED***
     if (!screenOn) return;
-    setChannelId(channelId + diff);
+    setChannelId(channelId + (channelListVisible ? -diff : diff));
     if (volumeBarVisible) ***REMOVED***
       toggleVolumeBar();
   ***REMOVED***
-    if (channelListVisible) ***REMOVED***
-      toggleChannelList();
+    if (!channelListVisible) ***REMOVED***
+      toggleProgrammeInfo(true);
   ***REMOVED***
-    toggleProgrammeInfo(true);
 ***REMOVED***, [
     screenOn,
     setChannelId,
@@ -47,7 +46,6 @@ function RemoteControl() ***REMOVED***
     channelListVisible,
     toggleProgrammeInfo,
     toggleVolumeBar,
-    toggleChannelList,
   ]);
   const channelClick = useCallback(() => ***REMOVED***
     if (!screenOn) return;
