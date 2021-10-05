@@ -4,9 +4,11 @@ import App from './App';
 import './index.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <div className=***REMOVED***process.env.REACT_APP_DEV ? 'is-dev' : ''***REMOVED***>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </div>,
   document.getElementById('root'),
 );
 
