@@ -4,15 +4,17 @@ import './ChannelList.scss';
 
 function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED***
   return (
-    <ul className="ChannelList">
-      ***REMOVED***list.map((channel) => (
-        <li key=***REMOVED***channel.id***REMOVED*** className=***REMOVED***channel.id === activeChannel ? 'is-active' : ''***REMOVED***>
-          <span className="channel-id">***REMOVED***channel.id***REMOVED***</span>
-          ***REMOVED***' '***REMOVED***
-          ***REMOVED***channel.title***REMOVED***
-        </li>
-      ))***REMOVED***
-    </ul>
+    <div className="ChannelList">
+      <ul className="channel-list">
+        ***REMOVED***list.map((channel) => (
+          <li key=***REMOVED***channel.id***REMOVED*** className=***REMOVED***channel.id === activeChannel ? 'is-active' : ''***REMOVED***>
+            <span className="channel-id">***REMOVED***channel.id***REMOVED***</span>
+            ***REMOVED***' '***REMOVED***
+            <span className=***REMOVED***`channel-title$***REMOVED***channel.title ? '' : ' channel-title--empty'***REMOVED***`***REMOVED***>***REMOVED***channel.title ?? 'Empty'***REMOVED***</span>
+          </li>
+        ))***REMOVED***
+      </ul>
+    </div>
   );
 ***REMOVED***
 
