@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.1"
 ***REMOVED***,
   "scripts": ***REMOVED***
-    "start": "react-scripts start",
+    "start": "set \"REACT_APP_DEV=true\" && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
