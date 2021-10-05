@@ -2,6 +2,7 @@ import ***REMOVED***
   useCallback, useEffect, useState,
 ***REMOVED*** from 'react';
 import ***REMOVED*** getStoredData, storeData ***REMOVED*** from '../storage';
+import ***REMOVED*** CHANNEL_ID_MIN, CHANNEL_ID_MAX ***REMOVED*** from '../settings';
 
 const DATA_CHANNEL_ID = 'channel';
 
@@ -46,7 +47,13 @@ const useChannel = () => ***REMOVED***
     setItem('currentShow', value);
 ***REMOVED***, [setItem]);
   const setId = useCallback((value) => ***REMOVED***
-    setItem('id', value);
+    if (value < CHANNEL_ID_MIN) ***REMOVED***
+      setItem('id', CHANNEL_ID_MAX);
+  ***REMOVED*** else if (value > CHANNEL_ID_MAX) ***REMOVED***
+      setItem('id', CHANNEL_ID_MIN);
+  ***REMOVED*** else ***REMOVED***
+      setItem('id', value);
+  ***REMOVED***
 ***REMOVED***, [setItem]);
   const setTitle = useCallback((value) => ***REMOVED***
     setItem('title', value);
