@@ -1,5 +1,6 @@
 import React, ***REMOVED*** useEffect, useState ***REMOVED*** from 'react';
 import './App.scss';
+import ChannelChange from './components/ChannelChange/ChannelChange';
 import ChannelList from './components/ChannelList/ChannelList';
 import MutedStatus from './components/MutedStatus/MutedStatus';
 import Overlay from './components/Overlay/Overlay';
@@ -9,9 +10,11 @@ import RemoteControl from './components/RemoteControl/RemoteControl';
 import VolumeBar from './components/VolumeBar/VolumeBar';
 import Youtube from './components/Youtube/Youtube';
 import useChannel from './hooks/useChannel';
+import useChannelChange from './hooks/useChannelChange';
 import useChannelList from './hooks/useChannelList';
 import useVolume from './hooks/useVolume';
 import AppCtx from './state/AppCtx';
+import ChannelChangeCtx from './state/ChannelChangeCtx';
 import ChannelCtx from './state/ChannelCtx';
 import ChannelListCtx from './state/ChannelListCtx';
 import VolumeCtx from './state/VolumeCtx';
@@ -26,6 +29,7 @@ function App() ***REMOVED***
   const volume = useVolume();
   const channel = useChannel();
   const channelList = useChannelList();
+  const channelChange = useChannelChange();
 
   const [state, setState] = useState(***REMOVED***
     screenOn: getScreenOnValue(),
@@ -33,6 +37,7 @@ function App() ***REMOVED***
       volume.toggleBar(false);
       channel.reset();
       channel.toggleBar(true);
+      channelChange.toggleBar(false);
       setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
       storeData(SCREEN_ON, !getScreenOnValue());
   ***REMOVED***,
@@ -73,13 +78,19 @@ function App() ***REMOVED***
             isLoading=***REMOVED***channel?.isLoading***REMOVED***
           />
           )***REMOVED***
-          <ChannelListCtx.Provider value=***REMOVED***channelList***REMOVED***>
-            ***REMOVED***state.screenOn && channelList.visible && Array.isArray(channelList.list)
+          <ChannelChangeCtx.Provider value=***REMOVED***channelChange***REMOVED***>
+            ***REMOVED***state.screenOn && channelChange.visible
             && (
-              <ChannelList list=***REMOVED***channelList.list***REMOVED*** activeChannel=***REMOVED***channel.id***REMOVED*** />
+              <ChannelChange ref=***REMOVED***channelChange.input***REMOVED*** />
             )***REMOVED***
-            <RemoteControl />
-          </ChannelListCtx.Provider>
+            <ChannelListCtx.Provider value=***REMOVED***channelList***REMOVED***>
+              ***REMOVED***state.screenOn && channelList.visible && Array.isArray(channelList.list)
+              && (
+                <ChannelList list=***REMOVED***channelList.list***REMOVED*** activeChannel=***REMOVED***channel.id***REMOVED*** />
+              )***REMOVED***
+              <RemoteControl />
+            </ChannelListCtx.Provider>
+          </ChannelChangeCtx.Provider>
         </ChannelCtx.Provider>
       </VolumeCtx.Provider>
     </AppCtx.Provider>
