@@ -184,8 +184,6 @@ function RemoteControl() ***REMOVED***
           <Button className=***REMOVED***`grid-n$***REMOVED***i***REMOVED*** highlighted`***REMOVED*** onClick=***REMOVED***() => numberClick(i)***REMOVED*** key=***REMOVED***`nr$***REMOVED***i***REMOVED***`***REMOVED***>***REMOVED***i***REMOVED***</Button>
         ))***REMOVED***
         <Button className="grid-ch" onClick=***REMOVED***channelClick***REMOVED***>Ch</Button>
-        <Button className="grid-m">Menu</Button>
-        <Button className="grid-ex">Exit</Button>
         <Button className="grid-up btn-arrow btn-arrow--up" onClick=***REMOVED***upClick***REMOVED*** onMouseDown=***REMOVED***upClick***REMOVED*** />
         <Button className="grid-lt btn-arrow btn-arrow--lt" onClick=***REMOVED***leftClick***REMOVED*** onMouseDown=***REMOVED***leftClick***REMOVED*** />
         <Button className="grid-rt btn-arrow btn-arrow--rt" onClick=***REMOVED***rightClick***REMOVED*** onMouseDown=***REMOVED***rightClick***REMOVED*** />
