@@ -134,6 +134,7 @@ function RemoteControl() ***REMOVED***
       toggleVolumeBar();
   ***REMOVED*** else if (channelListVisible) ***REMOVED***
       toggleChannelList();
+      toggleProgrammeInfo();
   ***REMOVED*** else ***REMOVED***
       toggleProgrammeInfo();
   ***REMOVED***
