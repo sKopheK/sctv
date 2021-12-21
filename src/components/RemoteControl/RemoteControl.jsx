@@ -163,6 +163,7 @@ function RemoteControl() ***REMOVED***
     ***REMOVED***
       channelChangeAddChar(number);
   ***REMOVED***,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [screenOn, channelChangeVisible],
   );
 

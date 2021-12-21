@@ -64,6 +64,7 @@ function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED
     return () => ***REMOVED***
       window.removeEventListener(RESIZE_EVENT, resetListItemHeight);
   ***REMOVED***;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 ***REMOVED***, []);
 
   useEffect(() => ***REMOVED***
