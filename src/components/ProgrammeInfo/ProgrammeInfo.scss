@@ -1,5 +1,7 @@
 @use "../../scss/config/panel" as dim;
 @use "../../scss/panel";
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/media" as *;
 
 .ProgrammeInfo
 ***REMOVED***
@@ -46,6 +48,11 @@
   ***REMOVED***
     font-weight: bold;
     grid-area: c;
+
+    @include mediaWidth(null bp.$mobile-big - 1)
+    ***REMOVED***
+      font-size: 85%;
+  ***REMOVED***
 ***REMOVED***
 
   .starts-label
