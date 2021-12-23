@@ -9,9 +9,11 @@ const DATA_CHANNEL_ID = 'channel';
 const storedChannelId = getStoredData(DATA_CHANNEL_ID);
 
 const CHANNEL_DEFAULT = ***REMOVED***
-  id: !Number.isNaN(Number(storedChannelId))
-    ? Number(storedChannelId)
-    : process.env.REACT_APP_DEFAULT_CHANNEL,
+  id: Number(
+    storedChannelId !== null && !Number.isNaN(Number(storedChannelId))
+      ? storedChannelId
+      : process.env.REACT_APP_DEFAULT_CHANNEL,
+  ),
   title: null,
   currentShow: null,
   visible: false,
