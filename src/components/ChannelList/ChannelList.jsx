@@ -51,8 +51,10 @@ function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED
     const visibleItemCount = Math.max(1, Math.floor((contentHeightAvailable + itemSpacing)
                                           / (itemHeight + itemSpacing)));
     const middleIndex = Math.floor(visibleItemCount / 2);
-    const offset = Math.min(itemCount - visibleItemCount,
-      Math.max(0, activeChannelIndex - middleIndex));
+    const offset = Math.min(
+      itemCount - visibleItemCount,
+      Math.max(0, activeChannelIndex - middleIndex),
+    );
     return list.filter((_, itemIndex) => ***REMOVED***
       const isVisible = itemIndex >= offset && itemIndex < visibleItemCount + offset;
       return isVisible;
