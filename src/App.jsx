@@ -38,6 +38,7 @@ function App() ***REMOVED***
       channel.reset();
       channel.toggleBar(true);
       channelChange.toggleBar(false);
+      channelList.toggleBar(false);
       setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
       storeData(SCREEN_ON, !getScreenOnValue());
   ***REMOVED***,
