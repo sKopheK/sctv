@@ -14,7 +14,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1"
 ***REMOVED***,
   "scripts": ***REMOVED***
@@ -42,13 +42,15 @@
 ***REMOVED***
 ***REMOVED***,
   "devDependencies": ***REMOVED***
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "sass": "^1.32.8"
+    "@babel/core": "^7",
+    "@babel/eslint-parser": "^7",
+    "@babel/preset-react": "^7",
+    "eslint": "^8",
+    "eslint-config-airbnb": "^19",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-jsx-a11y": "^6",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^4",
+    "sass": "^1"
 ***REMOVED***
 ***REMOVED***
