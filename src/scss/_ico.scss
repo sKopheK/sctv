@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin sound(
   $size,
   $stroke-width,
@@ -59,6 +61,6 @@
       left: $left;
       width: $width;
       height: $height;
-      transform: perspective(#***REMOVED***$size / 3***REMOVED***) rotateY(-60deg);
+      transform: perspective(#***REMOVED***math.div($size, 3)***REMOVED***) rotateY(-60deg);
 ***REMOVED***
 ***REMOVED***
