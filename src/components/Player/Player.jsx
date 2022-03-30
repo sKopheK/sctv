@@ -61,74 +61,80 @@ function Player() ***REMOVED***
     setLoading(false);
 ***REMOVED***;
 
-  useEffect(() => ***REMOVED***
-    if (isYtApiLoaded) ***REMOVED***
-      player.current = new YT.Player(YOUTUBE_PLAYER_ID, ***REMOVED***
-        width: '100%',
-        height: '100%',
-        playerVars: ***REMOVED***
-          autoplay: 1,
-          controls: 0,
-      ***REMOVED***,
-        events: ***REMOVED***
-          onReady: () => ***REMOVED***
-            setPlayerReady(true);
+  useEffect(
+    () => ***REMOVED***
+      if (isYtApiLoaded) ***REMOVED***
+        player.current = new YT.Player(YOUTUBE_PLAYER_ID, ***REMOVED***
+          width: '100%',
+          height: '100%',
+          playerVars: ***REMOVED***
+            autoplay: 1,
+            controls: 0,
         ***REMOVED***,
-          onStateChange: (event) => ***REMOVED***
-            if (event.data === YT.PlayerState.PLAYING) ***REMOVED***
-              setSignal(true);
-          ***REMOVED*** else if (event.data === YT.PlayerState.ENDED) ***REMOVED***
-              setFinishedCount((prevValue) => prevValue + 1);
-          ***REMOVED***
+          events: ***REMOVED***
+            onReady: () => ***REMOVED***
+              setPlayerReady(true);
+          ***REMOVED***,
+            onStateChange: (event) => ***REMOVED***
+              if (event.data === YT.PlayerState.PLAYING) ***REMOVED***
+                setSignal(true);
+            ***REMOVED*** else if (event.data === YT.PlayerState.ENDED) ***REMOVED***
+                setFinishedCount((prevValue) => prevValue + 1);
+            ***REMOVED***
+          ***REMOVED***,
+            onError: () => ***REMOVED***
+              setSignal(false);
+          ***REMOVED***,
         ***REMOVED***,
-          onError: () => ***REMOVED***
-            setSignal(false);
-        ***REMOVED***,
-      ***REMOVED***,
-    ***REMOVED***);
-  ***REMOVED***
-
-    return () => ***REMOVED***
-      if (isPlayerReady) ***REMOVED***
-        player.current.destroy();
-        player.current = null;
-        setSignal(false);
+      ***REMOVED***);
     ***REMOVED***
-  ***REMOVED***;
-***REMOVED***,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  [isYtApiLoaded]);
+
+      return () => ***REMOVED***
+        if (isPlayerReady) ***REMOVED***
+          player.current.destroy();
+          player.current = null;
+          setSignal(false);
+      ***REMOVED***
+    ***REMOVED***;
+  ***REMOVED***,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isYtApiLoaded],
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setPlayerVolume(volume), [volume, isPlayerReady]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setPlayerMute(muted), [muted, isPlayerReady]);
-  useEffect(() => ***REMOVED***
-    if (isPlayerReady) ***REMOVED***
-      startBroadcast();
-  ***REMOVED*** else ***REMOVED***
-      setLoading(true);
-  ***REMOVED***
-
-    return () => ***REMOVED***
+  useEffect(
+    () => ***REMOVED***
       if (isPlayerReady) ***REMOVED***
-        if (player.current) ***REMOVED***
-          player.current.stopVideo();
-      ***REMOVED***
-        setSignal(false);
+        startBroadcast();
+    ***REMOVED*** else ***REMOVED***
+        setLoading(true);
     ***REMOVED***
-  ***REMOVED***;
-***REMOVED***,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  [isPlayerReady, channelId]);
 
-  useEffect(() => ***REMOVED***
-    if (isPlayerReady) ***REMOVED***
-      startBroadcast();
-  ***REMOVED***
-***REMOVED***,
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  [finishedCount]);
+      return () => ***REMOVED***
+        if (isPlayerReady) ***REMOVED***
+          if (player.current) ***REMOVED***
+            player.current.stopVideo();
+        ***REMOVED***
+          setSignal(false);
+      ***REMOVED***
+    ***REMOVED***;
+  ***REMOVED***,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isPlayerReady, channelId],
+  );
+
+  useEffect(
+    () => ***REMOVED***
+      if (isPlayerReady) ***REMOVED***
+        startBroadcast();
+    ***REMOVED***
+  ***REMOVED***,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [finishedCount],
+  );
 
   return useMemo(() => (
     <div className="Player">
