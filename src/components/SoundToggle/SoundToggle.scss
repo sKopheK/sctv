@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @use "../Button/color" as btnColor;
 @use "../Button/config" as btnConfig;
 @use "../../scss/mixins" as *;
@@ -50,7 +52,7 @@ $color: btnColor.$content;
         left: $left;
         width: $width;
         height: $height;
-        transform: perspective(#***REMOVED***$base-dimension / 3***REMOVED***) rotateY(-42deg);
+        transform: perspective(#***REMOVED***math.div($base-dimension, 3)***REMOVED***) rotateY(-42deg);
   ***REMOVED***
 ***REMOVED***
 
