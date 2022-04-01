@@ -12,7 +12,7 @@
 
 @mixin positionCenter
 ***REMOVED***
-  @media (orientation: portrait) and (max-width: bp.$tablet - .1)
+  @media (orientation: portrait) and (max-width: (bp.$tablet - .1))
   ***REMOVED***
     @content;
 ***REMOVED***  
