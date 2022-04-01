@@ -181,14 +181,14 @@ function RemoteControl() ***REMOVED***
         <MainSwitch className="grid-to" />
         <SoundToggle className="grid-so" />
         ***REMOVED***Array(10).fill(null).map((_, i) => i).map((i) => (
-          <Button className=***REMOVED***`grid-n$***REMOVED***i***REMOVED*** highlighted`***REMOVED*** onClick=***REMOVED***() => numberClick(i)***REMOVED*** key=***REMOVED***`nr$***REMOVED***i***REMOVED***`***REMOVED***>***REMOVED***i***REMOVED***</Button>
+          <Button className=***REMOVED***`grid-n$***REMOVED***i***REMOVED*** highlighted grid-landscape`***REMOVED*** onClick=***REMOVED***() => numberClick(i)***REMOVED*** key=***REMOVED***`nr$***REMOVED***i***REMOVED***`***REMOVED***>***REMOVED***i***REMOVED***</Button>
         ))***REMOVED***
-        <Button className="grid-ch" onClick=***REMOVED***channelClick***REMOVED***>Ch</Button>
+        <Button className="grid-ch grid-landscape" onClick=***REMOVED***channelClick***REMOVED***>Ch</Button>
         <Button className="grid-up btn-arrow btn-arrow--up" onClick=***REMOVED***upClick***REMOVED*** onMouseDown=***REMOVED***upClick***REMOVED*** />
         <Button className="grid-lt btn-arrow btn-arrow--lt" onClick=***REMOVED***leftClick***REMOVED*** onMouseDown=***REMOVED***leftClick***REMOVED*** />
         <Button className="grid-rt btn-arrow btn-arrow--rt" onClick=***REMOVED***rightClick***REMOVED*** onMouseDown=***REMOVED***rightClick***REMOVED*** />
         <Button className="grid-dn btn-arrow btn-arrow--dn" onClick=***REMOVED***downClick***REMOVED*** onMouseDown=***REMOVED***downClick***REMOVED*** />
-        <Button className="grid-ok grid--h-center btn--round btn--round-big" onClick=***REMOVED***okClick***REMOVED***>OK</Button>
+        <Button className="grid-ok grid-h-center btn--round btn--round-big" onClick=***REMOVED***okClick***REMOVED***>OK</Button>
       </div>
     </div>
   ), [

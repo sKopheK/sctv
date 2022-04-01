@@ -1,3 +1,5 @@
+@use "media";
+
 .grid
 ***REMOVED***
     display: grid;
@@ -16,6 +18,17 @@
   ***REMOVED***;
     align-items: center;
 
+    @include media.positionCenter
+    ***REMOVED***
+        grid-template: ***REMOVED***
+            areas:
+                "to to  .  . so so"
+                ".  . up up .  .  "
+                "lt lt ok ok rt rt"
+                ".  .  dn dn .  . ";
+      ***REMOVED***;
+  ***REMOVED***
+
     $names: to, so, n1, n2, n3, n4, n5, n6, n7, n8, n9, n0, ch, up, lt, rt, dn, ok, l;
 
     @each $area in $names
@@ -26,8 +39,16 @@
       ***REMOVED***
   ***REMOVED***
 
-    &--h-center
+    &-h-center
     ***REMOVED***
         justify-self: center;
+  ***REMOVED***
+
+    &-landscape
+    ***REMOVED***
+        @include media.positionCenter
+        ***REMOVED***
+            display: none;
+      ***REMOVED***
   ***REMOVED***
 ***REMOVED***
