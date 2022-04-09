@@ -35,7 +35,6 @@ function App() ***REMOVED***
     screenOn: getScreenOnValue(),
     toggleScreenOn: () => ***REMOVED***
       volume.toggleBar(false);
-      channel.reset();
       channel.toggleBar(true);
       channelChange.toggleBar(false);
       channelList.toggleBar(false);
