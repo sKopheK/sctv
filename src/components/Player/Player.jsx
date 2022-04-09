@@ -21,6 +21,7 @@ function Player() ***REMOVED***
     id: channelId,
     setCurrentShow,
     setTitle: setChannelTitle,
+    toggleBar: toggleChannelBar,
     setLoading,
 ***REMOVED*** = useContext(ChannelCtx);
   const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule(channelId);
@@ -48,12 +49,15 @@ function Player() ***REMOVED***
       return;
   ***REMOVED***
     setLoading(true);
+    toggleChannelBar(true);
     const video = await getCurrentVideo();
     if (video) ***REMOVED***
       player.current.loadVideoById(***REMOVED***
         videoId: video.id,
         startSeconds: video.offset / 1000,
     ***REMOVED***);
+  ***REMOVED*** else ***REMOVED***
+      setSignal(false);
   ***REMOVED***
     setCurrentShow(video);
     const channelTitle = await getChannelTitle();
@@ -93,7 +97,7 @@ function Player() ***REMOVED***
         if (isPlayerReady) ***REMOVED***
           player.current.destroy();
           player.current = null;
-          setSignal(false);
+          setSignal(undefined);
       ***REMOVED***
     ***REMOVED***;
   ***REMOVED***,
@@ -111,6 +115,7 @@ function Player() ***REMOVED***
         startBroadcast();
     ***REMOVED*** else ***REMOVED***
         setLoading(true);
+        toggleChannelBar(true);
     ***REMOVED***
 
       return () => ***REMOVED***
@@ -118,7 +123,7 @@ function Player() ***REMOVED***
           if (player.current) ***REMOVED***
             player.current.stopVideo();
         ***REMOVED***
-          setSignal(false);
+          setSignal(undefined);
       ***REMOVED***
     ***REMOVED***;
   ***REMOVED***,
