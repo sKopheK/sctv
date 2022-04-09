@@ -42,7 +42,7 @@ function App() ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
       storeData(SCREEN_ON, !getScreenOnValue());
   ***REMOVED***,
-    hasSignal: false,
+    hasSignal: undefined,
     setSignal: (value) => ***REMOVED***
       setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
   ***REMOVED***,
@@ -60,6 +60,8 @@ function App() ***REMOVED***
   ***REMOVED***;
 ***REMOVED***, []);
 
+  const isLoading = channel?.isLoading || state.hasSignal === undefined;
+
   return (
     <AppCtx.Provider value=***REMOVED***state***REMOVED***>
       <Overlay />
@@ -68,7 +70,7 @@ function App() ***REMOVED***
         ***REMOVED***state.screenOn && volume.muted && <MutedStatus />***REMOVED***
         <ChannelCtx.Provider value=***REMOVED***channel***REMOVED***>
           ***REMOVED***state.screenOn && <Player />***REMOVED***
-          ***REMOVED***state.screenOn && channel.visible
+          ***REMOVED***state.screenOn && channel.visible && !channelList.visible
           && (
           <ProgrammeInfo
             channelId=***REMOVED***channel?.id***REMOVED***
@@ -76,7 +78,7 @@ function App() ***REMOVED***
             programmeTitle=***REMOVED***channel?.currentShow?.title***REMOVED***
             starts=***REMOVED***channel?.currentShow?.start***REMOVED***
             ends=***REMOVED***channel?.currentShow?.end***REMOVED***
-            isLoading=***REMOVED***channel?.isLoading***REMOVED***
+            isLoading=***REMOVED***isLoading***REMOVED***
           />
           )***REMOVED***
           <ChannelChangeCtx.Provider value=***REMOVED***channelChange***REMOVED***>
