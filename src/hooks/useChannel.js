@@ -63,9 +63,6 @@ const useChannel = () => ***REMOVED***
   const setLoading = useCallback((value) => ***REMOVED***
     setItem('isLoading', value);
 ***REMOVED***, [setItem]);
-  const reset = useCallback(() => ***REMOVED***
-    setState(() => CHANNEL_DEFAULT);
-***REMOVED***, []);
 
   useEffect(() => ***REMOVED***
     storeData(DATA_CHANNEL_ID, id);
@@ -84,7 +81,6 @@ const useChannel = () => ***REMOVED***
     setCurrentShow,
     setLoading,
     toggleBar,
-    reset,
 ***REMOVED***;
 ***REMOVED***;
 
