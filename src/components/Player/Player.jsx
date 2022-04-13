@@ -24,7 +24,7 @@ function Player() ***REMOVED***
     toggleBar: toggleChannelBar,
     setLoading,
 ***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED*** getCurrentVideo, getChannelTitle ***REMOVED*** = useSchedule(channelId);
+  const ***REMOVED*** getCurrentVideo, getChannelTitle, cleanup: cleanupSchedule ***REMOVED*** = useSchedule(channelId);
 
   const player = useRef(null);
   const [isPlayerReady, setPlayerReady] = useState(false);
@@ -99,6 +99,7 @@ function Player() ***REMOVED***
           player.current = null;
           setSignal(undefined);
       ***REMOVED***
+        cleanupSchedule();
     ***REMOVED***;
   ***REMOVED***,
     // eslint-disable-next-line react-hooks/exhaustive-deps
