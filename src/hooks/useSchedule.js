@@ -62,9 +62,16 @@ const useSchedule = (channelId) => ***REMOVED***
     return null;
 ***REMOVED***;
 
+  const cleanup = () => ***REMOVED***
+    if (request.current) ***REMOVED***
+      request.current.cancel();
+  ***REMOVED***
+***REMOVED***;
+
   return ***REMOVED***
     getChannelTitle,
     getCurrentVideo,
+    cleanup,
 ***REMOVED***;
 ***REMOVED***;
 
