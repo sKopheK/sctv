@@ -4,7 +4,7 @@ import App from './App';
 import './index.scss';
 
 ReactDOM.render(
-  <div className=***REMOVED***process.env.REACT_APP_DEV === 'true' ? 'is-dev' : ''***REMOVED***>
+  <div className={process.env.REACT_APP_DEV === 'true' ? 'is-dev' : ''}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

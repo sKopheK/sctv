@@ -1,8 +1,8 @@
-import ***REMOVED***
+import {
   useCallback, useEffect, useState,
-***REMOVED*** from 'react';
-import ***REMOVED*** VOLUME_CHANGE_STEP ***REMOVED*** from '../settings';
-import ***REMOVED*** getStoredData, storeData ***REMOVED*** from '../storage';
+} from 'react';
+import { VOLUME_CHANGE_STEP } from '../settings';
+import { getStoredData, storeData } from '../storage';
 
 const DATA_VOLUME = 'volume';
 const DATA_MUTED = 'muted';
@@ -10,63 +10,63 @@ const DATA_MUTED = 'muted';
 const storedVolume = getStoredData(DATA_VOLUME);
 const storedMute = getStoredData(DATA_MUTED);
 
-const VOLUME_DEFAULT = ***REMOVED***
+const VOLUME_DEFAULT = {
   value: storedVolume !== null ? Number(storedVolume) : 70,
   muted: storedMute !== null ? storedMute === 'true' : false,
   visible: false,
-***REMOVED***;
+};
 
-const useVolume = () => ***REMOVED***
-  const [***REMOVED*** value, visible, muted ***REMOVED***, setState] = useState(VOLUME_DEFAULT);
-  // const [***REMOVED*** value, visible, muted ***REMOVED***, setState] = useContext(VolumeCtx);
+const useVolume = () => {
+  const [{ value, visible, muted }, setState] = useState(VOLUME_DEFAULT);
+  // const [{ value, visible, muted }, setState] = useContext(VolumeCtx);
 
-  const toggleBar = useCallback((enable) => ***REMOVED***
-    setState((oldState) => ***REMOVED***
-      const newState = ***REMOVED***
+  const toggleBar = useCallback((enable) => {
+    setState((oldState) => {
+      const newState = {
         ...oldState,
         visible: enable !== undefined ? !!enable : !oldState.visible,
-    ***REMOVED***;
-      if (newState.visible) ***REMOVED***
+      };
+      if (newState.visible) {
         newState.muted = false;
-    ***REMOVED***
+      }
       return newState;
-  ***REMOVED***);
-***REMOVED***, [setState]);
+    });
+  }, [setState]);
 
-  const toggleMute = useCallback((enable) => ***REMOVED***
-    setState((oldState) => ***REMOVED***
-      const newState = ***REMOVED***
+  const toggleMute = useCallback((enable) => {
+    setState((oldState) => {
+      const newState = {
         ...oldState,
         muted: enable !== undefined ? !!enable : !oldState.muted,
-    ***REMOVED***;
-      if (newState.muted) ***REMOVED***
+      };
+      if (newState.muted) {
         newState.visible = false;
-    ***REMOVED***
+      }
       return newState;
-  ***REMOVED***);
-***REMOVED***, [setState]);
+    });
+  }, [setState]);
 
-  const change = useCallback((diff) => ***REMOVED***
-    setState((oldState) => ***REMOVED***
+  const change = useCallback((diff) => {
+    setState((oldState) => {
       const newVolume = oldState.value + diff;
-      if (newVolume >= 0 && newVolume <= 100) ***REMOVED***
-        return ***REMOVED*** ...oldState, value: newVolume, muted: false ***REMOVED***;
-    ***REMOVED***
+      if (newVolume >= 0 && newVolume <= 100) {
+        return { ...oldState, value: newVolume, muted: false };
+      }
       return oldState;
-  ***REMOVED***);
-***REMOVED***, [setState]);
+    });
+  }, [setState]);
   const increase = useCallback(() => change(VOLUME_CHANGE_STEP), [change]);
   const decrease = useCallback(() => change(-VOLUME_CHANGE_STEP), [change]);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     storeData(DATA_VOLUME, value);
-***REMOVED***, [value]);
+  }, [value]);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     storeData(DATA_MUTED, muted);
-***REMOVED***, [muted]);
+  }, [muted]);
 
-  return ***REMOVED***
+  return {
     value,
     visible,
     muted,
@@ -74,7 +74,7 @@ const useVolume = () => ***REMOVED***
     decrease,
     toggleMute,
     toggleBar,
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 export default useVolume;

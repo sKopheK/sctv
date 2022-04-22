@@ -1,6 +1,6 @@
-***REMOVED***
+{
     "editor.tabSize": 2,    
-    "editor.codeActionsOnSave": ***REMOVED***
+    "editor.codeActionsOnSave": {
         "source.fixAll": true
-  ***REMOVED***
-***REMOVED***
+    }
+}

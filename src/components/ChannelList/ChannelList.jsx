@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED***
+import React, {
   useCallback, useContext, useEffect, useRef, useState,
-***REMOVED*** from 'react';
+} from 'react';
 import useTimeout from '../../hooks/useTimeout';
-import ***REMOVED*** CHANNEL_LIST_TIMEOUT ***REMOVED*** from '../../settings';
+import { CHANNEL_LIST_TIMEOUT } from '../../settings';
 import ChannelListCtx from '../../state/ChannelListCtx';
 import './ChannelList.scss';
 
 const RESIZE_EVENT = 'resize';
 
-function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED***
+function ChannelList({ list, activeChannel }) {
   const activeChannelIndex = list.findIndex((channel) => channel.id === activeChannel);
   const listElRef = useRef(null);
   const [listItemDimensions, setListItemDimensions] = useState(null);
   const itemCount = list.length;
 
-  const ***REMOVED*** toggleBar ***REMOVED*** = useContext(ChannelListCtx);
+  const { toggleBar } = useContext(ChannelListCtx);
 
   const hideProgrammeInfo = useCallback(
     () => toggleBar(false),
@@ -24,23 +24,23 @@ function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED
   );
   useTimeout(hideProgrammeInfo, CHANNEL_LIST_TIMEOUT);
 
-  function getListItemHeight() ***REMOVED***
+  function getListItemHeight() {
     const listElement = listElRef.current;
     const items = listElement.children;
     const firstItem = items[0];
     const itemSpacing = parseFloat(window.getComputedStyle(firstItem).marginBottom);
     setListItemDimensions([firstItem.offsetHeight, itemSpacing]);
-***REMOVED***
+  }
 
-  function resetListItemHeight() ***REMOVED***
+  function resetListItemHeight() {
     setListItemDimensions(null);
     getListItemHeight();
-***REMOVED***
+  }
 
-  function getListItems() ***REMOVED***
-    if (listItemDimensions === null) ***REMOVED***
+  function getListItems() {
+    if (listItemDimensions === null) {
       return list;
-  ***REMOVED***
+    }
     const [itemHeight, itemSpacing] = listItemDimensions;
     const listElement = listElRef.current;
     const wrapperElement = listElement.parentElement;
@@ -55,54 +55,54 @@ function ChannelList(***REMOVED*** list, activeChannel ***REMOVED***) ***REMOVED
       itemCount - visibleItemCount,
       Math.max(0, activeChannelIndex - middleIndex),
     );
-    return list.filter((_, itemIndex) => ***REMOVED***
+    return list.filter((_, itemIndex) => {
       const isVisible = itemIndex >= offset && itemIndex < visibleItemCount + offset;
       return isVisible;
-  ***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     window.addEventListener(RESIZE_EVENT, resetListItemHeight);
-    return () => ***REMOVED***
+    return () => {
       window.removeEventListener(RESIZE_EVENT, resetListItemHeight);
-  ***REMOVED***;
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-***REMOVED***, []);
+  }, []);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     getListItemHeight();
-    return () => ***REMOVED******REMOVED***;
-***REMOVED***, []);
+    return () => {};
+  }, []);
 
   const listItems = getListItems();
 
   return (
     <div className="ChannelList">
-      <ul className="channel-list" ref=***REMOVED***listElRef***REMOVED***>
-        ***REMOVED***listItems.map((channel) => (
-          <li key=***REMOVED***channel.id***REMOVED*** className=***REMOVED***channel.id === activeChannel ? 'is-active' : ''***REMOVED***>
-            <span className="channel-id">***REMOVED***channel.id***REMOVED***</span>
-            ***REMOVED***' '***REMOVED***
-            <span className=***REMOVED***`channel-title$***REMOVED***channel.title ? '' : ' channel-title--empty'***REMOVED***`***REMOVED***>***REMOVED***channel.title ?? 'Empty'***REMOVED***</span>
+      <ul className="channel-list" ref={listElRef}>
+        {listItems.map((channel) => (
+          <li key={channel.id} className={channel.id === activeChannel ? 'is-active' : ''}>
+            <span className="channel-id">{channel.id}</span>
+            {' '}
+            <span className={`channel-title${channel.title ? '' : ' channel-title--empty'}`}>{channel.title ?? 'Empty'}</span>
           </li>
-        ))***REMOVED***
+        ))}
       </ul>
     </div>
   );
-***REMOVED***
+}
 
-ChannelList.propTypes = ***REMOVED***
-  list: PropTypes.arrayOf(PropTypes.shape(***REMOVED***
+ChannelList.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     active: PropTypes.bool,
-***REMOVED***)),
+  })),
   activeChannel: PropTypes.number,
-***REMOVED***;
+};
 
-ChannelList.defaultProps = ***REMOVED***
+ChannelList.defaultProps = {
   list: [],
   activeChannel: null,
-***REMOVED***;
+};
 
 export default ChannelList;

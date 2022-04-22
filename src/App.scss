@@ -4,27 +4,27 @@
 @use "components/Button/mixins" as btn;
 
 html
-***REMOVED***
-  --color-page-bg: #***REMOVED***color.$page-bg***REMOVED***;
-  --color-text: #***REMOVED***color.$text***REMOVED***;
+{
+  --color-page-bg: #{color.$page-bg};
+  --color-text: #{color.$text};
 
   background-color: var(--color-page-bg);
   color: var(--color-text);
-***REMOVED***
+}
 
 body
-***REMOVED***
+{
   overflow: hidden;
   font-family: font.$default;
-***REMOVED***
+}
 
 button
-***REMOVED***
+{
   @include btn.reset;  
   font-family: font.$default;
-***REMOVED***
+}
 
 .visually-hidden
-***REMOVED***
+{
   @include visually-hidden;
-***REMOVED***
+}

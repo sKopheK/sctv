@@ -1,4 +1,4 @@
-import React, ***REMOVED*** useEffect, useState ***REMOVED*** from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import ChannelChange from './components/ChannelChange/ChannelChange';
 import ChannelList from './components/ChannelList/ChannelList';
@@ -18,12 +18,12 @@ import ChannelChangeCtx from './state/ChannelChangeCtx';
 import ChannelCtx from './state/ChannelCtx';
 import ChannelListCtx from './state/ChannelListCtx';
 import VolumeCtx from './state/VolumeCtx';
-import ***REMOVED*** getStoredData, storeData ***REMOVED*** from './storage';
+import { getStoredData, storeData } from './storage';
 
 const SCREEN_ON = 'screenOn';
 const getScreenOnValue = () => getStoredData(SCREEN_ON) === 'true';
 
-function App() ***REMOVED***
+function App() {
   // cannot manage state here and get context inside useVolume
   // const [volume, setVolumeState] = useState(VOLUME_DEFAULT);
   const volume = useVolume();
@@ -31,65 +31,65 @@ function App() ***REMOVED***
   const channelList = useChannelList();
   const channelChange = useChannelChange();
 
-  const [state, setState] = useState(***REMOVED***
+  const [state, setState] = useState({
     screenOn: getScreenOnValue(),
-    toggleScreenOn: () => ***REMOVED***
+    toggleScreenOn: () => {
       volume.toggleBar(false);
       channel.toggleBar(true);
       channelChange.toggleBar(false);
       channelList.toggleBar(false);
-      setState((oldState) => (***REMOVED*** ...oldState, screenOn: !oldState.screenOn ***REMOVED***));
+      setState((oldState) => ({ ...oldState, screenOn: !oldState.screenOn }));
       storeData(SCREEN_ON, !getScreenOnValue());
-  ***REMOVED***,
+    },
     hasSignal: undefined,
-    setSignal: (value) => ***REMOVED***
-      setState((oldState) => (***REMOVED*** ...oldState, hasSignal: value ***REMOVED***));
-  ***REMOVED***,
+    setSignal: (value) => {
+      setState((oldState) => ({ ...oldState, hasSignal: value }));
+    },
     isYtApiLoaded: false,
     isRemoteVisible: true,
-    setRemoteVisible: (value) => ***REMOVED***
-      setState((oldState) => (***REMOVED*** ...oldState, isRemoteVisible: value ***REMOVED***));
-  ***REMOVED***,
-***REMOVED***);
+    setRemoteVisible: (value) => {
+      setState((oldState) => ({ ...oldState, isRemoteVisible: value }));
+    },
+  });
 
   useEffect(() => new Youtube(), []);
-  useEffect(() => ***REMOVED***
-    window.onYouTubePlayerAPIReady = () => ***REMOVED***
-      setState((oldState) => (***REMOVED*** ...oldState, isYtApiLoaded: true ***REMOVED***));
-  ***REMOVED***;
-***REMOVED***, []);
+  useEffect(() => {
+    window.onYouTubePlayerAPIReady = () => {
+      setState((oldState) => ({ ...oldState, isYtApiLoaded: true }));
+    };
+  }, []);
 
   const isLoading = channel?.isLoading || state.hasSignal === undefined;
 
   return (
-    <AppCtx.Provider value=***REMOVED***state***REMOVED***>
+    <AppCtx.Provider value={state}>
       <Overlay />
-      <VolumeCtx.Provider value=***REMOVED***volume***REMOVED***>
-        ***REMOVED***volume.visible && <VolumeBar value=***REMOVED***volume.value***REMOVED*** />***REMOVED***
-        ***REMOVED***state.screenOn && volume.muted && <MutedStatus />***REMOVED***
-        <ChannelCtx.Provider value=***REMOVED***channel***REMOVED***>
-          ***REMOVED***state.screenOn && <Player />***REMOVED***
-          ***REMOVED***state.screenOn && channel.visible && !channelList.visible
+      <VolumeCtx.Provider value={volume}>
+        {volume.visible && <VolumeBar value={volume.value} />}
+        {state.screenOn && volume.muted && <MutedStatus />}
+        <ChannelCtx.Provider value={channel}>
+          {state.screenOn && <Player />}
+          {state.screenOn && channel.visible && !channelList.visible
           && (
           <ProgrammeInfo
-            channelId=***REMOVED***channel?.id***REMOVED***
-            channelTitle=***REMOVED***channel?.title***REMOVED***
-            programmeTitle=***REMOVED***channel?.currentShow?.title***REMOVED***
-            starts=***REMOVED***channel?.currentShow?.start***REMOVED***
-            ends=***REMOVED***channel?.currentShow?.end***REMOVED***
-            isLoading=***REMOVED***isLoading***REMOVED***
+            channelId={channel?.id}
+            channelTitle={channel?.title}
+            programmeTitle={channel?.currentShow?.title}
+            starts={channel?.currentShow?.start}
+            ends={channel?.currentShow?.end}
+            isLoading={isLoading}
           />
-          )***REMOVED***
-          <ChannelChangeCtx.Provider value=***REMOVED***channelChange***REMOVED***>
-            ***REMOVED***state.screenOn && channelChange.visible
+          )}
+          <ChannelChangeCtx.Provider value={channelChange}>
+            {state.screenOn && channelChange.visible
             && (
-              <ChannelChange ref=***REMOVED***channelChange.input***REMOVED*** />
-            )***REMOVED***
-            <ChannelListCtx.Provider value=***REMOVED***channelList***REMOVED***>
-              ***REMOVED***state.screenOn && channelList.visible && Array.isArray(channelList.list)
+              <ChannelChange ref={channelChange.input} />
+            )}
+            <ChannelListCtx.Provider value={channelList}>
+              {state.screenOn && channelList.visible && Array.isArray(channelList.list)
               && (
-                <ChannelList list=***REMOVED***channelList.list***REMOVED*** activeChannel=***REMOVED***channel.id***REMOVED*** />
-              )***REMOVED***
+                <ChannelList list={channelList.list} activeChannel={channel.id} />
+              )}
               <RemoteControl />
             </ChannelListCtx.Provider>
           </ChannelChangeCtx.Provider>
@@ -97,6 +97,6 @@ function App() ***REMOVED***
       </VolumeCtx.Provider>
     </AppCtx.Provider>
   );
-***REMOVED***
+}
 
 export default App;

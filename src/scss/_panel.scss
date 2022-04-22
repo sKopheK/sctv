@@ -4,10 +4,10 @@
 @use "media" as *;
 
 @mixin styles
-***REMOVED***
-  --color-panel-bg: #***REMOVED***color.$bg***REMOVED***;
-  --color-panel-text: #***REMOVED***color.$text***REMOVED***;
-  --color-panel-ico: #***REMOVED***color.$ico***REMOVED***;
+{
+  --color-panel-bg: #{color.$bg};
+  --color-panel-text: #{color.$text};
+  --color-panel-ico: #{color.$ico};
 
   padding: dim.$padding;  
   background-color: var(--color-panel-bg);
@@ -16,17 +16,17 @@
   font-size: 1.4rem;
 
   @include mediaWidth(400px)
-  ***REMOVED***
+  {
     font-size: 1.6rem;
-***REMOVED***
+  }
   
   @include mediaTablet
-  ***REMOVED***
+  {
     font-size: 2.2rem;  
-***REMOVED***
+  }
 
   @include mediaWidth(bp.$base)
-  ***REMOVED***
+  {
     font-size: 2.2vw;
-***REMOVED***
-***REMOVED***
+  }
+}

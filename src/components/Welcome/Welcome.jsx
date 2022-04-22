@@ -1,7 +1,7 @@
 import React from 'react';
 import './Welcome.scss';
 
-export default function Welcome() ***REMOVED***
+export default function Welcome() {
   return (
     <div className="welcome">
       <p className="welcome__heading">Welcome to the StarCraft TV experience.</p>
@@ -18,4 +18,4 @@ export default function Welcome() ***REMOVED***
       </svg>
     </div>
   );
-***REMOVED***
+}

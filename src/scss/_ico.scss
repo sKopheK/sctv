@@ -8,23 +8,23 @@
   $base-top: 0,
   $top: 0,
   $left: 0,
-) ***REMOVED***
+) {
   &::before
-  ***REMOVED***
+  {
       content: '';
       @if $stroke-width
-      ***REMOVED***
-        border: ***REMOVED***
+      {
+        border: {
             style: solid;
             width: $stroke-width;
             color: $color-border;
-      ***REMOVED***
-    ***REMOVED***
+        }
+      }
 
       @if $color-bg
-      ***REMOVED***
+      {
         background-color: $color-bg;
-    ***REMOVED***
+      }
       
       $width: $size * .08;
       $height: $width * 1.35;
@@ -34,24 +34,24 @@
       left: $left;
       width: $width;
       height: $height;
-***REMOVED***
+  }
   
   &::after
-  ***REMOVED***
+  {
       content: '';
       @if $stroke-width
-      ***REMOVED***
-        border: ***REMOVED***
+      {
+        border: {
             style: solid;
             width: $stroke-width $stroke-width $stroke-width 0;
             color: $color-border;
-      ***REMOVED***
-    ***REMOVED***
+        }
+      }
 
       @if $color-bg
-      ***REMOVED***
+      {
         background-color: $color-bg;
-    ***REMOVED***
+      }
 
       $width: $size * .3;
       $height: $width * .56;
@@ -61,6 +61,6 @@
       left: $left;
       width: $width;
       height: $height;
-      transform: perspective(#***REMOVED***math.div($size, 3)***REMOVED***) rotateY(-60deg);
-***REMOVED***
-***REMOVED***
+      transform: perspective(#{math.div($size, 3)}) rotateY(-60deg);
+  }
+}

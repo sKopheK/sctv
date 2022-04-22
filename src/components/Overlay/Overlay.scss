@@ -7,19 +7,19 @@
 @include meta.load-css("animations");
 
 .Overlay
-***REMOVED***    
+{    
     @include fill-parent;
     display: flex;
-***REMOVED***
+}
 
 .no-signal
-***REMOVED***
+{
     background: url('nosignal1.png');
     animation: tvNoise .35s infinite;
-***REMOVED***
+}
 
 .app-logo
-***REMOVED***
+{
     display: flex;    
     width: appLogo.$w;
     height: appLogo.$h;
@@ -27,46 +27,46 @@
     transform: translateY(appLogo.$h * -.5);
 
     @include mediaDesktop
-    ***REMOVED***
+    {
         width: appLogo.$w--desktop;
         height: appLogo.$h--desktop;
         transform: translateY(appLogo.$h--desktop * -.5);
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 .sc-logo
-***REMOVED***
+{
     flex-grow: 5;
-    background: ***REMOVED***
+    background: {
         repeat: no-repeat;
         image: url('sc-logo.png');
         size: contain;
         position: 100% 100%;
-  ***REMOVED***
+    }
 
     &.first-run
-    ***REMOVED***
+    {
         animation: zoomInOut 1.5s .5s;
         animation-fill-mode: backwards;
         position: relative;
         z-index: 1;    
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 .tv-ico
-***REMOVED***
+{
     flex-grow: 1;
     margin-left: 2vw;
-    background: ***REMOVED***
+    background: {
         repeat: no-repeat;
         image: url('tv.png');
         size: contain;
-  ***REMOVED***
+    }
 
     &.first-run
-    ***REMOVED***
+    {
         animation: zoomInOut 1.5s 1.2s;
         animation-fill-mode: backwards;
         transform-origin: 0 100%;
-  ***REMOVED***
-***REMOVED***
+    }
+}

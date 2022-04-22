@@ -4,7 +4,7 @@
 @use "../../scss/media" as *;
 
 .ProgrammeInfo
-***REMOVED***
+{
   @include panel.styles;
 
   box-sizing: border-box;
@@ -16,77 +16,77 @@
   max-height: 90vh;
 
   display: grid;
-  grid-template: ***REMOVED***
+  grid-template: {
     columns: 5% 7% auto;
     rows: 1.5fr 5fr 1fr 1fr;
     areas: "a b b"
            ". c c"
            ". d e"
            ". f g";
-***REMOVED***;
+  };
   gap: 1vw 3vw;
 
   @media (orientation: portrait)
-  ***REMOVED***
-    grid-template: ***REMOVED***
+  {
+    grid-template: {
       columns: 5% 15% auto;
-  ***REMOVED***
-***REMOVED***
+    }
+  }
 
   .channel-id
-  ***REMOVED***
+  {
     text-align: right;
     grid-area: a;
-***REMOVED***
+  }
 
   .channel-title
-  ***REMOVED***
+  {
     grid-area: b;
-***REMOVED***
+  }
 
   .programme-title
-  ***REMOVED***
+  {
     font-weight: bold;
     grid-area: c;
 
     @include mediaWidth(null bp.$mobile-big - 1)
-    ***REMOVED***
+    {
       font-size: 85%;
-  ***REMOVED***
-***REMOVED***
+    }
+  }
 
   .starts-label
-  ***REMOVED***
+  {
     grid-area: d;
-***REMOVED***
+  }
 
   .starts
-  ***REMOVED***
+  {
     grid-area: e;
-***REMOVED***
+  }
 
   .ends-label
-  ***REMOVED***
+  {
     grid-area: f;
-***REMOVED***
+  }
 
   .ends
-  ***REMOVED***
+  {
     grid-area: g;
-***REMOVED***
+  }
 
   .small
-  ***REMOVED***
+  {
     font-size: 85%;
-***REMOVED***
+  }
 
   .smaller
-  ***REMOVED***
+  {
     font-size: 70%;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 .hidden
-***REMOVED***
+{
   display: none;  //todo
-***REMOVED***
+}

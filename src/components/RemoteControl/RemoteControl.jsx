@@ -1,8 +1,8 @@
-import React, ***REMOVED***
+import React, {
   useCallback, useContext, useMemo,
-***REMOVED*** from 'react';
+} from 'react';
 import useTimeout from '../../hooks/useTimeout';
-import ***REMOVED*** REMOTE_HIDE_TIMEOUT ***REMOVED*** from '../../settings';
+import { REMOTE_HIDE_TIMEOUT } from '../../settings';
 import AppCtx from '../../state/AppCtx';
 import ChannelChangeCtx from '../../state/ChannelChangeCtx';
 import ChannelCtx from '../../state/ChannelCtx';
@@ -14,46 +14,46 @@ import SoundToggle from '../SoundToggle/SoundToggle';
 import './grid.scss';
 import './RemoteControl.scss';
 
-function RemoteControl() ***REMOVED***
-  const ***REMOVED***
+function RemoteControl() {
+  const {
     visible: volumeBarVisible,
     decrease: decreaseVol,
     increase: increaseVol,
     toggleBar: toggleVolumeBar,
-***REMOVED*** = useContext(VolumeCtx);
-  const ***REMOVED***
+  } = useContext(VolumeCtx);
+  const {
     toggleBar: toggleProgrammeInfo,
     setId: setChannelId,
     id: channelId,
-***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED***
+  } = useContext(ChannelCtx);
+  const {
     visible: channelListVisible,
     toggleBar: toggleChannelList,
-***REMOVED*** = useContext(ChannelListCtx);
-  const ***REMOVED***
+  } = useContext(ChannelListCtx);
+  const {
     visible: channelChangeVisible,
     toggleBar: toggleChannelChange,
     textInput: channelChangeTextInput,
     pressKey: channelChangeAddChar,
     resetTextInput: channelChangeResetTextInput,
-***REMOVED*** = useContext(ChannelChangeCtx);
-  const ***REMOVED***
+  } = useContext(ChannelChangeCtx);
+  const {
     screenOn,
     toggleScreenOn,
     isRemoteVisible,
     setRemoteVisible,
-***REMOVED*** = useContext(AppCtx);
+  } = useContext(AppCtx);
 
-  const changeChannel = useCallback((diff) => ***REMOVED***
+  const changeChannel = useCallback((diff) => {
     if (!screenOn) return;
     setChannelId(channelId + (channelListVisible ? -diff : diff));
-    if (volumeBarVisible) ***REMOVED***
+    if (volumeBarVisible) {
       toggleVolumeBar();
-  ***REMOVED***
-    if (!channelListVisible) ***REMOVED***
+    }
+    if (!channelListVisible) {
       toggleProgrammeInfo(true);
-  ***REMOVED***
-***REMOVED***, [
+    }
+  }, [
     screenOn,
     setChannelId,
     channelId,
@@ -62,15 +62,15 @@ function RemoteControl() ***REMOVED***
     toggleProgrammeInfo,
     toggleVolumeBar,
   ]);
-  const channelClick = useCallback(() => ***REMOVED***
+  const channelClick = useCallback(() => {
     if (!screenOn) return;
-    if (!channelListVisible) ***REMOVED***
+    if (!channelListVisible) {
       toggleVolumeBar(false);
       toggleProgrammeInfo(false);
       toggleChannelChange(false);
-  ***REMOVED***
+    }
     toggleChannelList();
-***REMOVED***, [
+  }, [
     channelListVisible,
     screenOn,
     toggleChannelList,
@@ -78,25 +78,25 @@ function RemoteControl() ***REMOVED***
     toggleVolumeBar,
     toggleChannelChange,
   ]);
-  const upClick = useCallback(() => ***REMOVED***
+  const upClick = useCallback(() => {
     if (!screenOn) return;
     changeChannel(1);
-***REMOVED***, [changeChannel, screenOn]);
-  const downClick = useCallback(() => ***REMOVED***
+  }, [changeChannel, screenOn]);
+  const downClick = useCallback(() => {
     if (!screenOn) return;
     changeChannel(-1);
-***REMOVED***, [changeChannel, screenOn]);
-  const leftClick = useCallback(() => ***REMOVED***
+  }, [changeChannel, screenOn]);
+  const leftClick = useCallback(() => {
     if (!screenOn) return;
-    if (!volumeBarVisible) ***REMOVED***
+    if (!volumeBarVisible) {
       toggleVolumeBar();
       toggleProgrammeInfo(false);
       toggleChannelList(false);
       toggleChannelChange(false);
-  ***REMOVED*** else ***REMOVED***
+    } else {
       decreaseVol();
-  ***REMOVED***
-***REMOVED***, [
+    }
+  }, [
     screenOn,
     volumeBarVisible,
     toggleVolumeBar,
@@ -105,17 +105,17 @@ function RemoteControl() ***REMOVED***
     toggleChannelChange,
     decreaseVol,
   ]);
-  const rightClick = useCallback(() => ***REMOVED***
+  const rightClick = useCallback(() => {
     if (!screenOn) return;
-    if (!volumeBarVisible) ***REMOVED***
+    if (!volumeBarVisible) {
       toggleVolumeBar();
       toggleProgrammeInfo(false);
       toggleChannelList(false);
       toggleChannelChange(false);
-  ***REMOVED*** else ***REMOVED***
+    } else {
       increaseVol();
-  ***REMOVED***
-***REMOVED***, [
+    }
+  }, [
     screenOn,
     volumeBarVisible,
     toggleVolumeBar,
@@ -124,21 +124,21 @@ function RemoteControl() ***REMOVED***
     toggleChannelChange,
     increaseVol,
   ]);
-  const okClick = useCallback(() => ***REMOVED***
+  const okClick = useCallback(() => {
     if (!screenOn) return;
-    if (channelChangeVisible) ***REMOVED***
+    if (channelChangeVisible) {
       toggleChannelChange();
       setChannelId(Number(channelChangeTextInput));
       toggleProgrammeInfo();
-  ***REMOVED*** else if (volumeBarVisible) ***REMOVED***
+    } else if (volumeBarVisible) {
       toggleVolumeBar();
-  ***REMOVED*** else if (channelListVisible) ***REMOVED***
+    } else if (channelListVisible) {
       toggleChannelList();
       toggleProgrammeInfo();
-  ***REMOVED*** else ***REMOVED***
+    } else {
       toggleProgrammeInfo();
-  ***REMOVED***
-***REMOVED***, [
+    }
+  }, [
     screenOn,
     channelChangeTextInput,
     channelChangeVisible,
@@ -151,19 +151,19 @@ function RemoteControl() ***REMOVED***
     setChannelId,
   ]);
   const numberClick = useCallback(
-    (number) => ***REMOVED***
-      if (!screenOn) ***REMOVED***
+    (number) => {
+      if (!screenOn) {
         toggleScreenOn();
-    ***REMOVED***
-      if (!channelChangeVisible) ***REMOVED***
+      }
+      if (!channelChangeVisible) {
         toggleVolumeBar(false);
         toggleProgrammeInfo(false);
         toggleChannelList(false);
         toggleChannelChange(true);
         channelChangeResetTextInput();
-    ***REMOVED***
+      }
       channelChangeAddChar(number);
-  ***REMOVED***,
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [screenOn, channelChangeVisible],
   );
@@ -176,19 +176,19 @@ function RemoteControl() ***REMOVED***
   useTimeout(hideRemote, screenOn ? REMOTE_HIDE_TIMEOUT : 2 ** 31 - 1);
 
   return useMemo(() => (
-    <div className=***REMOVED***`RemoteControl$***REMOVED***isRemoteVisible ? '' : ' is-hidden'***REMOVED***`***REMOVED***>
+    <div className={`RemoteControl${isRemoteVisible ? '' : ' is-hidden'}`}>
       <div className="content logo grid">
         <MainSwitch className="grid-to" />
         <SoundToggle className="grid-so" />
-        ***REMOVED***Array(10).fill(null).map((_, i) => i).map((i) => (
-          <Button className=***REMOVED***`grid-n$***REMOVED***i***REMOVED*** highlighted grid-landscape`***REMOVED*** onClick=***REMOVED***() => numberClick(i)***REMOVED*** key=***REMOVED***`nr$***REMOVED***i***REMOVED***`***REMOVED***>***REMOVED***i***REMOVED***</Button>
-        ))***REMOVED***
-        <Button className="grid-ch grid-landscape" onClick=***REMOVED***channelClick***REMOVED***>Ch</Button>
-        <Button className="grid-up btn-arrow btn-arrow--up" onClick=***REMOVED***upClick***REMOVED*** onMouseDown=***REMOVED***upClick***REMOVED*** />
-        <Button className="grid-lt btn-arrow btn-arrow--lt" onClick=***REMOVED***leftClick***REMOVED*** onMouseDown=***REMOVED***leftClick***REMOVED*** />
-        <Button className="grid-rt btn-arrow btn-arrow--rt" onClick=***REMOVED***rightClick***REMOVED*** onMouseDown=***REMOVED***rightClick***REMOVED*** />
-        <Button className="grid-dn btn-arrow btn-arrow--dn" onClick=***REMOVED***downClick***REMOVED*** onMouseDown=***REMOVED***downClick***REMOVED*** />
-        <Button className="grid-ok grid-h-center btn--round btn--round-big" onClick=***REMOVED***okClick***REMOVED***>OK</Button>
+        {Array(10).fill(null).map((_, i) => i).map((i) => (
+          <Button className={`grid-n${i} highlighted grid-landscape`} onClick={() => numberClick(i)} key={`nr${i}`}>{i}</Button>
+        ))}
+        <Button className="grid-ch grid-landscape" onClick={channelClick}>Ch</Button>
+        <Button className="grid-up btn-arrow btn-arrow--up" onClick={upClick} onMouseDown={upClick} />
+        <Button className="grid-lt btn-arrow btn-arrow--lt" onClick={leftClick} onMouseDown={leftClick} />
+        <Button className="grid-rt btn-arrow btn-arrow--rt" onClick={rightClick} onMouseDown={rightClick} />
+        <Button className="grid-dn btn-arrow btn-arrow--dn" onClick={downClick} onMouseDown={downClick} />
+        <Button className="grid-ok grid-h-center btn--round btn--round-big" onClick={okClick}>OK</Button>
       </div>
     </div>
   ), [
@@ -201,6 +201,6 @@ function RemoteControl() ***REMOVED***
     okClick,
     numberClick,
   ]);
-***REMOVED***
+}
 
 export default RemoteControl;

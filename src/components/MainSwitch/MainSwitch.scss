@@ -5,22 +5,22 @@
 $color-bg: lightcoral;
 
 .MainSwitch
-***REMOVED***
+{
     background-color: $color-bg;
     border: .15em solid darken($color-bg, 15%);
 
     position: relative;
     
     &::before
-    ***REMOVED***
+    {
         content: '';
         @include fill-parent(.4em);        
         @include circle;
         border: .21em solid btnColor.$content;
-  ***REMOVED***
+    }
 
     &::after
-    ***REMOVED***
+    {
         content: '|';
         position: absolute;
         top: 0;
@@ -31,5 +31,5 @@ $color-bg: lightcoral;
         background-color: $color-bg;
         color: btnColor.$content;
         font-size: 1.7em;
-  ***REMOVED***
-***REMOVED***
+    }
+}

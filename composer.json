@@ -1,5 +1,5 @@
-***REMOVED***
-    "require": ***REMOVED***
+{
+    "require": {
         "google/apiclient": "^2.7"
-  ***REMOVED***
-***REMOVED***
+    }
+}

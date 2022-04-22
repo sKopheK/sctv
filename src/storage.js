@@ -1,8 +1,9 @@
-export const getStoredData = (key, fallback) => ***REMOVED***
+export const getStoredData = (key, fallback) => {
   const stored = localStorage.getItem(key);
-  if (stored === null && fallback !== undefined) ***REMOVED***
+  if (stored === null && fallback !== undefined) {
     return fallback;
-***REMOVED***
+  }
   return stored;
-***REMOVED***;
+};
 export const storeData = (key, value) => localStorage.setItem(key, value);
+export const removeData = (key) => localStorage.removeItem(key);

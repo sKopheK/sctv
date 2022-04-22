@@ -1,70 +1,70 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED***
+import React, {
   useCallback, useEffect, useMemo, useState,
-***REMOVED*** from 'react';
+} from 'react';
 import './Button.scss';
 
 const PRESS_INTERVAL_SLOW = 100;
 const PRESS_INTERVAL_FAST = 30;
 const PRESS_INTERVAL_CHANGE_MS = 800;
 
-function Button(***REMOVED***
+function Button({
   className, children, onClick, onMouseDown,
-***REMOVED***) ***REMOVED***
+}) {
   const [intervalDelay, setIntervalDelay] = useState(PRESS_INTERVAL_SLOW);
   const [pressed, setPressed] = useState(false);
-  const onMouseDownHandler = useCallback(() => ***REMOVED***
-    if (onMouseDown) ***REMOVED***
+  const onMouseDownHandler = useCallback(() => {
+    if (onMouseDown) {
       setPressed(true);
-  ***REMOVED***
-***REMOVED***, [onMouseDown]);
-  const onMouseUpHandler = useCallback(() => ***REMOVED***
-    if (onMouseDown) ***REMOVED***
+    }
+  }, [onMouseDown]);
+  const onMouseUpHandler = useCallback(() => {
+    if (onMouseDown) {
       setPressed(false);
       setIntervalDelay(PRESS_INTERVAL_SLOW);
-  ***REMOVED***
-***REMOVED***, [onMouseDown]);
+    }
+  }, [onMouseDown]);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     let timeoutId = null;
-    if (pressed && intervalDelay !== PRESS_INTERVAL_FAST) ***REMOVED***
-      timeoutId = setTimeout(() => ***REMOVED***
+    if (pressed && intervalDelay !== PRESS_INTERVAL_FAST) {
+      timeoutId = setTimeout(() => {
         setIntervalDelay(PRESS_INTERVAL_FAST);
-    ***REMOVED***, PRESS_INTERVAL_CHANGE_MS);
-  ***REMOVED***
-    return () => ***REMOVED***
-      if (timeoutId) ***REMOVED***
+      }, PRESS_INTERVAL_CHANGE_MS);
+    }
+    return () => {
+      if (timeoutId) {
         clearTimeout(timeoutId);
-    ***REMOVED***
-  ***REMOVED***;
-***REMOVED***, [pressed, intervalDelay]);
+      }
+    };
+  }, [pressed, intervalDelay]);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     let intervalId = null;
-    if (pressed) ***REMOVED***
+    if (pressed) {
       intervalId = setInterval(onMouseDown, intervalDelay);
-  ***REMOVED***
-    return () => ***REMOVED***
-      if (intervalId) ***REMOVED***
+    }
+    return () => {
+      if (intervalId) {
         clearInterval(intervalId);
-    ***REMOVED***
-  ***REMOVED***;
-***REMOVED***, [onMouseDown, pressed, intervalDelay]);
+      }
+    };
+  }, [onMouseDown, pressed, intervalDelay]);
 
   return useMemo(() => (
     <button
       type="button"
-      className=***REMOVED***`btn $***REMOVED***className ?? ''***REMOVED***`***REMOVED***
-      onClick=***REMOVED***onClick***REMOVED***
-      onMouseDown=***REMOVED***onMouseDownHandler***REMOVED***
-      onMouseUp=***REMOVED***onMouseUpHandler***REMOVED***
+      className={`btn ${className ?? ''}`}
+      onClick={onClick}
+      onMouseDown={onMouseDownHandler}
+      onMouseUp={onMouseUpHandler}
     >
-      ***REMOVED***children***REMOVED***
+      {children}
     </button>
   ), [children, className, onClick, onMouseDownHandler, onMouseUpHandler]);
-***REMOVED***
+}
 
-Button.propTypes = ***REMOVED***
+Button.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -72,13 +72,13 @@ Button.propTypes = ***REMOVED***
   ]),
   onMouseDown: PropTypes.func,
   onClick: PropTypes.func,
-***REMOVED***;
+};
 
-Button.defaultProps = ***REMOVED***
+Button.defaultProps = {
   className: '',
   children: [],
   onMouseDown: null,
   onClick: null,
-***REMOVED***;
+};
 
 export default Button;

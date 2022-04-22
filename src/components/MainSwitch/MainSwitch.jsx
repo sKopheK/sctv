@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED*** useContext, useMemo ***REMOVED*** from 'react';
+import React, { useContext, useMemo } from 'react';
 import AppCtx from '../../state/AppCtx';
 import Button from '../Button/Button';
 import './MainSwitch.scss';
 
-function MainSwitch(***REMOVED*** className ***REMOVED***) ***REMOVED***
-  const ***REMOVED*** toggleScreenOn ***REMOVED*** = useContext(AppCtx);
+function MainSwitch({ className }) {
+  const { toggleScreenOn } = useContext(AppCtx);
   return useMemo(() => (
-    <Button className=***REMOVED***`MainSwitch btn--round $***REMOVED***className***REMOVED***`***REMOVED*** onClick=***REMOVED***toggleScreenOn***REMOVED*** />
+    <Button className={`MainSwitch btn--round ${className}`} onClick={toggleScreenOn} />
   ), [className, toggleScreenOn]);
-***REMOVED***
+}
 
-MainSwitch.propTypes = ***REMOVED***
+MainSwitch.propTypes = {
   className: PropTypes.string,
-***REMOVED***;
+};
 
-MainSwitch.defaultProps = ***REMOVED***
+MainSwitch.defaultProps = {
   className: '',
-***REMOVED***;
+};
 
 export default MainSwitch;

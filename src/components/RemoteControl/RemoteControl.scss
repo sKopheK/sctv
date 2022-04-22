@@ -6,7 +6,7 @@
 @use "../../scss/config/breakpoints" as bp;
 
 .RemoteControl
-***REMOVED***
+{
     $scale-default: .9;
     $scale-active: 1;
     $bottom-position-const: -.82;
@@ -14,9 +14,9 @@
     font-size: 1rem;
     
     @include mediaWidth(bp.$base)
-    ***REMOVED***
+    {
         font-size: 1vw;
-  ***REMOVED***
+    }
 
     width: dim.$width;
     min-width: dim.$width--min;
@@ -39,68 +39,68 @@
     opacity: 1;
 
     @include media.positionRight
-    ***REMOVED***
+    {
         right: dim.$right;
         transform: scale($scale-default);
         padding-bottom: 3.5em;
         height: dim.$height;
         min-height: dim.$height--min;
         bottom: dim.$height * -.82;
-  ***REMOVED***
+    }
 
     &::before
-    ***REMOVED***
+    {
         content: '';
         @include fill-parent;
         border-radius: dim.$radius;
         border: .125em solid color.$bg;
-  ***REMOVED***
+    }
 
     &:hover
-    ***REMOVED***
+    {
         transform: translateX(50%) scale($scale-active);
         box-shadow: 0 0 1.25em .926em color.$shadow;
         border-width: .125em;
         bottom: dim.$bottom--on;
 
         @include media.positionRight
-        ***REMOVED***
+        {
             transform: scale($scale-active);
-      ***REMOVED***
+        }
 
         &::before
-        ***REMOVED***
+        {
             border-width: .185em;
-      ***REMOVED***
+        }
 
         &.is-hidden
-        ***REMOVED***
+        {
             opacity: 1;
-      ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+        }
+    }
+}
 
 .content
-***REMOVED***
+{
     position: relative;
     z-index: 1;
     height: 100%;
-***REMOVED***
+}
 
 .is-hidden
-***REMOVED***
+{
     opacity: 0;
-***REMOVED***
+}
 
 .is-dev
-***REMOVED***
+{
     .is-hidden
-    ***REMOVED***    
+    {    
         opacity: 1;
-  ***REMOVED***
+    }
 
     .RemoteControl
-    ***REMOVED***
+    {
         bottom: dim.$bottom--on;
-  ***REMOVED***
-***REMOVED***
+    }
+}

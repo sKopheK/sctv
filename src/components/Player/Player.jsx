@@ -1,6 +1,6 @@
-import React, ***REMOVED***
+import React, {
   useContext, useEffect, useMemo, useRef, useState,
-***REMOVED*** from 'react';
+} from 'react';
 import useSchedule from '../../hooks/useSchedule';
 import AppCtx from '../../state/AppCtx';
 import ChannelCtx from '../../state/ChannelCtx';
@@ -10,98 +10,98 @@ import './Player.scss';
 /* global YT */
 const YOUTUBE_PLAYER_ID = 'ytplayer';
 
-function Player() ***REMOVED***
-  const ***REMOVED***
+function Player() {
+  const {
     muted,
     value: volume,
-***REMOVED*** = useContext(VolumeCtx);
+  } = useContext(VolumeCtx);
 
-  const ***REMOVED*** setSignal, isYtApiLoaded ***REMOVED*** = useContext(AppCtx);
-  const ***REMOVED***
+  const { setSignal, isYtApiLoaded } = useContext(AppCtx);
+  const {
     id: channelId,
     setCurrentShow,
     setTitle: setChannelTitle,
     toggleBar: toggleChannelBar,
     setLoading,
-***REMOVED*** = useContext(ChannelCtx);
-  const ***REMOVED*** getCurrentVideo, getChannelTitle, cleanup: cleanupSchedule ***REMOVED*** = useSchedule(channelId);
+  } = useContext(ChannelCtx);
+  const { getCurrentVideo, getChannelTitle, cleanup: cleanupSchedule } = useSchedule(channelId);
 
   const player = useRef(null);
   const [isPlayerReady, setPlayerReady] = useState(false);
   const [finishedCount, setFinishedCount] = useState(0);
 
-  const setPlayerVolume = (value) => ***REMOVED***
-    if (isPlayerReady) ***REMOVED***
+  const setPlayerVolume = (value) => {
+    if (isPlayerReady) {
       player.current.setVolume(value);
-  ***REMOVED***
-***REMOVED***;
-  const setPlayerMute = (enable) => ***REMOVED***
-    if (isPlayerReady) ***REMOVED***
-      if (enable) ***REMOVED***
+    }
+  };
+  const setPlayerMute = (enable) => {
+    if (isPlayerReady) {
+      if (enable) {
         player.current.mute();
-    ***REMOVED*** else ***REMOVED***
+      } else {
         player.current.unMute();
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***;
-  const startBroadcast = async () => ***REMOVED***
-    if (!isPlayerReady) ***REMOVED***
+      }
+    }
+  };
+  const startBroadcast = async () => {
+    if (!isPlayerReady) {
       return;
-  ***REMOVED***
+    }
     setLoading(true);
     toggleChannelBar(true);
     const video = await getCurrentVideo();
-    if (video) ***REMOVED***
-      player.current.loadVideoById(***REMOVED***
+    if (video) {
+      player.current.loadVideoById({
         videoId: video.id,
         startSeconds: video.offset / 1000,
-    ***REMOVED***);
-  ***REMOVED*** else ***REMOVED***
+      });
+    } else {
       setSignal(false);
-  ***REMOVED***
+    }
     setCurrentShow(video);
     const channelTitle = await getChannelTitle();
     setChannelTitle(channelTitle);
     setLoading(false);
-***REMOVED***;
+  };
 
   useEffect(
-    () => ***REMOVED***
-      if (isYtApiLoaded) ***REMOVED***
-        player.current = new YT.Player(YOUTUBE_PLAYER_ID, ***REMOVED***
+    () => {
+      if (isYtApiLoaded) {
+        player.current = new YT.Player(YOUTUBE_PLAYER_ID, {
           width: '100%',
           height: '100%',
-          playerVars: ***REMOVED***
+          playerVars: {
             autoplay: 1,
             controls: 0,
-        ***REMOVED***,
-          events: ***REMOVED***
-            onReady: () => ***REMOVED***
+          },
+          events: {
+            onReady: () => {
               setPlayerReady(true);
-          ***REMOVED***,
-            onStateChange: (event) => ***REMOVED***
-              if (event.data === YT.PlayerState.PLAYING) ***REMOVED***
+            },
+            onStateChange: (event) => {
+              if (event.data === YT.PlayerState.PLAYING) {
                 setSignal(true);
-            ***REMOVED*** else if (event.data === YT.PlayerState.ENDED) ***REMOVED***
+              } else if (event.data === YT.PlayerState.ENDED) {
                 setFinishedCount((prevValue) => prevValue + 1);
-            ***REMOVED***
-          ***REMOVED***,
-            onError: () => ***REMOVED***
+              }
+            },
+            onError: () => {
               setSignal(false);
-          ***REMOVED***,
-        ***REMOVED***,
-      ***REMOVED***);
-    ***REMOVED***
+            },
+          },
+        });
+      }
 
-      return () => ***REMOVED***
-        if (isPlayerReady) ***REMOVED***
+      return () => {
+        if (isPlayerReady) {
           player.current.destroy();
           player.current = null;
           setSignal(undefined);
-      ***REMOVED***
+        }
         cleanupSchedule();
-    ***REMOVED***;
-  ***REMOVED***,
+      };
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [isYtApiLoaded],
   );
@@ -111,42 +111,42 @@ function Player() ***REMOVED***
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setPlayerMute(muted), [muted, isPlayerReady]);
   useEffect(
-    () => ***REMOVED***
-      if (isPlayerReady) ***REMOVED***
+    () => {
+      if (isPlayerReady) {
         startBroadcast();
-    ***REMOVED*** else ***REMOVED***
+      } else {
         setLoading(true);
         toggleChannelBar(true);
-    ***REMOVED***
+      }
 
-      return () => ***REMOVED***
-        if (isPlayerReady) ***REMOVED***
-          if (player.current) ***REMOVED***
+      return () => {
+        if (isPlayerReady) {
+          if (player.current) {
             player.current.stopVideo();
-        ***REMOVED***
+          }
           setSignal(undefined);
-      ***REMOVED***
-    ***REMOVED***;
-  ***REMOVED***,
+        }
+      };
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [isPlayerReady, channelId],
   );
 
   useEffect(
-    () => ***REMOVED***
-      if (isPlayerReady) ***REMOVED***
+    () => {
+      if (isPlayerReady) {
         startBroadcast();
-    ***REMOVED***
-  ***REMOVED***,
+      }
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [finishedCount],
   );
 
   return useMemo(() => (
     <div className="Player">
-      <div id=***REMOVED***YOUTUBE_PLAYER_ID***REMOVED*** />
+      <div id={YOUTUBE_PLAYER_ID} />
     </div>
   ), []);
-***REMOVED***
+}
 
 export default Player;

@@ -5,9 +5,9 @@
 @use "color";
 
 .welcome
-***REMOVED***
+{
   position: absolute;
-  top: calc(50% + #***REMOVED***appLogo.$h--desktop * .5***REMOVED***);
+  top: calc(50% + #{appLogo.$h--desktop * .5});
   left: 0;
   right: 0;
   text-align: center;
@@ -22,42 +22,42 @@
   $font-size--desktop: 1vw;
 
   &__heading
-  ***REMOVED***
+  {
     $font-size-coef: 1.3;
     
     font-weight: bold;
     font-size: $font-size * $font-size-coef;
 
     @include mediaDesktop
-    ***REMOVED***
+    {
         font-size: $font-size--desktop * $font-size-coef;
-  ***REMOVED***
+    }
 
     @include mediaWidth(null bp.$mobile-big)
-    ***REMOVED***
+    {
         font-size: $font-size--mobile * $font-size-coef;
-  ***REMOVED***
-***REMOVED***
+    }
+  }
 
   &__text
-  ***REMOVED***
+  {
     $font-size-coef: 1.2;
 
     font-size: $font-size * $font-size-coef;
 
     @include mediaDesktop
-    ***REMOVED***
+    {
       font-size: $font-size--desktop * $font-size-coef;
-  ***REMOVED***
+    }
 
     @include mediaWidth(null bp.$mobile-big)
-    ***REMOVED***
+    {
       font-size: $font-size--mobile * $font-size-coef;
-  ***REMOVED***
-***REMOVED***
+    }
+  }
 
   &__arrow
-  ***REMOVED***
+  {
     stroke: color.$arrow;
     stroke-linecap: round;
     stroke-width: .2em;
@@ -67,28 +67,28 @@
     animation-fill-mode: backwards;
 
     &--right
-    ***REMOVED***
+    {
       @include remoteMedia.positionCenter
-      ***REMOVED***
+      {
         display: none;
-    ***REMOVED***
+      }
 
       $w: 25vw;
 
       width: $w;
       margin-left: $w*.75;
       transform-origin: 0 0;
-  ***REMOVED***
+    }
 
     &--down
-    ***REMOVED***
+    {
       @include remoteMedia.positionRight
-      ***REMOVED***
+      {
         display: none;
-    ***REMOVED***
+      }
 
       height: 22.5vh;
       transform-origin: 50% 0;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

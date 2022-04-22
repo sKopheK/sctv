@@ -1,7 +1,7 @@
 /* global gapi */
 
-class Youtube ***REMOVED***
-  constructor() ***REMOVED***
+class Youtube {
+  constructor() {
     // Load the JavaScript client library.
     gapi.load('client', this.initGapi);
 
@@ -10,15 +10,15 @@ class Youtube ***REMOVED***
     tag.src = 'https://www.youtube.com/player_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-***REMOVED***
+  }
 
   // eslint-disable-next-line class-methods-use-this
-  initGapi() ***REMOVED***
-    gapi.client.init(***REMOVED***
+  initGapi() {
+    gapi.client.init({
       apiKey: '***REMOVED***',
       discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-  ***REMOVED***).then();
-***REMOVED***
-***REMOVED***
+    }).then();
+  }
+}
 
 export default Youtube;

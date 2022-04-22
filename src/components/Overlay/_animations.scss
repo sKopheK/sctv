@@ -1,61 +1,61 @@
 @keyframes tvNoise
-***REMOVED***
+{
     0%
-    ***REMOVED***
+    {
         background-image: url('nosignal1.png');
-  ***REMOVED***
+    }
 
     50%
-    ***REMOVED***
+    {
         background-image: url('nosignal2.png');
-  ***REMOVED***
+    }
 
     100%
-    ***REMOVED***
+    {
         background-image: url('nosignal3.png');
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @keyframes zoomIn
-***REMOVED***
+{
     0%
-    ***REMOVED***
+    {
         transform: scale(.7);
-  ***REMOVED***
+    }
 
     100%
-    ***REMOVED***
+    {
         transform: scale(1);
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @keyframes zoomInOut
-***REMOVED***
+{
     0%
-    ***REMOVED***
+    {
         transform: scale(.9);
-  ***REMOVED***
+    }
 
     50%
-    ***REMOVED***
+    {
         transform: scale(1.2);
-  ***REMOVED***
+    }
 
     100%
-    ***REMOVED***
+    {
         transform: scale(1);
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @keyframes fadeIn
-***REMOVED***
+{
   0%
-  ***REMOVED***
+  {
     opacity: 0;
-***REMOVED***
+  }
 
   100%
-  ***REMOVED***
+  {
     opacity: 1;
-***REMOVED***
-***REMOVED***
+  }
+}
