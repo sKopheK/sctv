@@ -1,27 +1,27 @@
-import React, ***REMOVED***
+import React, {
   forwardRef, useCallback, useContext,
-***REMOVED*** from 'react';
+} from 'react';
 import useTimeout from '../../hooks/useTimeout';
-import ***REMOVED*** CHANNEL_CHANGE_TIMEOUT ***REMOVED*** from '../../settings';
+import { CHANNEL_CHANGE_TIMEOUT } from '../../settings';
 import ChannelChangeCtx from '../../state/ChannelChangeCtx';
 import ChannelCtx from '../../state/ChannelCtx';
 import '../ProgrammeInfo/ProgrammeInfo.scss';
 
-function ChannelChange() ***REMOVED***
-  const ***REMOVED***
+function ChannelChange() {
+  const {
     toggleBar,
     textInput,
-***REMOVED*** = useContext(ChannelChangeCtx);
-  const ***REMOVED***
+  } = useContext(ChannelChangeCtx);
+  const {
     setId: setChannelId,
     toggleBar: toggleProgrammeInfo,
-***REMOVED*** = useContext(ChannelCtx);
+  } = useContext(ChannelCtx);
   const hideChannelChange = useCallback(
-    () => ***REMOVED***
+    () => {
       setChannelId(Number(textInput));
       toggleBar(false);
       toggleProgrammeInfo(true);
-  ***REMOVED***,
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [textInput],
   );
@@ -30,9 +30,9 @@ function ChannelChange() ***REMOVED***
   return (
     <dl className="ProgrammeInfo">
       <dt className="hidden">Channel id</dt>
-      <dd className="channel-id small">***REMOVED***textInput***REMOVED***</dd>
+      <dd className="channel-id small">{textInput}</dd>
     </dl>
   );
-***REMOVED***
+}
 
 export default forwardRef(ChannelChange);

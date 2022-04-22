@@ -1,27 +1,39 @@
 import axios from 'axios';
-import ***REMOVED*** DateTime, Duration ***REMOVED*** from 'luxon';
-import ***REMOVED*** useMemo, useRef ***REMOVED*** from 'react';
+import { DateTime, Duration } from 'luxon';
+import { useMemo, useRef } from 'react';
+import * as cache from '../cache';
 
-const useSchedule = (channelId) => ***REMOVED***
+const getCacheKey = (channelId) => `schedule-${channelId}`;
+
+const useSchedule = (channelId) => {
   const request = useRef(null);
-  const fetch = async (id) => ***REMOVED***
-    if (request.current) ***REMOVED***
+  const fetch = async (id) => {
+    if (request.current) {
       request.current.cancel();
-  ***REMOVED***
+    }
+    const cached = cache.get(getCacheKey(channelId));
+    if (cached) {
+      if (cached.id) {
+        return cached;
+      }
+      cache.clear(channelId);
+    }
+
     request.current = axios.CancelToken.source();
-    try ***REMOVED***
-      const response = await axios.get('api/schedule', ***REMOVED***
+    try {
+      const response = await axios.get('api/schedule', {
         cancelToken: request.current.token,
-        params: ***REMOVED***
+        params: {
           id,
-      ***REMOVED***,
-    ***REMOVED***);
-      return response;
-  ***REMOVED*** catch (error) ***REMOVED***
+        },
+      });
+      cache.set(getCacheKey(channelId), response.data);
+      return response.data;
+    } catch (error) {
       console.error(error);
-  ***REMOVED***
-    return ***REMOVED******REMOVED***;
-***REMOVED***;
+    }
+    return {};
+  };
 
   const payload = useMemo(
     async () => fetch(channelId),
@@ -29,50 +41,50 @@ const useSchedule = (channelId) => ***REMOVED***
     [channelId],
   );
 
-  const getChannelTitle = async () => ***REMOVED***
-    const ***REMOVED*** data ***REMOVED*** = await payload;
+  const getChannelTitle = async () => {
+    const data = await payload;
     return data?.title;
-***REMOVED***;
+  };
 
-  const getCurrentVideo = async () => ***REMOVED***
-    const ***REMOVED*** data ***REMOVED*** = await payload;
-    if (data?.duration && data?.items?.length) ***REMOVED***
+  const getCurrentVideo = async () => {
+    const data = await payload;
+    if (data?.duration && data?.items?.length) {
       const scheduleStart = new Date(data.items[0].start).getTime();
       const scheduleDuration = Duration.fromISO(data.duration).toMillis();
       const now = (new Date()).getTime();
       const currentTimeOffset = (now - scheduleStart) % scheduleDuration;
       const nowInSchedule = scheduleStart + currentTimeOffset;
-      const currentVideo = data.items.reduce((carry, programme) => ***REMOVED***
+      const currentVideo = data.items.reduce((carry, programme) => {
         const start = (new Date(programme.start)).getTime();
         const programmeDuration = Duration.fromISO(programme.duration);
         const end = DateTime.fromMillis(start)
           .plus(programmeDuration)
           .toMillis();
         const offset = nowInSchedule - start;
-        return start <= nowInSchedule && nowInSchedule <= end ? ***REMOVED***
+        return start <= nowInSchedule && nowInSchedule <= end ? {
           id: programme.id,
           title: programme.title,
           start: now - offset,
           end: DateTime.fromMillis(now - offset).plus(programmeDuration).toMillis(),
           offset,
-      ***REMOVED*** : carry;
-    ***REMOVED***, null);
+        } : carry;
+      }, null);
       return currentVideo;
-  ***REMOVED***
+    }
     return null;
-***REMOVED***;
+  };
 
-  const cleanup = () => ***REMOVED***
-    if (request.current) ***REMOVED***
+  const cleanup = () => {
+    if (request.current) {
       request.current.cancel();
-  ***REMOVED***
-***REMOVED***;
+    }
+  };
 
-  return ***REMOVED***
+  return {
     getChannelTitle,
     getCurrentVideo,
     cleanup,
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 export default useSchedule;

@@ -8,24 +8,24 @@ $padding-left: dim.$padding + 2em;
 $padding-right: dim.$padding + 2.5em;
 
 .VolumeBar
-***REMOVED***
+{
   @include panel.styles;
 
-  --color-volume-bar-bg: #***REMOVED***color.$bg***REMOVED***;
+  --color-volume-bar-bg: #{color.$bg};
 
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 
   @include remoteMedia.positionRight
-  ***REMOVED***
+  {
     bottom: dim.$bottom;
-***REMOVED***
+  }
 
   @include remoteMedia.positionCenter
-  ***REMOVED***
+  {
     top: dim.$bottom;
-***REMOVED***
+  }
 
   padding-left: $padding-left;
   width: 40vw;
@@ -42,19 +42,19 @@ $padding-right: dim.$padding + 2.5em;
         $left: dim.$padding * .75,
         $top: dim.$padding * 1.3,
     );
-***REMOVED***
+}
 
-.bar ***REMOVED***
+.bar {
   flex-grow: 1;
-  max-width: calc(100% - #***REMOVED***$padding-right - dim.$padding***REMOVED***);
+  max-width: calc(100% - #{$padding-right - dim.$padding});
   background-color: var(--color-volume-bar-bg);
-***REMOVED***
+}
 
 .value
-***REMOVED***
-  --color-volume-bar-fill: #***REMOVED***color.$fill***REMOVED***;
+{
+  --color-volume-bar-fill: #{color.$fill};
   
   display: block;
   height: 1em;
   background: var(--color-volume-bar-fill);
-***REMOVED***
+}

@@ -1,14 +1,14 @@
-import ***REMOVED***
+import {
   useCallback, useEffect, useState,
-***REMOVED*** from 'react';
-import ***REMOVED*** getStoredData, storeData ***REMOVED*** from '../storage';
-import ***REMOVED*** CHANNEL_ID_MIN, CHANNEL_ID_MAX ***REMOVED*** from '../settings';
+} from 'react';
+import { getStoredData, storeData } from '../storage';
+import { CHANNEL_ID_MIN, CHANNEL_ID_MAX } from '../settings';
 
 const DATA_CHANNEL_ID = 'channel';
 
 const storedChannelId = getStoredData(DATA_CHANNEL_ID);
 
-const CHANNEL_DEFAULT = ***REMOVED***
+const CHANNEL_DEFAULT = {
   id: Number(
     storedChannelId !== null && !Number.isNaN(Number(storedChannelId))
       ? storedChannelId
@@ -18,59 +18,59 @@ const CHANNEL_DEFAULT = ***REMOVED***
   currentShow: null,
   visible: false,
   isLoading: false,
-***REMOVED***;
+};
 
-const useChannel = () => ***REMOVED***
-  const [***REMOVED***
+const useChannel = () => {
+  const [{
     id, title, currentShow, visible, isLoading,
-***REMOVED***, setState] = useState(CHANNEL_DEFAULT);
+  }, setState] = useState(CHANNEL_DEFAULT);
 
-  const toggleBar = useCallback((enable) => ***REMOVED***
-    setState((oldState) => ***REMOVED***
-      const newState = ***REMOVED***
+  const toggleBar = useCallback((enable) => {
+    setState((oldState) => {
+      const newState = {
         ...oldState,
         visible: enable !== undefined ? !!enable : !oldState.visible,
-    ***REMOVED***;
-      if (newState.visible) ***REMOVED***
+      };
+      if (newState.visible) {
         newState.muted = false;
-    ***REMOVED***
+      }
       return newState;
-  ***REMOVED***);
-***REMOVED***, [setState]);
+    });
+  }, [setState]);
 
-  const setItem = useCallback((key, value) => ***REMOVED***
-    setState((oldState) => (***REMOVED***
+  const setItem = useCallback((key, value) => {
+    setState((oldState) => ({
       ...oldState,
       [key]: value,
-  ***REMOVED***));
-***REMOVED***, [setState]);
+    }));
+  }, [setState]);
 
-  const setCurrentShow = useCallback((value) => ***REMOVED***
+  const setCurrentShow = useCallback((value) => {
     setItem('currentShow', value);
-***REMOVED***, [setItem]);
-  const setId = useCallback((value) => ***REMOVED***
-    if (value < CHANNEL_ID_MIN) ***REMOVED***
+  }, [setItem]);
+  const setId = useCallback((value) => {
+    if (value < CHANNEL_ID_MIN) {
       setItem('id', CHANNEL_ID_MAX);
-  ***REMOVED*** else if (value > CHANNEL_ID_MAX) ***REMOVED***
+    } else if (value > CHANNEL_ID_MAX) {
       setItem('id', CHANNEL_ID_MIN);
-  ***REMOVED*** else ***REMOVED***
+    } else {
       setItem('id', value);
-  ***REMOVED***
-***REMOVED***, [setItem]);
-  const setTitle = useCallback((value) => ***REMOVED***
+    }
+  }, [setItem]);
+  const setTitle = useCallback((value) => {
     setItem('title', value);
-***REMOVED***, [setItem]);
-  const setLoading = useCallback((value) => ***REMOVED***
+  }, [setItem]);
+  const setLoading = useCallback((value) => {
     setItem('isLoading', value);
-***REMOVED***, [setItem]);
+  }, [setItem]);
 
-  useEffect(() => ***REMOVED***
+  useEffect(() => {
     storeData(DATA_CHANNEL_ID, id);
     setTitle(CHANNEL_DEFAULT.title);
     setCurrentShow(CHANNEL_DEFAULT.currentShow);
-***REMOVED***, [id, setCurrentShow, setTitle]);
+  }, [id, setCurrentShow, setTitle]);
 
-  return ***REMOVED***
+  return {
     visible,
     id,
     title,
@@ -81,7 +81,7 @@ const useChannel = () => ***REMOVED***
     setCurrentShow,
     setLoading,
     toggleBar,
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 export default useChannel;

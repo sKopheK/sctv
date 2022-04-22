@@ -1,175 +1,175 @@
 @use "config/breakpoints" as bp;
 
 @mixin mediaPrint
-***REMOVED***
+{
     @media only print
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin mediaScreen
-***REMOVED***
+{
     @media only screen
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin mediaWidth($args...)
-***REMOVED***
+{
     @if length($args) > 0 and nth($args, 1) != false
-    ***REMOVED***
+    {
         @each $type in $args
-        ***REMOVED***
+        {
             @if $type == "tablet"
-            ***REMOVED***
+            {
                 @media only screen and (min-width: bp.$tablet) and (max-width: bp.$desktop - .1)
-                ***REMOVED***
+                {
                     @content;
-              ***REMOVED***
-          ***REMOVED***
+                }
+            }
             @else if ($type == "desktop")
-            ***REMOVED***
+            {
                 @media only screen and (min-width: bp.$desktop)
-                ***REMOVED***
+                {
                     @content;
-              ***REMOVED***
-          ***REMOVED***
+                }
+            }
             @else if ($type == "mobile")
-            ***REMOVED***
+            {
                 @media only screen and (max-width: bp.$tablet - .1)
-                ***REMOVED***
+                {
                     @content;
-              ***REMOVED***
-          ***REMOVED***
+                }
+            }
             @else
-            ***REMOVED***
+            {
                 @if length($type) == 1
-                ***REMOVED***
+                {
                     @media only screen and (min-width: $type)
-                    ***REMOVED***
+                    {
                         @content;
-                  ***REMOVED***
-              ***REMOVED***
+                    }
+                }
                 @else if (length($type) == 2)
-                ***REMOVED***
+                {
                     $min: nth($type, 1);
                     $max: nth($type, 2);
 
                     @if $min != null and $max != null
-                    ***REMOVED***
+                    {
                         @media only screen and (min-width: $min) and (max-width: $max + .9)
-                        ***REMOVED***
+                        {
                             @content;
-                      ***REMOVED***
-                  ***REMOVED***
+                        }
+                    }
                     @else if ($min != null)
-                    ***REMOVED***
+                    {
                         @media only screen and (min-width: $min)
-                        ***REMOVED***
+                        {
                             @content;
-                      ***REMOVED***
-                  ***REMOVED***
+                        }
+                    }
                     @else if ($max != null)
-                    ***REMOVED***
+                    {
                         @media only screen and (max-width: $max + .9)
-                        ***REMOVED***
+                        {
                             @content;
-                      ***REMOVED***
-                  ***REMOVED***
-              ***REMOVED***
-          ***REMOVED***
-      ***REMOVED***
-  ***REMOVED***
+                        }
+                    }
+                }
+            }
+        }
+    }
     @else
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin mediaTablet
-***REMOVED***
+{
     @include mediaWidth(bp.$tablet)
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin mediaDesktop
-***REMOVED***
+{
     @include mediaWidth(bp.$desktop)
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 // IE10-11 (NOTE: does not work inside another media query)
 @mixin IeFix($args...)
-***REMOVED***
+{
     $ieSuffix: ' and (-ms-high-contrast: none), (-ms-high-contrast: active)';
 
     @if length($args) == 0
-    ***REMOVED***
-        @media #***REMOVED***all + $ieSuffix***REMOVED***
-        ***REMOVED***
+    {
+        @media #{all + $ieSuffix}
+        {
             @content;
-      ***REMOVED***
-  ***REMOVED***
+        }
+    }
     @else
-    ***REMOVED***
+    {
         @each $type in $args
-        ***REMOVED***
+        {
             $w: null;
 
             @if length($type) == 1
-            ***REMOVED***
-                $w: 'all and (min-width: #***REMOVED***$type***REMOVED***)';
-          ***REMOVED***
+            {
+                $w: 'all and (min-width: #{$type})';
+            }
             @else if (length($type) == 2)
-            ***REMOVED***
+            {
                 $min: nth($type, 1);
                 $max: nth($type, 2);
 
                 @if $min != null and $max != null
-                ***REMOVED***
-                    $w: 'all and (min-width: #***REMOVED***$min***REMOVED***) and (max-width: #***REMOVED***$max***REMOVED***)';
-              ***REMOVED***
+                {
+                    $w: 'all and (min-width: #{$min}) and (max-width: #{$max})';
+                }
                 @else if ($min != null)
-                ***REMOVED***
-                    $w: 'all and (min-width: #***REMOVED***$min***REMOVED***)';
-              ***REMOVED***
+                {
+                    $w: 'all and (min-width: #{$min})';
+                }
                 @else if ($max != null)
-                ***REMOVED***
-                    $w: 'all and (max-width: #***REMOVED***$max***REMOVED***)';
-              ***REMOVED***
-          ***REMOVED***
+                {
+                    $w: 'all and (max-width: #{$max})';
+                }
+            }
 
             @if $w != null
-            ***REMOVED***
-                @media #***REMOVED***$w + $ieSuffix***REMOVED***
-                ***REMOVED***
+            {
+                @media #{$w + $ieSuffix}
+                {
                     @content;
-              ***REMOVED***
-          ***REMOVED***
-      ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+                }
+            }
+        }
+    }
+}
 
 @mixin edgeFix
-***REMOVED***
+{
     // Edge
     @supports (-ms-ime-align:auto)
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin safariFix
-***REMOVED***
+{
     _::-webkit-full-page-media,
     _:future
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}

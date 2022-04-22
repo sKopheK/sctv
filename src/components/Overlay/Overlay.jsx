@@ -1,47 +1,47 @@
 import PropTypes from 'prop-types';
-import React, ***REMOVED***
+import React, {
   useCallback,
   useContext, useEffect, useMemo, useState,
-***REMOVED*** from 'react';
+} from 'react';
 import AppCtx from '../../state/AppCtx';
 import Welcome from '../Welcome/Welcome';
 import './Overlay.scss';
 
 const FIRST_VISIT_CLASS = 'first-run';
 
-const Overlay = (***REMOVED*** className ***REMOVED***) => ***REMOVED***
-  const ***REMOVED*** screenOn, hasSignal, setRemoteVisible ***REMOVED*** = useContext(AppCtx);
+const Overlay = ({ className }) => {
+  const { screenOn, hasSignal, setRemoteVisible } = useContext(AppCtx);
   const [firstRun, setFirstRun] = useState(true);
 
-  useEffect(() => ***REMOVED***
-    if (screenOn) ***REMOVED***
+  useEffect(() => {
+    if (screenOn) {
       setFirstRun(false);
-  ***REMOVED***
-***REMOVED***, [screenOn]);
+    }
+  }, [screenOn]);
 
   const showRemote = useCallback(() => setRemoteVisible(true), [setRemoteVisible]);
 
   return useMemo(() => (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <div className=***REMOVED***`Overlay $***REMOVED***screenOn && !hasSignal ? 'no-signal' : ''***REMOVED*** $***REMOVED***className ?? ''***REMOVED***`***REMOVED*** onClick=***REMOVED***showRemote***REMOVED*** onKeyDown=***REMOVED***showRemote***REMOVED*** role="region">
-      ***REMOVED***screenOn ? '' : (
+    <div className={`Overlay ${screenOn && !hasSignal ? 'no-signal' : ''} ${className ?? ''}`} onClick={showRemote} onKeyDown={showRemote} role="region">
+      {screenOn ? '' : (
         <h1 className="app-logo">
-          <span className=***REMOVED***`sc-logo $***REMOVED***firstRun ? FIRST_VISIT_CLASS : ''***REMOVED***`***REMOVED***><span className="visually-hidden">StarCraft</span></span>
-          ***REMOVED***' '***REMOVED***
-          <span className=***REMOVED***`tv-ico $***REMOVED***firstRun ? FIRST_VISIT_CLASS : ''***REMOVED***`***REMOVED***><span className="visually-hidden">TV</span></span>
+          <span className={`sc-logo ${firstRun ? FIRST_VISIT_CLASS : ''}`}><span className="visually-hidden">StarCraft</span></span>
+          {' '}
+          <span className={`tv-ico ${firstRun ? FIRST_VISIT_CLASS : ''}`}><span className="visually-hidden">TV</span></span>
         </h1>
-      )***REMOVED***
-      ***REMOVED***!screenOn && firstRun ? <Welcome /> : ''***REMOVED***
+      )}
+      {!screenOn && firstRun ? <Welcome /> : ''}
     </div>
   ), [screenOn, hasSignal, className, firstRun, showRemote]);
-***REMOVED***;
+};
 
-Overlay.propTypes = ***REMOVED***
+Overlay.propTypes = {
   className: PropTypes.string,
-***REMOVED***;
+};
 
-Overlay.defaultProps = ***REMOVED***
+Overlay.defaultProps = {
   className: '',
-***REMOVED***;
+};
 
 export default Overlay;

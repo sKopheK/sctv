@@ -9,20 +9,20 @@ $stroke-width: .16em;
 $color: btnColor.$content;
 
 .ico-sound
-***REMOVED*** 
+{ 
     position: relative;
     
     &::before
-    ***REMOVED***
+    {
         content: '';
-        border: ***REMOVED***
+        border: {
             style: solid;
             width: $stroke-width;
             color: $color;
-      ***REMOVED***
+        }
         
         $top: $base-dimension * .28;
-        $left: calc(50% - #***REMOVED***$base-dimension * .2***REMOVED***);
+        $left: calc(50% - #{$base-dimension * .2});
         $width: $base-dimension * .08;
         $height: $width * 1.35;
 
@@ -31,19 +31,19 @@ $color: btnColor.$content;
         left: $left;
         width: $width;
         height: $height;
-  ***REMOVED***
+    }
 
     &::after
-    ***REMOVED***
+    {
         content: '';
-        border: ***REMOVED***
+        border: {
             style: solid;
             width: $stroke-width $stroke-width $stroke-width 0;
             color: $color;
-      ***REMOVED***
+        }
 
         $top: $base-dimension * .25;
-        $left: calc(50% - #***REMOVED***$base-dimension * .15***REMOVED***);
+        $left: calc(50% - #{$base-dimension * .15});
         $width: $base-dimension * .3;
         $height: $width * .56;
 
@@ -52,19 +52,19 @@ $color: btnColor.$content;
         left: $left;
         width: $width;
         height: $height;
-        transform: perspective(#***REMOVED***math.div($base-dimension, 3)***REMOVED***) rotateY(-42deg);
-  ***REMOVED***
-***REMOVED***
+        transform: perspective(#{math.div($base-dimension, 3)}) rotateY(-42deg);
+    }
+}
 
 .ico-cross
-***REMOVED***
+{
     @include fill-parent;
 
     $position: translate($base-dimension * .4, $base-dimension *.4);
 
     &::before,
     &::after
-    ***REMOVED***
+    {
         content: '';
         position: absolute;
         top: 0;
@@ -74,10 +74,10 @@ $color: btnColor.$content;
         height: $stroke-width * .5;
         background-color: $color;
         transform: $position rotate(45deg);
-  ***REMOVED***
+    }
 
     &::after
-    ***REMOVED***
+    {
         transform: $position rotate(-45deg);
-  ***REMOVED***
-***REMOVED***
+    }
+}

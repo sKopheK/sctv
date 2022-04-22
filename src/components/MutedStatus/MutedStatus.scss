@@ -7,7 +7,7 @@ $ico-left: dim.$padding * .75;
 $ico-top: dim.$padding * 1.3;
 
 .MutedStatus
-***REMOVED***
+{
   @include panel.styles;
   
   position: absolute;
@@ -15,13 +15,13 @@ $ico-top: dim.$padding * 1.3;
   left: dim.$bottom;
 
   @include remoteMedia.positionCenter
-  ***REMOVED***
+  {
     bottom: auto;
     top: dim.$bottom;
     left: auto;
     right: 50%;
     transform: translateX(50%);
-***REMOVED***
+  }
 
   padding-left: dim.$padding + 1.8em;
   z-index: dim.$zIndex-top;
@@ -33,18 +33,18 @@ $ico-top: dim.$padding * 1.3;
         $left: $ico-left,
         $top: $ico-top,
     );
-***REMOVED***
+}
 
 $stroke-width: .15em;
 $base-dimension: 1.9em;
 
 .ico-cross--muted
-***REMOVED***
+{
     $position: translateY(-50%);
 
     &::before,
     &::after
-    ***REMOVED***
+    {
         content: '';
         position: absolute;
         z-index: 1;
@@ -55,10 +55,10 @@ $base-dimension: 1.9em;
         height: $stroke-width;
         background-image: linear-gradient(var(--color-panel-ico) 50%, var(--color-panel-bg) 100%);
         transform: $position rotate(40deg);
-  ***REMOVED***
+    }
 
     &::after
-    ***REMOVED***
+    {
         transform: $position rotate(-40deg);
-  ***REMOVED***
-***REMOVED***
+    }
+}

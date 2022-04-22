@@ -1,28 +1,28 @@
 @mixin mouseover
-***REMOVED***
+{
     &:hover,
     &:focus
-    ***REMOVED***
+    {
         @content;
-  ***REMOVED***
-***REMOVED***
+    }
+}
 
 @mixin circle
-***REMOVED***
+{
     border-radius: 50%;
-***REMOVED***
+}
 
 @mixin fill-parent($padding: 0)
-***REMOVED***
+{
     position: absolute;
     top: $padding;
     left: $padding;
     right: $padding;
     bottom: $padding;
-***REMOVED***
+}
 
 @mixin visually-hidden
-***REMOVED***
+{
     margin: -1px;
     padding: 0;
     width: 1px;
@@ -31,4 +31,4 @@
     clip: rect(0 0 0 0);
     clip: rect(0, 0, 0, 0);
     position: absolute;
-***REMOVED***
+}
