@@ -15,7 +15,7 @@ class Youtube {
   // eslint-disable-next-line class-methods-use-this
   initGapi() {
     gapi.client.init({
-      apiKey: '***REMOVED***',
+      apiKey: '... secret API developer key ...',
       discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
     }).then();
   }
