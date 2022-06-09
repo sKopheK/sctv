@@ -6,6 +6,7 @@
 /cache
 /.pnp
 .pnp.js
+gapi.json
 
 # testing
 /coverage
@@ -26,5 +27,5 @@ yarn-error.log*
 
 # sensitive info
 gapi.json
-/api/src/def.php
-/src/components/Youtube/Youtube.js
+api/src/def.php
+src/components/Youtube/Youtube.js
